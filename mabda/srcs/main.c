@@ -6,7 +6,7 @@
 /*   By: mabdali <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/12 18:18:28 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/06/12 18:21:15 by mabdali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 void	init_struct(t_data *data)
 {
 	data->user = getenv("USER");
+	data->path = getenv("PATH");
 	data->minishell_name = ft_strjoin(data->user, "@minishell : ");
 }
 
@@ -67,6 +68,9 @@ int	main(void)
 	t_data	data;
 
 	init_struct(&data);
+	printf("PATH = %s\n", data.path);
+	printf("USER = %s\n", data.user);
+	printf("MINISHELL_NAME = %s\n\n", data.minishell_name);
 	data.line = readline(data.minishell_name);
 	printf("%s", data.line);
 }
