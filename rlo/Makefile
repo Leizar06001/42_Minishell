@@ -6,7 +6,7 @@
 #    By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/06/12 18:41:13 by rloussig         ###   ########.fr        #
+#    Updated: 2023/06/12 18:47:34 by rloussig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ LREADLINE	=	-lreadline
 
 SRCS_PATH	=	./srcs/
 
-SRCS_FILES	=	main.c ft_split.c ft_strjoin.c
+SRCS_FILES	=	main.c ft_split.c
 
 SRCS		=	$(addprefix $(SRCS_PATH), $(SRCS_FILES))
 
