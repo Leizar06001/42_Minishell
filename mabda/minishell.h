@@ -6,7 +6,7 @@
 /*   By: mabdali <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/12 18:23:25 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/06/12 18:50:48 by mabdali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <readline/history.h>
 # include <stdio.h>
 # include <stdlib.h>
+
+# define NC "\e[0m"
+# define YELLOW "\e[33m"
+# define BLUE   "\e[34m"
 
 //STRUCTURE
 typedef struct s_data
