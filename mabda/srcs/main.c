@@ -6,7 +6,7 @@
 /*   By: mabdali <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/12 18:21:15 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/06/12 18:50:54 by mabdali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ void	init_struct(t_data *data)
 {
 	data->user = getenv("USER");
 	data->path = getenv("PATH");
-	data->minishell_name = ft_strjoin(data->user, "@minishell : ");
+	data->user = ft_strjoin(BLUE, data->user);
+	data->user = ft_strjoin(data->user, NC);
+	data->minishell_name = ft_strjoin(data->user, YELLOW"@minishell : "NC);
 }
 
 int	main(void)
