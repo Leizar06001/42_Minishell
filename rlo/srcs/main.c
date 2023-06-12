@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/12 19:05:09 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/12 19:28:48 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,12 @@ int find_fnc_path(char *fnc_name, char **path_lst, int index)
         tmp = ft_strjoin(path_lst[i], fnc_name);
         if (access(tmp, F_OK) == 0)
         {
-            printf("%s : %s\n", fnc_name, tmp);
+            printf("%d > %s : %s\n", index, fnc_name, tmp);
+            //ft_memcpy(datas->path_fnc[index], tmp, ft_strlen(tmp));
+            datas->path_fnc = tmp;
+            return (1);
         }
+        //free(tmp);
         i++;
     }
     return (0);
@@ -98,8 +102,10 @@ int main()
 	// char *minishell_name;
 	// char * user;
 	// char *result;
-	
+    datas->popo = 10;
+    printf("%d\n", datas->popo);
     find_sys_functions();
+
 
 	// user = getenv("USER");
 	// minishell_name = ft_strjoin(user, "@minishell : ");
