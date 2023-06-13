@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+         #
+#    By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/06/13 15:36:44 by mabdali          ###   ########.fr        #
+#    Updated: 2023/06/13 19:38:36 by rloussig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,9 @@ SRCS_FILES	=	main.c 				\
 				init_struct.c		\
 				ft_chdir.c			\
 				utils_1.c			\
-				free.c
+				free.c				\
+				ft_echo.c			\
+				utils_2.c
 
 SRCS		=	$(addprefix $(SRCS_PATH), $(SRCS_FILES))
 

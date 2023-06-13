@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/13 17:08:44 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/06/13 20:19:14 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 # include <fcntl.h>
 # include <unistd.h>
 
-# define NC "\e[0m"
-# define YELLOW "\e[33m"
-# define BLUE   "\e[34m"
+# define NC		"\e[0m"
+# define YELLOW	"\e[33m"
+# define BLUE	"\e[34m"
 
-typedef struct s_data
+typedef struct	s_data
 {
 	char	*user;
 	char	*path;
@@ -37,9 +37,9 @@ typedef struct s_data
 	char	*current_folder;
 	char	**path_fnc;
 	char	*echo_path;
-}		t_data;
+}				t_data;
 
-extern  t_data data;
+extern t_data	data;
 
 size_t	ft_strlen(const char *s);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
@@ -53,7 +53,7 @@ void	init_struct();
 void	find_sys_functions();
 void	update_shell_name();
 
-void    current_folder(void);
+void	current_folder(void);
 int 	ft_chdir(char *str);
 
 char	*ft_strnstr(const char *str, const char *to_find, size_t len);
@@ -61,5 +61,9 @@ int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strrchr(const char *s, int c);
 
 void	free_struct();
+
+void	ft_echo(char **input);
+
+void	get_env_var(char **arr);
 
 #endif

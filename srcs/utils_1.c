@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:07:58 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/13 19:08:00 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/13 19:15:11 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,3 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	return (0);
 }
-
