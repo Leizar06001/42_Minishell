@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/12 18:59:28 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/12 19:29:20 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <fcntl.h>
 # include <unistd.h>
 
-
 typedef struct	s_fnc_path
 {
 	char	cd[255];
@@ -33,12 +32,14 @@ typedef struct	s_fnc_path
 //STRUCTURE
 typedef struct s_data
 {
-	t_fnc_path	*paths;
+	//t_fnc_path	*paths;
 	char		*user;
 	char		*path;
 	char		*minishell_name;
 	char		*line;
-	char		path_fnc[10][255];
+	//char		path_fnc[10][255];
+	char		*path_fnc;
+	int			popo;
 }		t_data;
 
 //FT_STRJOIN
