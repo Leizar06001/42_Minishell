@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 02:54:39 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/12 18:35:28 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:30:45 by mabdali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static char	**ft_free_all(char **tb, int tb_size)
 		i++;
 	}
 	free(tb);
-	return (tb);
+	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)

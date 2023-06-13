@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabdali <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/12 16:42:50 by mabdali          ###   ########.fr       */
+/*   Created: 2023/06/13 19:07:54 by rloussig          #+#    #+#             */
+/*   Updated: 2023/06/13 19:07:55 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "../minishell.h"
 
-int main()
+void free_struct()
 {
-	char *str;
-	str = readline("➡️ rloussig-mabdali@minishelli : ");
+    int i;
 
-	printf("%s", str);
+    i = 0;
+    free(data.user);
+	free(data.minishell_name);
+	free(data.path_fnc);
+    while (i < 10)
+	{
+		free(data.path_fnc[i]);
+		i++;
+	}
 }

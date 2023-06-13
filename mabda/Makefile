@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mabdali <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/06/13 12:24:14 by mabdali          ###   ########.fr        #
+#    Updated: 2023/06/13 15:36:44 by mabdali          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,14 @@ LREADLINE	=	-lreadline
 
 SRCS_PATH	=	./srcs/
 
-SRCS_FILES	=	main.c ft_split.c
+SRCS_FILES	=	main.c 				\
+				ft_split.c			\
+				ft_split_spaces.c	\
+				ft_strjoin.c		\
+				init_struct.c		\
+				ft_chdir.c			\
+				utils_1.c			\
+				free.c
 
 SRCS		=	$(addprefix $(SRCS_PATH), $(SRCS_FILES))
 
