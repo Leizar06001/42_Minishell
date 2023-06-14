@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/14 11:07:16 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/06/14 14:31:47 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,145 +18,55 @@ void	exex_echo(const char *arg)
 {
     char *args[] = {"echo", (char *)arg, "qwe", "nbvcx", NULL};
 	
-    execve(data.path_fnc[0], args, NULL);
+    execve(data.path_fnc, args, NULL);
 }
 
-int	exec_cmd(void)
+int	exec_cmd(int id_cmd)
 {
-	char	***input;
+	char	**cmd_line;
 	char	s[100];
-	int i;
 
-	i = 0;
-	input = malloc(sizeof(char *) * (10 + 1));
-if (input == NULL) {
-    // Gérer l'échec de l'allocation mémoire
-    return 0;
-}
-input[10] = NULL; // Assurez-vous de terminer le tableau avec NULL
-	while (data.cmd[i])
-	{
-	input[i] = ft_split_spaces(data.cmd[i]);
-	if (input[i][0] == NULL)
+	cmd_line = ft_split_spaces(data.cmd[id_cmd]);
+	if (cmd_line[0] == NULL)
 		return (0);
-	if (!ft_strcmp(input[i][0], "cd") || !ft_strcmp(input[i][0], "chdir"))
-		ft_chdir(input[i][1]);
-	else if (!ft_strcmp(input[i][0], "pwd"))
+	if (!ft_strcmp(cmd_line[0], "cd") || !ft_strcmp(cmd_line[0], "chdir"))
+		ft_chdir(cmd_line[1]);
+	else if (!ft_strcmp(cmd_line[0], "pwd"))
 		printf("%s\n", getcwd(s, 100));
-	else if (!ft_strcmp(input[i][0], "echo"))
-		ft_echo(input[i]);
-	else if (!ft_strcmp(input[i][0], "exit"))
+	else if (!ft_strcmp(cmd_line[0], "echo"))
+		ft_echo(cmd_line);
+	else if (!ft_strcmp(cmd_line[0], "env"))
+		ft_env();
+	else if (!ft_strcmp(cmd_line[0], "export"))
+		ft_export(cmd_line);
+	else if (!ft_strcmp(cmd_line[0], "unset"))
+		ft_unset(cmd_line);
+	else if (!ft_strcmp(cmd_line[0], "exit"))
 		return (1);
 	else
-		printf("shell: command not found: %s\n", input[i][0]);
-	i++;
-	}
+		printf("shell: command not found: %s\n", cmd_line[0]);
 	return (0);
 }
 
-// int	exec_cmd(void)
-// {
-// 	char	**input;
-// 	char	s[100];
-
-// 	input = ft_split_spaces(data.line);
-// 	if (input[0] == NULL)
-// 		return (0);
-// 	if (!ft_strcmp(input[0], "cd") || !ft_strcmp(input[0], "chdir"))
-// 		ft_chdir(input[1]);
-// 	else if (!ft_strcmp(input[0], "pwd"))
-// 		printf("%s\n", getcwd(s, 100));
-// 	else if (!ft_strcmp(input[0], "echo"))
-// 		ft_echo(input);
-// 	else if (!ft_strcmp(input[0], "exit"))
-// 		return (1);
-// 	else
-// 		printf("shell: command not found: %s\n", input[0]);
-// 	return (0);
-// }
-
-char	*ft_strdup(char *s)
-{
-	char *str;
-	int i;
-
-	i = 0;
-	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	while (s[i])
-	{
-		str[i] = s[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
-
-int	main(void)
-{
-	//extern char **environ;	// env var set (maybe used to export new vars without using setenv())
+int	main(int i, char *argv[], char **env)
+{	
+	(void)argv;
 	
-	printf("** Initialization **\n");
-	init_struct();
-	find_sys_functions();
-	printf("** Init Done **\n\n");
-	int i = 0;
-	while (1)
+	init_struct(env);
+
+	while (!data.exit)
 	{
 		data.line = readline(data.minishell_name);
-		if(ft_strrchr(data.line, ';'))
+		quote_error(data.line);
+		data.cmd = ft_split(data.line, ';');
+		i = -1;
+		while (data.cmd[++i] && !data.exit)
 		{
-			data.cmd = ft_split(data.line, ';');
-			while (data.cmd[i])
-			{
-				add_history(data.cmd[i]);
-				i++;
-			}
+			add_history(data.cmd[i]);
+			data.exit = exec_cmd(i);
 		}
-		else
-		{
-			data.cmd = malloc(sizeof(char *) * 2);
-			data.cmd[0] = ft_strdup(data.line);
-			data.cmd[1] = NULL;
-		add_history(data.line);
-		}
-		if (exec_cmd() == 1)
-			break ;
 	}
 	return (0);
-	//free_struct();
+	free_struct();
 }
-
-// int	main(void)
-// {
-// 	//extern char **environ;	// env var set (maybe used to export new vars without using setenv())
-	
-// 	printf("** Initialization **\n");
-// 	init_struct();
-// 	find_sys_functions();
-// 	printf("** Init Done **\n\n");
-// 	int i = 0;
-// 	while (1)
-// 	{
-// 		data.line = readline(data.minishell_name);
-// 		if(ft_strrchr(data.line, ';'))
-// 		{
-// 			data.cmd = ft_split(data.line, ';');
-// 			while (data.cmd[i])
-// 			{
-// 				add_history(data.cmd[i]);
-// 				i++;
-// 			}
-// 		}
-// 		else
-// 		{
-// 			data.cmd = malloc(sizeof(char *) * 2);
-// 			data.cmd[0] = ft_strdup(data.line);
-// 			data.cmd[1] = NULL;
-// 		add_history(data.line);
-// 		}
-// 		if (exec_cmd() == 1)
-// 			break ;
-// 	}
-// 	return (0);
-// 	//free_struct();
-// }
+ 

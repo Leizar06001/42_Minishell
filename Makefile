@@ -6,7 +6,7 @@
 #    By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/06/14 11:00:39 by mabdali          ###   ########.fr        #
+#    Updated: 2023/06/14 14:31:47 by rloussig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CC			=	gcc
 
 RM			=	rm -rf
 
-FLAGS		=	-g -Wall -Wextra
+FLAGS		=	-g -Wall -Wextra -Werror
 
 LREADLINE	=	-lreadline
 
@@ -30,12 +30,15 @@ SRCS_FILES	=	main.c 				\
 				ft_split.c			\
 				ft_split_spaces.c	\
 				ft_strjoin.c		\
+				init.c				\
 				init_struct.c		\
 				ft_chdir.c			\
 				utils_1.c			\
 				free.c				\
-				ft_echo.c			\
-				utils_2.c
+				builtin_1.c			\
+				utils_2.c			\
+				quote.c				\
+				signals.c
 
 SRCS		=	$(addprefix $(SRCS_PATH), $(SRCS_FILES))
 

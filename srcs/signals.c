@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 20:19:18 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/13 20:19:20 by rloussig         ###   ########.fr       */
+/*   Created: 2023/06/14 13:51:27 by rloussig          #+#    #+#             */
+/*   Updated: 2023/06/14 14:42:49 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void ft_echo(char **input)
+void	handler(int sig, siginfo_t *info, void *ucontext)
 {
-    int i = 1;
-    int option;
-    if (ft_strcmp(input[1], "-n") == 0)
+	(void)info;
+	(void)ucontext;
+    if (sig == SIGINT)
     {
-        option = 1;
-        i = 2;
+        rl_on_new_line();
+        rl_replace_line("", 0);
+        rl_redisplay();
+        printf("\n%s", data.minishell_name);
     }
-    while(input[i])
+    else if (sig == SIGQUIT)
     {
-        if (input[i + 1] == NULL)
-            printf("%s", input[i]);
-        else
-            printf("%s ", input[i]);
-        i++;
+
     }
-    if (option != 1)
-        printf("\n");
 }
+

@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/13 19:08:04 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:31:47 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	update_shell_name()
 	data.minishell_name = ft_strjoin(data.minishell_name, NC"$ ");
 }
 
-void	init_struct()
+void	init_struct(char **env)
 {
-	int	i;
-
-	i = 0;
+	init_signals();
+	data.exit = 0;
+	data.env = env;
 	data.user = getenv("USER");
 	data.path = getenv("PATH");
 	data.home = getenv("HOME");
@@ -37,12 +37,6 @@ void	init_struct()
 	ft_chdir(data.home);
 	data.user = ft_strjoin(BLUE, data.user);
 	update_shell_name();
-	data.path_fnc = (char **)malloc(sizeof(char *) * 10);
-	while (i < 10)
-	{
-		data.path_fnc[i] = NULL;
-		i++;
-	}
 }
 
 int	find_fnc_path(char *fnc_name, char **path_lst, int index)
@@ -57,8 +51,8 @@ int	find_fnc_path(char *fnc_name, char **path_lst, int index)
 		if (access(tmp, F_OK) == 0)
 		{
 			printf("%d > %s : %s\n", index, fnc_name, tmp);
-			data.path_fnc[index] = (char *)malloc(sizeof(char) * ft_strlen(tmp) + 1);
-			strcpy(data.path_fnc[index], tmp);
+			data.path_fnc = (char *)malloc(sizeof(char) * ft_strlen(tmp) + 1);
+			strcpy(data.path_fnc, tmp);
 			free(tmp);
 			break ;
 		}
