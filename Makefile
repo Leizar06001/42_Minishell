@@ -6,7 +6,7 @@
 #    By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/06/13 19:38:36 by rloussig         ###   ########.fr        #
+#    Updated: 2023/06/14 11:00:39 by mabdali          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CC			=	gcc
 
 RM			=	rm -rf
 
-FLAGS		=	-g -Wall -Wextra -Werror
+FLAGS		=	-g -Wall -Wextra
 
 LREADLINE	=	-lreadline
 
