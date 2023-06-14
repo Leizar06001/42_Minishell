@@ -6,7 +6,7 @@
 #    By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/06/14 14:31:47 by rloussig         ###   ########.fr        #
+#    Updated: 2023/06/14 18:47:09 by rloussig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRCS_FILES	=	main.c 				\
 				builtin_1.c			\
 				utils_2.c			\
 				quote.c				\
-				signals.c
+				signals.c			\
+				execve_fnc.c
 
 SRCS		=	$(addprefix $(SRCS_PATH), $(SRCS_FILES))
 

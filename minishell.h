@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/14 15:05:05 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/14 19:17:06 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <signal.h>
+# include <sys/wait.h>
 
 # define NC		"\e[0m"
 # define YELLOW	"\e[33m"
@@ -37,28 +38,24 @@ typedef struct	s_data
 	char				*line;
 	char				**cmd;
 	char				*current_folder;
-	char				*echo_path;
 	char				*path_fnc;
 	char				**env;
 	int					exit;
-	struct sigaction	sa;
+	int					testdquote;
+	char				**path_lst;
 }				t_data;
 
 extern t_data	data;
 
 size_t	ft_strlen(const char *s);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
-
 char	*ft_strjoin(char const *s1, char const *s2);
 
 char	**ft_split(char const *s, char c);
 char	**ft_split_spaces(char *str);
 
 void	init_struct();
-void	find_sys_functions();
 void	update_shell_name();
-
-void    init_signals(void);
 
 void	current_folder(void);
 int 	ft_chdir(char *str);
@@ -66,8 +63,11 @@ int 	ft_chdir(char *str);
 char	*ft_strnstr(const char *str, const char *to_find, size_t len);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strrchr(const char *s, int c);
+char	*ft_strdup(const char *s);
+size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 
 void	free_struct();
+void	clean_exit();
 
 void	ft_echo(char **input);
 void    ft_env();
@@ -76,9 +76,12 @@ void    ft_unset(char **cmd);
 
 void	get_env_var(char **arr);
 
-//void	handler(int sig, siginfo_t *info, void *ucontext);
 void    handler_quit(int sig);
 void	handler_int(int sig);
 
-int quote_error(char *str);
+int		quote_error(char *str);
+
+int		find_fnc_path(char *fnc_name);
+int		ft_execve(char **cmd_line);
+
 #endif

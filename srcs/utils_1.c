@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:07:58 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/13 19:15:11 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/14 19:17:08 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,39 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	return (0);
 }
+
+char	*ft_strdup(const char *s)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = (char *)malloc(sizeof(*str) * (ft_strlen(s) + 1));
+	if (!str)
+		return (0);
+	while (s[i])
+	{
+		str[i] = s[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size - 1 && src[i] && size != 0)
+	{
+		dest[i] = src[i];
+		i ++;
+	}
+	if (size > i)
+		dest[i] = '\0';
+	while (src[i])
+		i ++;
+	return (i);
+}
+

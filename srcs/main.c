@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/14 15:21:00 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/14 18:59:25 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,13 @@
 
 t_data data;
 
-void	exex_echo(const char *arg)
-{
-    char *args[] = {"echo", (char *)arg, "qwe", "nbvcx", NULL};
-	
-    execve(data.path_fnc, args, NULL);
-}
-
 int	exec_cmd(int id_cmd)
 {
 	char	**cmd_line;
 	char	s[100];
 
-	cmd_line = ft_split_spaces(data.cmd[id_cmd]);
+	// cmd_line = ft_split_spaces(data.cmd[id_cmd]);
+	cmd_line = ft_split(data.cmd[id_cmd], ' ');
 	if (cmd_line[0] == NULL)
 		return (0);
 	if (!ft_strcmp(cmd_line[0], "cd") || !ft_strcmp(cmd_line[0], "chdir"))
@@ -44,12 +38,16 @@ int	exec_cmd(int id_cmd)
 	else if (!ft_strcmp(cmd_line[0], "exit"))
 		return (1);
 	else
-		printf("shell: command not found: %s\n", cmd_line[0]);
+	{
+		if (ft_execve(cmd_line))
+			printf("shell: command not found: %s\n", cmd_line[0]);
+	}
 	return (0);
 }
 
 int	main(int i, char *argv[], char **env)
 {	
+	(void)i;
 	(void)argv;
 	
 	init_struct(env);
@@ -59,7 +57,10 @@ int	main(int i, char *argv[], char **env)
 
 	while (!data.exit)
 	{
+		// CTRL + D ne fonctionne pas si la ligne n'est pas vide
 		data.line = readline(data.minishell_name);
+		if (data.line == NULL)
+			clean_exit();
 		quote_error(data.line);
 		data.cmd = ft_split(data.line, ';');
 		i = -1;
@@ -69,7 +70,7 @@ int	main(int i, char *argv[], char **env)
 			data.exit = exec_cmd(i);
 		}
 	}
+	clean_exit();
 	return (0);
-	free_struct();
 }
  
