@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/14 14:31:47 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:21:00 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ int	main(int i, char *argv[], char **env)
 	(void)argv;
 	
 	init_struct(env);
+	signal(SIGQUIT, handler_quit);
+	signal(SIGINT, handler_int);
+	rl_catch_signals = 0;
 
 	while (!data.exit)
 	{

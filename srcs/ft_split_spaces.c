@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:09 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/14 14:42:42 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:21:13 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ char    *malloc_word_quote(char *str)
     char    *tmp = str;
     while (*str)
     {
+        if (*str == '"')
+            str++;
         while (*str && *str != '"')
         {
             size++;
@@ -88,7 +90,7 @@ char    *malloc_word_quote(char *str)
             i++;
         }
         if (str[i] == '"')
-            i++;
+            str++;
     }
     word[i] = '\0';
     return (word);
@@ -108,9 +110,16 @@ char    **ft_split_spaces(char *str)
         if (*str && *str == '\"')
         {
             arr[i++] = malloc_word_quote(++str);
-            while (*str && *str != '\"')
-                str++;
-            str++;
+
+            while (*str)
+            {
+                if (*str == '"')
+                    str++;
+                while (*str != '\"')
+                    str++;
+                if (*str == '"')
+                    str++;
+            }
         }
         else if (*str && !ft_isspace(*str))
         {
@@ -126,6 +135,5 @@ char    **ft_split_spaces(char *str)
     printf("arr[0] = %s\n", arr[0]);
     printf("arr[1] = %s\n", arr[1]);
     printf("arr[2] = %s\n", arr[2]);
-    printf("arr[3] = %s\n", arr[3]);
     return (arr);
 }

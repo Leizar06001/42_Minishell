@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/14 14:31:47 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:03:27 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	update_shell_name()
 
 void	init_struct(char **env)
 {
-	init_signals();
+	//init_signals();
 	data.exit = 0;
 	data.env = env;
 	data.user = getenv("USER");

@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/14 14:31:47 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:05:05 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ void    ft_unset(char **cmd);
 
 void	get_env_var(char **arr);
 
-void	handler(int sig, siginfo_t *info, void *ucontext);
+//void	handler(int sig, siginfo_t *info, void *ucontext);
+void    handler_quit(int sig);
+void	handler_int(int sig);
 
 int quote_error(char *str);
 #endif
