@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/14 19:17:06 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:10:10 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct	s_data
 	char				*current_folder;
 	char				*path_fnc;
 	char				**env;
+	int					nb_env_var;
 	int					exit;
 	int					testdquote;
 	char				**path_lst;
@@ -66,15 +67,27 @@ char	*ft_strrchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 
+char	*ft_strchr(const char *s, int c);
+int 	ft_isalpha(int c);
+int 	ft_isalnum(int c);
+int 	ft_size_array(char **arr);
+void	get_env_var(char **arr);
+
+char    **ft_arraydup(char **arr);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+
+void	free_2d(char **arr);
 void	free_struct();
 void	clean_exit();
 
 void	ft_echo(char **input);
+char    *ft_getvar(char *varname);
 void    ft_env();
-void    ft_export(char **cmd);
-void    ft_unset(char **cmd);
 
-void	get_env_var(char **arr);
+void    ft_export(char **cmd);
+int 	check_var_name(char *str);
+
+void    ft_unset(char **cmd);
 
 void    handler_quit(int sig);
 void	handler_int(int sig);

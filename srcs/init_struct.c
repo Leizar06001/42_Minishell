@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/14 19:14:31 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/15 14:27:18 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	update_shell_name()
 void	init_struct(char **env)
 {
 	data.exit = 0;
-	data.env = env;
+	data.env = ft_arraydup(env);
+	data.nb_env_var = ft_size_array(data.env);
 	data.user = getenv("USER");
 	data.path = getenv("PATH");
 	data.home = getenv("HOME");

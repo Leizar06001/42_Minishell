@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/15 16:16:54 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/15 08:35:00 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	exec_cmd(int id_cmd)
 	char	**cmd_line;
 	char	s[100];
 
-	// cmd_line = ft_split_spaces(data.cmd[id_cmd]);
-	cmd_line = ft_split(data.cmd[id_cmd], ' ');
+	cmd_line = ft_split_spaces(data.cmd[id_cmd]);
+	// cmd_line = ft_split(data.cmd[id_cmd], ' ');
 	if (cmd_line[0] == NULL)
 		return (0);
 	if (!ft_strcmp(cmd_line[0], "cd") || !ft_strcmp(cmd_line[0], "chdir"))
@@ -47,6 +47,7 @@ int	exec_cmd(int id_cmd)
 
 int	main(int i, char *argv[], char **env)
 {	
+	(void)i;
 	(void)argv;
 	
 	init_struct(env);

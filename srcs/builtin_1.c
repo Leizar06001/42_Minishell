@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 11:41:56 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/14 13:45:36 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:13:17 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,25 @@ void ft_echo(char **input)
         printf("\n");
 }
 
+char    *ft_getvar(char *varname)
+{
+    int     i;
+    char    **cur_var;
+
+    i = -1;
+    while (data.env[++i])
+    {
+        cur_var = ft_split(data.env[i], '=');
+        if (ft_strcmp(cur_var[0], varname) == 0)
+        {
+            free_2d(cur_var);
+            return (ft_strchr(data.env[i], '=') + 1);
+        }
+        free_2d(cur_var);
+    }
+    return (NULL);
+}
+
 void    ft_env()
 {
     int i;
@@ -40,22 +59,4 @@ void    ft_env()
     i = -1;
     while (data.env[++i])
         printf("%s\n", data.env[i]);
-}
-
-void    ft_export(char **cmd)
-{
-    int i;
-
-    i = 0;
-    while (cmd[i])
-    {
-        printf(">%s<\n", cmd[i]);
-        i++;
-    }
-    printf("%d\n", i);
-}
-
-void    ft_unset(char **cmd)
-{
-    (void)cmd;
 }

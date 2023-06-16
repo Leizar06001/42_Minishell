@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:07:54 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/14 19:14:59 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/15 15:52:35 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,14 @@ void	free_2d(char **arr)
 
 	i = -1;
 	while (arr[++i])
-		free(arr[i]);
-	if (arr)
-		free(arr);
+	{
+		if (arr[i])
+		{	
+			//printf("freeing [%d]%s\n", i, arr[i]);
+			free(arr[i]);
+		}
+	}
+	free(arr);
 }
 
 void	free_struct()
