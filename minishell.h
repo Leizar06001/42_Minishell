@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/16 14:27:14 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/06/19 11:31:39 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct	s_data
 	int					exit;
 	int					testdquote;
 	char				**path_lst;
+	int					next_is_quote;
+	int					prev_is_quote;
 }				t_data;
 
 extern t_data	data;

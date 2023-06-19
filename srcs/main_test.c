@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/19 10:34:27 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/19 11:57:11 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int	exec_cmd(int id_cmd)
 	cmd_line = parse(data.cmd[id_cmd]);
 	
 	//cmd_line = ft_split_spaces(data.cmd[id_cmd]);
-	
-	
 	// cmd_line = ft_split(data.cmd[id_cmd], ' ');
 	if (cmd_line[0] == NULL)
 		return (0);
@@ -40,19 +38,20 @@ int	exec_cmd(int id_cmd)
 	else if (!ft_strcmp(cmd_line[0], "unset"))
 		ft_unset(cmd_line);
 	else if (!ft_strcmp(cmd_line[0], "exit"))
-		return (1);
-	else
 	{
-		if (ft_execve(cmd_line))
-			printf("shell: command not found: %s\n", cmd_line[0]);
+		free_2d(cmd_line);
+		return (1);
 	}
+	else if (ft_execve(cmd_line))
+			printf("shell: command not found: %s\n", cmd_line[0]);
+	free_2d(cmd_line);
 	return (0);
 }
 
 int	main(int i, char *argv[], char **env)
 {	
-	(void)i;
 	(void)argv;
+	(void)i;
 	
 	init_struct(env);
 	signal(SIGQUIT, handler_quit);

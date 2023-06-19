@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:36:08 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/19 10:44:47 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/19 11:57:11 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ char    **arg_list(char **cmd_line)
     while (cmd_line[i])
     {
         args[j] = ft_strdup(cmd_line[i]);
-        printf("args[%d] = %s\n", j, args[j]);
         i++;
         j++;
     }

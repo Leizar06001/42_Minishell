@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:09:14 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/19 11:02:30 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/19 11:09:49 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,9 @@ void    ft_export(char **cmd)
                     copy_env(new_env);
                     new_env[data.nb_env_var] = ft_strdup(cmd[i]);
                     new_env[data.nb_env_var + 1] = NULL;
-                    //free_2d(data.env);
-                    //data.env = ft_arraydup(new_env);
+                    free_2d(data.env);
                     data.env = new_env;
                     data.nb_env_var++;
-                    //free_2d(new_env);
                 }
             }
             else
