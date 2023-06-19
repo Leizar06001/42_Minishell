@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/15 08:35:00 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/16 17:33:30 by mabdali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ int	exec_cmd(int id_cmd)
 	char	**cmd_line;
 	char	s[100];
 
-	cmd_line = ft_split_spaces(data.cmd[id_cmd]);
+	cmd_line = parse(data.cmd[id_cmd]);
+	
+	//cmd_line = ft_split_spaces(data.cmd[id_cmd]);
+	
+	
 	// cmd_line = ft_split(data.cmd[id_cmd], ' ');
 	if (cmd_line[0] == NULL)
 		return (0);

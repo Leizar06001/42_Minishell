@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+         #
+#    By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/06/15 14:16:12 by rloussig         ###   ########.fr        #
+#    Updated: 2023/06/16 17:36:31 by mabdali          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ SRCS_FILES	=	main.c 				\
 				ft_chdir.c			\
 				quote.c				\
 				signals.c			\
-				execve_fnc.c
+				execve_fnc.c		\
+				parse.c
 
 SRCS		=	$(addprefix $(SRCS_PATH)/, $(SRCS_FILES))
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/15 16:16:54 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/16 14:33:40 by mabdali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,16 @@ int	main(int i, char *argv[], char **env)
 	init_struct(env);
 	signal(SIGQUIT, handler_quit);
 	signal(SIGINT, handler_int);
-	rl_catch_signals = 0;
+	rl_catch_signals = 1;
 
 	while (!data.exit)
 	{
 		// CTRL + D ne fonctionne pas si la ligne n'est pas vide
 		data.line = readline(data.minishell_name);
+		printf("%s", data.line);
 		if (data.line == NULL)
 			clean_exit();
+		printf("%s", data.line);
 		quote_error(data.line);
 		data.cmd = ft_split(data.line, ';');
 		i = -1;
@@ -72,4 +74,4 @@ int	main(int i, char *argv[], char **env)
 	clean_exit();
 	return (0);
 }
- 
+  
