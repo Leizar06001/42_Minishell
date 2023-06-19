@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/16 14:33:40 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/06/19 10:59:01 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	exec_cmd(int id_cmd)
 	char	**cmd_line;
 	char	s[100];
 
-	// cmd_line = ft_split_spaces(data.cmd[id_cmd]);
-	cmd_line = ft_split(data.cmd[id_cmd], ' ');
+	cmd_line = ft_split_spaces(data.cmd[id_cmd]);
+	//cmd_line = ft_split(data.cmd[id_cmd], ' ');
 	if (cmd_line[0] == NULL)
 		return (0);
 	if (!ft_strcmp(cmd_line[0], "cd") || !ft_strcmp(cmd_line[0], "chdir"))
@@ -47,21 +47,20 @@ int	exec_cmd(int id_cmd)
 
 int	main(int i, char *argv[], char **env)
 {	
+	(void)i;
 	(void)argv;
 	
 	init_struct(env);
 	signal(SIGQUIT, handler_quit);
 	signal(SIGINT, handler_int);
-	rl_catch_signals = 1;
+	rl_catch_signals = 0;
 
 	while (!data.exit)
 	{
 		// CTRL + D ne fonctionne pas si la ligne n'est pas vide
 		data.line = readline(data.minishell_name);
-		printf("%s", data.line);
 		if (data.line == NULL)
 			clean_exit();
-		printf("%s", data.line);
 		quote_error(data.line);
 		data.cmd = ft_split(data.line, ';');
 		i = -1;
@@ -70,6 +69,8 @@ int	main(int i, char *argv[], char **env)
 			add_history(data.cmd[i]);
 			data.exit = exec_cmd(i);
 		}
+		free_2d(data.cmd);
+		free(data.line);
 	}
 	clean_exit();
 	return (0);

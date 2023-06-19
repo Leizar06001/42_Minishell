@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:09:14 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/15 16:10:02 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/19 11:02:30 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,30 +58,38 @@ int    check_var_exists(char *var, char *new_line)
     return (0);
 }
 
+void    prt_cmd(char **cmd)
+{
+    int i;
+
+    i = -1;
+    while (cmd[++i])
+        printf("cmd[%d] = %s\n", i, cmd[i]);
+}
+
 void    ft_export(char **cmd)
 {
-    (void)cmd;
-    char *cmdtest[100] = {"export", "A=12", "B='asdg sdfg'", "C=", "D+=f", "E", "PATH=0000", NULL};
-
     int     i;
     char    **new_var;
     char    **new_env;
 
+    prt_cmd(cmd);
+
     i = 0;
-    while (cmdtest[++i])
+    while (cmd[++i])
     {
-        if (ft_strchr(cmdtest[i], '='))
+        if (ft_strchr(cmd[i], '=') && ft_strlen(cmd[i]) > 1 && cmd[i][0] != '=')
         {
-            new_var = ft_split(cmdtest[i], '=');
+            new_var = ft_split(cmd[i], '=');
             if (check_var_name(new_var[0]))
             {
-                if (!check_var_exists(new_var[0], cmdtest[i]))
+                if (!check_var_exists(new_var[0], cmd[i]))
                 {
                     new_env = (char**)malloc(sizeof(char*) * (data.nb_env_var + 2));
                     if (new_env == NULL)
                         return ;
                     copy_env(new_env);
-                    new_env[data.nb_env_var] = ft_strdup(cmdtest[i]);
+                    new_env[data.nb_env_var] = ft_strdup(cmd[i]);
                     new_env[data.nb_env_var + 1] = NULL;
                     //free_2d(data.env);
                     //data.env = ft_arraydup(new_env);

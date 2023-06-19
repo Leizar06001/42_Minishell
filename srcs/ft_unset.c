@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:15:31 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/15 15:51:52 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/19 10:19:30 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,29 +54,24 @@ void    prt_env(char **env)
 
 void    ft_unset(char **cmd)
 {
-    (void)cmd;
-    char *cmdtest[100] = {"export", "A", "B", "C", "D+=f", "E", NULL};
-
     int     i;
-    char    *rm_var;
     char    **new_env;
 
     i = 0;
-    while (cmdtest[++i])
+    while (cmd[++i])
     {
-        rm_var = cmdtest[i];
-        if (check_var_name(rm_var))
+        if (check_var_name(cmd[i]))
         {
             new_env = (char**)malloc(sizeof(char*) * (data.nb_env_var + 1));
             if (new_env == NULL)
                 return ;
-            copy_env_rm_var(new_env, rm_var);
+            copy_env_rm_var(new_env, cmd[i]);
             new_env[data.nb_env_var] = NULL;
             free_2d(data.env);
             data.env = new_env;
         }
         else
-            printf("minishell: export: '%s': not a valid identifier\n", rm_var);
+            printf("minishell: unset: '%s': not a valid identifier\n", cmd[i]);
     }
     printf("NB ENV VAR = %d\n", data.nb_env_var);
 }

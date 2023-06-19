@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/16 17:33:30 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/06/19 10:34:27 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int	main(int i, char *argv[], char **env)
 			add_history(data.cmd[i]);
 			data.exit = exec_cmd(i);
 		}
+		free_2d(data.cmd);
+		free(data.line);
 	}
 	clean_exit();
 	return (0);
