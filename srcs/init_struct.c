@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/19 11:50:59 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:23:34 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,39 @@ void	update_shell_name()
 	free(tmp2);
 }
 
-void	init_struct(char **env)
+void	get_env(char **env)
 {
-	data.exit = 0;
 	data.env = ft_arraydup(env);
 	data.nb_env_var = ft_size_array(data.env);
 	data.user = getenv("USER");
 	data.path = getenv("PATH");
 	data.home = getenv("HOME");
-	data.minishell_name = NULL;
-	data.current_folder = data.home;
 	data.path_lst = ft_split(data.path, ':');
+}
 
-	data.next_is_quote = 0;
-	data.prev_is_quote = 0;
+void	create_env()
+{
+	data.env = (char **)malloc(sizeof(char *) * 1);
+	data.env[0] = NULL;
+	data.nb_env_var = 0;
+	data.user = "no-env";
+	data.path = "/";
+	data.home = "/";
+	data.path_lst = (char **)malloc(sizeof(char *) * 1);
+	data.path_lst[0] = NULL;
+}
 
+void	init_struct(char **env)
+{
+	data.exit = 0;
+	data.env = NULL;
+	data.minishell_name = NULL;
+	data.output = NULL;
+	if (env[0])
+		get_env(env);
+	else
+		create_env();
+	data.current_folder = data.home;
 	ft_chdir(data.home);
 	data.user = ft_strjoin(BLUE, data.user);
 	update_shell_name();

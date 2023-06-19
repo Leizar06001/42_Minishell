@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/19 11:31:39 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:52:07 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct	s_data
 	char				**path_lst;
 	int					next_is_quote;
 	int					prev_is_quote;
+	int					quote_before_dquotedollar;
+	char				*output;
 }				t_data;
 
 extern t_data	data;
@@ -96,10 +98,16 @@ void	handler_int(int sig);
 
 int		quote_error(char *str);
 
-int		find_fnc_path(char *fnc_name);
+int		find_fnc_path(char **cmd_line);
 int		ft_execve(char **cmd_line);
 
+void    select_output(char **cmd_line);
+void    add_str_to_output(char *str);
 
-char **parse(char *cmd);
+void    ft_redir_output(char **cmd_line);
+
+char	**parse(char *cmd);
+
+char	**replace_dollar_args(char **cmd_line);
 
 #endif

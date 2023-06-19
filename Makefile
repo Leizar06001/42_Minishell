@@ -6,7 +6,7 @@
 #    By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/06/19 11:57:11 by rloussig         ###   ########.fr        #
+#    Updated: 2023/06/19 14:55:31 by rloussig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,9 @@ SRCS_FILES	=	main.c 				\
 				signals.c			\
 				execve_fnc.c		\
 				parse.c				\
-				redir_output.c
+				redir_output.c		\
+				output_functions.c	\
+				replace_dollars_args.c
 
 SRCS		=	$(addprefix $(SRCS_PATH)/, $(SRCS_FILES))
 

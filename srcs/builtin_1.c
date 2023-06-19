@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 11:41:56 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/19 11:15:26 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:34:49 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,17 @@ void ft_echo(char **input)
     if (ft_strcmp(input[1], "-n") == 0)
     {
         option = 1;
-        i = 2;
+        i++;
     }
     while(input[i])
     {
-        if (input[i + 1] == NULL)
-            printf("%s", input[i]);
-        else
-            printf("%s ", input[i]);
+        add_str_to_output(input[i]);
+        if (input[i + 1] != NULL)
+            add_str_to_output(" ");
         i++;
     }
     if (option != 1)
-        printf("\n");
+        add_str_to_output("\n");
 }
 
 char    *ft_getvar(char *varname)
