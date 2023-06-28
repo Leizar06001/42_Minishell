@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:07:54 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/19 11:17:26 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/26 14:24:22 by mabdali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_2d(char **arr)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (arr[++i])
@@ -28,7 +28,7 @@ void	free_2d(char **arr)
 	free(arr);
 }
 
-void	free_struct()
+void	free_struct(void)
 {
 	// free(data.current_folder);
 	free(data.minishell_name);
@@ -39,7 +39,7 @@ void	free_struct()
 	// free_2d(data.cmd);
 }
 
-void	clean_exit()
+void	clean_exit(void)
 {
 	free_struct();
 	exit(0);
