@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_spaces.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:09 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/19 16:35:23 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:34:00 by mabdali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,27 @@ int         ft_isspace(char c)
 {
     return (c == ' ' || c == '\n' || c == '\t');
 }
+
+char    *remove_dquote(char* str)
+{
+    int longueur = ft_strlen(str);
+    int i;
+    char *new;
+
+    i = 0;
+    new = (char *)malloc(sizeof(char) * (longueur - 1));
+    if (longueur >= 2 && str[0] == '"' && str[longueur - 1] == '"')
+    {
+        while(i < longueur - 2)
+        {
+            new[i] = str[i + 1];
+            i++;
+        }
+        new[i] = '\0';
+    }
+    return (new);
+}
+
 
 int     count_words(char *str)
 {
@@ -80,7 +101,7 @@ char    *malloc_word_quote(char *str)
             word[i] = str[i];
             i++;
     }
-    if (str[i] == '\"')
+    if (str[i - 1] == '\"')
         data.prev_is_quote = 1;
     word[i] = '\0';
     return (word);
@@ -166,6 +187,7 @@ char    **ft_split_spaces(char *str)
             }
             if (data.next_is_quote == 1)
             {
+                arr[i-1] = remove_dquote(arr[i - 1]);
                 arr[i - 2] = ft_strjoin(arr[i - 2], arr[i - 1]);
                 i--;
                 data.next_is_quote = 0;
@@ -198,6 +220,7 @@ char    **ft_split_spaces(char *str)
                 str++;
             if (data.prev_is_quote == 1)
             {
+                arr[i-2] = remove_dquote(arr[i - 2]);
                 arr[i - 2] = ft_strjoin(arr[i - 2], arr[i - 1]);
                 i--;
                 data.prev_is_quote = 0;
