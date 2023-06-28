@@ -34,12 +34,12 @@ int	ft_execve(char **cmd_line)
 	pid_t	pid;
     char    *args[4] = {"ls", "-l", "-a", NULL};
     int     err;
-	int		fildes[2];
+	int		fd[2];
 	int 	status;
 	size_t	nbytes;
 	char	buf[100];
 
-	status = pipe(fildes);
+	status = pipe(fd);
 	if (status == -1)
 	{
 		printf("error pipe\n");
@@ -53,20 +53,36 @@ int	ft_execve(char **cmd_line)
 	}
 	if (pid == 0)
 	{
-		close(fildes[1]);
-		nbytes = read(fildes[0], buf, 100);
-		buf[nbytes] = 0;
-		close(fildes[0]);
-		printf("%s", buf);
+		close(fd[1]);
+		for (int i = 0; i < 2; i++){
+			nbytes = read(fd[0], buf, 100);
+			buf[nbytes] = 0;
+			printf("%ld bytes > %s", nbytes, buf);
+		}
+		close(fd[0]);
+		
 		//if (execve(data.path_fnc, args, NULL) == -1)
 		//	printf("error exec\n");
 		exit(1);
 	}
 	else
 	{
-		close(fildes[0]);
-		write(fildes[1], "Hello world\n", 12);
-		close(fildes[1]);
+		usleep(1000000);
+		printf("> WRITE HELLO\n");
+
+		close(fd[0]);
+
+		write(fd[1], "Hello\n", 6);
+
+		usleep(1000000);
+		printf("> WRITE WORLD\n");
+
+		write(fd[1], " world\n", 7);
+
+		usleep(1000000);
+		printf("Close 1\n");
+
+		close(fd[1]);
 		waitpid(0, NULL, 0);
 	}
 	return (0);
@@ -76,6 +92,7 @@ void    main(int argc, char *argv[])
 {
 	(void)argc;
 	(void)argv;
+	char buf[100];
 
 	data.path_lst = ft_split(getenv("PATH"), ':');
 	find_fnc_path("ls");
