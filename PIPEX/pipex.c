@@ -105,8 +105,8 @@ void	ft_redir_pipe_read_to_stdin(int *fd)
 
 void	ft_redir_pipe_write_to_stdout(int *fd)
 {
-	dup2(fd[1], STDOUT_FILENO);
 	close(fd[0]);
+	dup2(fd[1], STDOUT_FILENO);
 	close(fd[1]);
 }
 
@@ -139,7 +139,7 @@ int	ft_call_execve(char **cmd, int ind, int create_pipe)
 int    main()
 {
 	int		argc = 6;
-	char	*argv[7] = {"pipex", "in.txt", "grep a", "grep s", "wc -l", "out.txt", NULL};
+	char	*argv[7] = {"pipex", "in.txt", "grep a", "grep e", "wc -l", "out.txt", NULL};
 	char	***cmd;
 	int		files_fd[2];
 	int		i;
