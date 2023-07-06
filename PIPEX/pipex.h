@@ -9,8 +9,10 @@
 
 typedef struct s_data
 {
-    char	*path_fnc;
+    char	**path_fnc;
     char	**path_lst;
+    int     orig_fd_in;
+    int     orig_fd_out;
 }               t_data;
 
 char	**ft_split(char const *s, char c);

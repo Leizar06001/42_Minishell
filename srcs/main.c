@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/20 13:16:25 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:32:23 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	exec_cmd(int id_cmd)
 	
 	cmd_line = ft_split_spaces(data.cmd[id_cmd]);
 	cmd_line = replace_dollar_args(cmd_line);
-	//prt_args(cmd_line);
+	prt_args(cmd_line);
 	if (cmd_line[0] == NULL)
 		return (0);
 	if (builtin_fnc(cmd_line))
@@ -80,7 +80,7 @@ int	main(int i, char *argv[], char **env)
 	init_struct(env);
 	signal(SIGQUIT, handler_quit);
 	signal(SIGINT, handler_int);
-	rl_catch_signals = 0;
+	//rl_catch_signals = 0;
 
 	while (!data.exit)
 	{
@@ -103,8 +103,6 @@ int	main(int i, char *argv[], char **env)
 }
 
 /* ******* TO DO **********
-CTRL + D ne fonctionne pas si la ligne n'est pas vide
-
-
+PIPPEX
 FREEEEEEEs
 */

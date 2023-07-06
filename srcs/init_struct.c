@@ -12,6 +12,7 @@
 
 #include "../minishell.h"
 
+#include <string.h>
 void	update_shell_name()
 {
 	char	path[255];

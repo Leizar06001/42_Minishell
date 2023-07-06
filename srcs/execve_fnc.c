@@ -3,114 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   execve_fnc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 18:36:08 by rloussig          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/06/20 13:25:40 by rloussig         ###   ########.fr       */
-=======
-/*   Updated: 2023/06/26 14:21:09 by mabdali          ###   ########.fr       */
->>>>>>> 2a87dc1a5fefcd295815b994114ff8e638c4122d
+/*   Created: 2023/07/06 14:12:26 by raphaellous       #+#    #+#             */
+/*   Updated: 2023/07/06 14:27:50 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	free_arg_list(char **args)
-{
-	int	i;
-
-	i = 0;
-	while (args[i])
-	{
-		free(args[i]);
-		i++;
-	}
-	free(args);
-}
-
-char	**arg_list(char **cmd_line)
-{
-	int		i;
-	int		j;
-	char	**args;
-
-	i = 0;
-	j = 0;
-	while (cmd_line[i])
-		i++;
-	args = (char **)malloc(sizeof(char *) * (i + 1));
-	i = 0;
-	while (cmd_line[i])
-	{
-		args[j] = ft_strdup(cmd_line[i]);
-		i++;
-		j++;
-	}
-	args[j] = NULL;
-	return (args);
-}
-
-int	find_fnc_path(char **cmd_line)
-{
-	int		i;
-	char	*tmp;
-	char	*fnc_slash;
-
-	i = 0;
-	fnc_slash = ft_strjoin("/", cmd_line[0]);
-	while (data.path_lst[i])
-	{
-		tmp = ft_strjoin(data.path_lst[i], fnc_slash);
-		if (access(tmp, F_OK) == 0)
-		{
-			data.path_fnc = ft_strdup(tmp);
-			free(tmp);
-			free(fnc_slash);
-			return (0);
-		}
-		i++;
-		free(tmp);
-	}
-	free(fnc_slash);
-	return (1);
-}
-
-int	exec_fnc_from_path(char **cmd_line)
-{
-	char	path[255];
-
-	if (cmd_line[0][0] == '.')
-		data.path_fnc = ft_strjoin(getcwd(path, 255), cmd_line[0] + 1);
-	else if (cmd_line[0][0] == '/')
-		data.path_fnc = cmd_line[0];
-	if (access(data.path_fnc, F_OK) == 0)
-		return (0);
-	return (1);
-}
-
-int	ft_execve(char **cmd_line)
+/*
+int	ft_call_execve(char **cmd, int ind, int create_pipe)
 {
 	pid_t	pid;
-	char	**args;
-	int		err;
+	int		fd[2];
 
-	args = arg_list(cmd_line);
-	if (args[0][0] == '.' || args[0][0] == '/')
-		err = exec_fnc_from_path(args);
-	else
-		err = find_fnc_path(cmd_line);
-	if (err)
-		return (1);
-	pid = fork();
+	if (create_pipe)
+		ft_open_pipe(fd);	// fd[1] write end / fd[0] read end
+    pid = ft_create_fork();
 	if (pid == 0)
 	{
-		if (execve(data.path_fnc, args, data.env) == -1)
+		if (create_pipe)	// redir output to pipe
+			ft_redir_pipe_write_to_stdout(fd);
+		if (execve(data.path_fnc[ind], cmd, NULL) == -1)
 			printf("error exec\n");
 		exit(1);
 	}
 	else
+	{
+		if (create_pipe)
+			ft_redir_pipe_read_to_stdin(fd);
 		waitpid(0, NULL, 0);
-	free_arg_list(args);
+	}
 	return (0);
-}
+}*/
