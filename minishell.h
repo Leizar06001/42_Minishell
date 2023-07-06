@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/06 14:27:14 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/06 15:09:50 by mabdali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,11 @@ typedef struct s_data
 	char			**path_lst;
 	int				next_is_quote;
 	int				prev_is_quote;
+	int             prev_is_dquote;
 	int				quote_before_dquotedollar;
 	char			*output;
+	int					i_splitspaces;
+
 }				t_data;
 
 extern t_data	data;
