@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/06 14:27:14 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/04 15:50:53 by mabdali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <unistd.h>
 # include <signal.h>
 # include <sys/wait.h>
-# include <string.h>
 
 # define NC		"\e[0m"
 # define YELLOW	"\e[33m"
@@ -32,23 +31,25 @@
 
 typedef struct s_data
 {
-	char			*user;
-	char			*path;
-	char			*home;
-	char			*minishell_name;
-	char			*line;
-	char			**cmd;
-	char			*current_folder;
-	char			*path_fnc;
-	char			**env;
-	int				nb_env_var;
-	int				exit;
-	int				testdquote;
-	char			**path_lst;
-	int				next_is_quote;
-	int				prev_is_quote;
-	int				quote_before_dquotedollar;
-	char			*output;
+	char				*user;
+	char				*path;
+	char				*home;
+	char				*minishell_name;
+	char				*line;
+	char				**cmd;
+	char				*current_folder;
+	char				*path_fnc;
+	char				**env;
+	int					nb_env_var;
+	int					exit;
+	int					testdquote;
+	char				**path_lst;
+	int					next_is_quote;
+	int					prev_is_quote;
+	int					prev_is_dquote;
+	int					quote_before_dquotedollar;
+	char				*output;
+	int					i_splitspaces;
 }				t_data;
 
 extern t_data	data;
@@ -99,13 +100,6 @@ void	handler_int(int sig);
 
 int		quote_error(char *str);
 
-int		ft_init_execve(char **cmd_line);
-int		ft_call_execve(char **cmd, int ind, int create_pipe);
-void	ft_redir_pipe_write_to_stdout(int *fd);
-void	ft_redir_pipe_read_to_stdin(int *fd);
-int		ft_create_fork();
-int		ft_open_pipe(int *fd);
-
 int		find_fnc_path(char **cmd_line);
 int		ft_execve(char **cmd_line);
 
@@ -118,4 +112,5 @@ char	**parse(char *cmd);
 
 char	**replace_dollar_args(char **cmd_line);
 
+char    *morethan(char **arr, char *str, int i);
 #endif
