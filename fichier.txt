@@ -1,9 +1,0 @@
-a.out
-fichier.txt
-Makefile
-minishell
-minishell.h
-Minishell.pdf
-objs
-srcs
-test_main
