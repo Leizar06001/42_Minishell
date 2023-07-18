@@ -3,22 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   utils_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 10:36:36 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/19 10:30:21 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:28:06 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char    **ft_arraydup(char **arr)
+char    **ft_arraydup_plus_one(char **arr)
 {
     int i;
     char **new_arr;
 
     i = -1;
     new_arr = malloc(sizeof(char *) * (ft_size_array(arr) + 2));
+	if (!new_arr)
+		return (NULL);
     while (arr[++i])
         new_arr[i] = ft_strdup(arr[i]);
     new_arr[i] = NULL;

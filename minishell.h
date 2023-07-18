@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/06 15:09:50 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/07/14 17:35:06 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_data
 	char			*minishell_name;
 	char			*line;
 	char			**cmd;
+	char			**cur_cmd;
+	char			***cur_args;
 	char			*current_folder;
 	char			*path_fnc;
 	char			**env;
@@ -69,6 +71,11 @@ void	update_shell_name(void);
 void	current_folder(void);
 int		ft_chdir(char *str);
 
+int		check_redir();
+int 	ft_fill_arg_line(int line, int start, int end);
+int		ft_malloc_arg_array();
+int		ft_split_pipes();
+
 char	*ft_strnstr(const char *str, const char *to_find, size_t len);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strrchr(const char *s, int c);
@@ -81,7 +88,7 @@ int		ft_isalnum(int c);
 int		ft_size_array(char **arr);
 void	get_env_var(char **arr);
 
-char	**ft_arraydup(char **arr);
+char	**ft_arraydup_plus_one(char **arr);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 void	free_2d(char **arr);

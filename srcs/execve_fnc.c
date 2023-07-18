@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:12:26 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/06 14:27:50 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/14 18:01:05 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ int	ft_call_execve(char **cmd, int ind, int create_pipe)
 		waitpid(0, NULL, 0);
 	}
 	return (0);
-}*/
+}
+*/

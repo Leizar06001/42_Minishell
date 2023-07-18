@@ -6,7 +6,7 @@
 #    By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/07/06 14:19:32 by raphaellous      ###   ########.fr        #
+#    Updated: 2023/07/14 13:56:51 by raphaellous      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS_PATH	:=	srcs
 OBJS_PATH	:=	objs
 
 SRCS_FILES	=	main.c 				\
+				cmd_analyse_fnc.c	\
 				ft_split.c			\
 				ft_split_spaces.c	\
 				ft_strjoin.c		\

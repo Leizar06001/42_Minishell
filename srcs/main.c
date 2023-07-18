@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/06 14:32:23 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/14 18:00:41 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,48 @@ int	exec_cmd(int id_cmd)
 	return (0);
 }
 
+void	prt_arg_array()
+{
+	int	i;
+	int	j;
+
+	printf("----- ARGS ARRAY -----\n");
+	i = -1;
+	while (data.cur_args[++i])
+	{
+		j = -1;
+		while (data.cur_args[i][++j])
+			printf("%s, ", data.cur_args[i][j]);
+		printf("\n");
+	}
+	printf("-----------------------\n");
+}
+
+int	cmd_line_analyser(int id_cmd)
+{
+	int	i;
+
+	data.cur_cmd = ft_split_spaces(data.cmd[id_cmd]);
+	data.cur_cmd = replace_dollar_args(data.cur_cmd);
+	prt_args(data.cur_cmd);
+
+	ft_split_pipes();
+	prt_arg_array();
+
+	i = -1;
+	while (data.cur_args[++i])
+	{
+		printf(" > Arg line #%d\n", i);
+		check_redir(i);
+		// if (data.cur_args[i + 1])
+		// 	ft_call_execve(data.cur_args[i], i, 1);
+		// else
+		// 	ft_call_execve(data.cur_args[i], i, 0);
+	}
+	prt_arg_array();
+	return (0);
+}
+
 int	main(int i, char *argv[], char **env)
 {	
 	(void)i;
@@ -93,7 +135,8 @@ int	main(int i, char *argv[], char **env)
 		while (data.cmd[++i] && !data.exit)
 		{
 			add_history(data.cmd[i]);
-			data.exit = exec_cmd(i);
+			data.exit = cmd_line_analyser(i);
+			//data.exit = exec_cmd(i);
 		}
 		//free_2d(data.cmd);
 		free(data.line);

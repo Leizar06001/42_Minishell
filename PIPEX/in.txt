@@ -1,53 +1,6 @@
-(base) raphaelloussignian@MacBook-Pro-de-Raphael PIPEX % in.txt<grep a | wc -l > out.txt 
-zsh: no such file or directory: grep
-(base) raphaelloussignian@MacBook-Pro-de-Raphael PIPEX % cat in.txt
-tarte
 chien
 chat
 orig_fd_in
 minecraft
 cudbe
 cuba
-(base) raphaelloussignian@MacBook-Pro-de-Raphael PIPEX % int.txt < grep a
-zsh: no such file or directory: grep
-(base) raphaelloussignian@MacBook-Pro-de-Raphael PIPEX % sh              
-sh-3.2$ in.txt < grep a | wc -l > out.txt
-sh: grep: No such file or directory
-sh-3.2$ ls
-a.out		in.txt		pipex.c		pipex.pdf
-c1		out.txt		pipex.h		pipex_utils.c
-sh-3.2$ in.txt grep a
-sh: in.txt: command not found
-sh-3.2$ grep a in.txt
-tarte
-chat
-minecraft
-cuba
-sh-3.2$ grep a in.txt | wc -l
-       4
-sh-3.2$ grep a in.txt | wc -l > out.txt
-sh-3.2$ grep a in.txt | wc -l > out.txt && cat out.txt
-       4
-sh-3.2$ grep a in.txt | >out.txt wc -l && cat out.txt
-       4
-sh-3.2$ rm out.txt 
-sh-3.2$ grep a in.txt | >out.txt wc -l && cat out.txt
-       4
-sh-3.2$ grep a < in.txt | > out.txt wc -l && cat out.txt
-       4
-sh-3.2$ < grep t
-sh: grep: No such file or directory
-sh-3.2$ < grep t in.txt
-sh: grep: No such file or directory
-sh-3.2$ < in.txtgrep t
-sh: in.txtgrep: No such file or directory
-sh-3.2$ < in.txt grep t
-tarte
-chat
-minecraft
-sh-3.2$ grep a < in.txt | wc > out.txt -l
-sh-3.2$ rm out.txt 
-sh-3.2$ grep a < in.txt | wc > out.txt -l
-sh-3.2$ cat out.txt 
-       4
-sh-3.2$ 

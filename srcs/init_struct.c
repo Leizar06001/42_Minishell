@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/20 13:16:25 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:24:59 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	update_shell_name()
 
 void	get_env(char **env)
 {
-	data.env = ft_arraydup(env);
+	data.env = ft_arraydup_plus_one(env);
 	data.nb_env_var = ft_size_array(data.env);
 	data.user = getenv("USER");
 	data.path = getenv("PATH");
