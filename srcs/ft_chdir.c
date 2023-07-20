@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_chdir.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:07:50 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/26 14:37:55 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/07/20 12:17:13 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

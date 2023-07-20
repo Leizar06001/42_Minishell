@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/14 14:24:59 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/20 12:16:59 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	get_env(char **env)
 	data.user = getenv("USER");
 	data.path = getenv("PATH");
 	data.home = getenv("HOME");
+	data.cwd = getenv("PWD");
 	data.path_lst = ft_split(data.path, ':');
 }
 
@@ -50,6 +51,7 @@ void	create_env()
 	data.user = "no-env";
 	data.path = "/";
 	data.home = "/";
+	data.cwd= "/";
 	data.path_lst = (char **)malloc(sizeof(char *) * 1);
 	data.path_lst[0] = NULL;
 }
@@ -64,8 +66,6 @@ void	init_struct(char **env)
 		get_env(env);
 	else
 		create_env();
-	data.current_folder = data.home;
-	ft_chdir(data.home);
 	data.user = ft_strjoin(BLUE, data.user);
-	update_shell_name();
+	ft_chdir(data.cwd);
 }

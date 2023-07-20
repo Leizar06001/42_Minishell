@@ -6,11 +6,81 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:56:14 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/14 18:00:02 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/20 16:55:18 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	ft_do_redir(char *arrow, char *filename)
+{
+	int	err;
+
+	err = 0;
+	if (ft_strcmp(arrow, "<") == 0)
+	{
+		data.orig_fd_in = dup(STDIN_FILENO);
+		data.fd_redir_in = open(filename, O_RDONLY);
+		printf("FD: %d\n", data.fd_redir_in);
+		err = dup2(data.fd_redir_in, STDIN_FILENO);
+		if (err == -1)
+			printf("msh: no such file or directory: %s\n", filename);
+	}
+	if (ft_strcmp(arrow, ">") == 0)
+	{
+		data.orig_fd_out = dup(STDOUT_FILENO);
+		data.fd_redir_out = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		err = dup2(data.fd_redir_out, STDOUT_FILENO);
+		if (err == -1)
+			printf("msh: cannot create file: %s\n", filename);
+	}
+	return (err);
+}
+
+int	ft_reset_redirs()
+{
+	int	err;
+
+	err = 0;
+	if (data.fd_redir_in)
+	{
+		printf("Reset Redirs IN\n");
+		err = dup2(data.orig_fd_in, STDIN_FILENO);
+		close(data.fd_redir_in);
+		data.fd_redir_in = 0;
+	}
+	if (data.fd_redir_out)
+	{
+		err = dup2(data.orig_fd_out, STDOUT_FILENO);
+		close(data.fd_redir_out);
+		printf("Reset Redirs OUT\n");
+		data.fd_redir_out = 0;
+	}
+	if (err == -1)
+		printf("ERROR RESET REDIRS\n");
+	return (err);
+}
+
+int	ft_new_arg_array(int pos_arg)
+{
+	int	i;
+	int	size;
+
+	i = 0;
+	while (data.cur_cmd[pos_arg + i] && ft_strcmp(data.cur_cmd[pos_arg + i], "|"))
+		i++;
+	//printf("Args list start at %d size of %d\n", pos_arg, i);
+	data.cur_args = malloc(sizeof(char*) * (i + 1));
+	if (!data.cur_args)
+		return (-1);
+	size = i;
+	while (i >= 0)
+	{
+		data.cur_args[i] = NULL;
+		i--;
+	}
+	return (size);
+}
 
 int ft_check_arrows(char *str)
 {
@@ -21,117 +91,63 @@ int ft_check_arrows(char *str)
         return (0);
 }
 
-void    ft_rm_redir_from_args(int line)
-{
-    int i;
-    int j;
-    char    **ret;
-
-    i = -1;
-    j = 0;
-    ret = malloc(sizeof(char *) * (ft_size_array(data.cur_args[line]) + 1));
-    while (data.cur_args[line][++i])
-    {
-        if (ft_check_arrows(data.cur_args[line][i]))
-            i += 2;
-        ret[j] = ft_strdup(data.cur_args[line][i]);
-        j++;
-    }
-    ret[j] = NULL;
-    free_2d(data.cur_args[line]);
-    data.cur_args[line] = ret;
-}
-
-int	check_redir(int line)
-{
-	int	i;
-	int	err;
-
-	i = -1;
-	err = 0;
-	while (data.cur_args[line][++i])
-	{
-		if (ft_strcmp(data.cur_args[line][i], "<") == 0)
-		{
-			//err = ft_redir_input(data.cur_args[line][i + 1]);
-			printf("Input redir to %s\n", data.cur_args[line][i + 1]);
-			if (err)
-				return (1);
-		}
-		if (ft_strcmp(data.cur_args[line][i], ">") == 0)
-		{
-			//err = ft_redir_output(data.cur_args[line][i + 1]);
-			printf("Output redir to %s\n", data.cur_args[line][i + 1]);
-			if (err)
-				return (1);
-		}
-	}
-    ft_rm_redir_from_args(line);
-	return (0);
-}
-
-int ft_fill_arg_line(int line, int start, int end)
+int	ft_add_arg_to_cur_args(char *arg)
 {
 	int	i;
 
-	//printf("Fill line %d, %d - %d\n", line, start, end);
 	i = 0;
-	while (start <= end)
-	{
-		data.cur_args[line][i] = ft_strdup(data.cur_cmd[start]);
-		start++;
+	while (data.cur_args[i])
 		i++;
-	}
-	//data.cur_args[line][i] = NULL;
-	//printf("Done filling\n");
+	data.cur_args[i] = ft_strdup(arg);
+	printf("[%d] %s\n", i, data.cur_args[i]);
 	return (0);
 }
 
-int	ft_malloc_arg_array()
-{
-	int start = 0;
+// < in.txt grep a | wc -l > outout
+// 
 
-	int i = -1;
-	int p = 0;
-
-	//printf("malloc array\n");
-	while (data.cur_cmd[++i])
-	{
-		start = i;
-		while (data.cur_cmd[i] && ft_strcmp(data.cur_cmd[i], "|"))
-			i++;
-		data.cur_args[p] = (char **) malloc(sizeof(char *) * (i - start + 1));
-		if (!data.cur_args[p])
-			return (-1);
-		ft_fill_arg_line(p, start, i - 1);
-		p++;
-		//printf("next i : %d\n", i);
-		if (!data.cur_cmd[i])
-			break;
-	}
-	//printf("last p : %d\n", p);
-	data.cur_args[p] = NULL;
-	//printf("Done malloc\n");
-	return (0);
-}
-
-int	ft_split_pipes()
+int	cmd_line_analyser(int id_cmd)
 {
 	int	i;
-	int	j;
+	int	size_cmd;
 
+	data.cur_cmd = ft_split_spaces(data.cmd[id_cmd]);
+	data.cur_cmd = replace_dollar_args(data.cur_cmd);
+	prt_args(data.cur_cmd);
+	printf("\n");
+	
 	i = -1;
-	j = 0;
+	size_cmd = 0;
 	while (data.cur_cmd[++i])
 	{
-		if (ft_strcmp(data.cur_cmd[i], "|") == 0)
-			j++;
+		//printf(" > i = %d\n", i);
+		if (!size_cmd)
+			size_cmd = ft_new_arg_array(i);
+		if (ft_check_arrows(data.cur_cmd[i]))
+		{
+			printf("Redir %s [%s] at %d\n", data.cur_cmd[i], data.cur_cmd[i + 1], i);
+			ft_do_redir(data.cur_cmd[i], data.cur_cmd[i + 1]);
+			i ++;
+			continue;
+		}
+		if  (!ft_strcmp(data.cur_cmd[i], "|"))
+		{
+			printf("Pipe at %d >> Call Execve w/pipe \n", i);
+			// call execve with pipe
+			//ft_call_execve();
+			ft_cmd_laucher_main(1);
+			prt_array(data.cur_args);
+			printf("\n");
+			size_cmd = 0;
+			continue;
+		}
+		ft_add_arg_to_cur_args(data.cur_cmd[i]);
 	}
-	data.cur_args = (char ***) malloc(sizeof(char **) * (j + 2));
-	if (!data.cur_args)
-		return (-1);
-	ft_malloc_arg_array();
-	return (j);
+	// call execve without pipe
+	if (ft_cmd_laucher_main(0))
+		printf("msh: command not found: %s\n", data.cur_args[0]);
+	prt_array(data.cur_args);
+	return (0);
 }
 
-
+// < in.txt grep a | wc -l > outout

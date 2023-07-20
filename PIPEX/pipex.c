@@ -158,7 +158,7 @@ int    main()
 	cmd[i] = NULL;
 	
 	files_fd[0] = open(argv[1], O_RDONLY);
-	files_fd[1] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC | 0644);
+	files_fd[1] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 
 	printf("\n");
 	ft_redir_input(files_fd[0], "in.txt");

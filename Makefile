@@ -6,7 +6,7 @@
 #    By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/07/14 13:56:51 by raphaellous      ###   ########.fr        #
+#    Updated: 2023/07/20 15:34:04 by raphaellous      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,9 @@ SRCS_FILES	=	main.c 				\
 				parse.c				\
 				redir_output.c		\
 				output_functions.c	\
-				replace_dollars_args.c
+				replace_dollars_args.c	\
+				cmd_launcher.c		\
+				debug_utils.c
 
 SRCS		=	$(addprefix $(SRCS_PATH)/, $(SRCS_FILES))
 

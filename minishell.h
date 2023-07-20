@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/14 17:35:06 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/20 16:56:19 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ typedef struct s_data
 	char			*user;
 	char			*path;
 	char			*home;
+	char			*cwd;
 	char			*minishell_name;
 	char			*line;
 	char			**cmd;
 	char			**cur_cmd;
-	char			***cur_args;
+	char			**cur_args;
 	char			*current_folder;
 	char			*path_fnc;
 	char			**env;
@@ -52,8 +53,11 @@ typedef struct s_data
 	int             prev_is_dquote;
 	int				quote_before_dquotedollar;
 	char			*output;
-	int					i_splitspaces;
-
+	int				i_splitspaces;
+	int				orig_fd_in;
+	int				orig_fd_out;
+	int				fd_redir_in;
+	int				fd_redir_out;
 }				t_data;
 
 extern t_data	data;
@@ -71,10 +75,7 @@ void	update_shell_name(void);
 void	current_folder(void);
 int		ft_chdir(char *str);
 
-int		check_redir();
-int 	ft_fill_arg_line(int line, int start, int end);
-int		ft_malloc_arg_array();
-int		ft_split_pipes();
+int		cmd_line_analyser(int id_cmd);
 
 char	*ft_strnstr(const char *str, const char *to_find, size_t len);
 int		ft_strcmp(const char *s1, const char *s2);
@@ -116,8 +117,16 @@ void	ft_redir_pipe_read_to_stdin(int *fd);
 int		ft_create_fork();
 int		ft_open_pipe(int *fd);
 
-int		find_fnc_path(char **cmd_line);
-int		ft_execve(char **cmd_line);
+
+
+int		find_fnc_path();
+int		ft_execve();
+
+int		ft_builtin_fnc(char **cmd);
+int 	ft_cmd_laucher_main(int has_pipe);
+int		ft_reset_redirs();
+
+
 
 void	select_output(char **cmd_line);
 void	add_str_to_output(char *str);
@@ -127,5 +136,9 @@ void	ft_redir_output(char **cmd_line);
 char	**parse(char *cmd);
 
 char	**replace_dollar_args(char **cmd_line);
+
+//	****** DEBUG FUNCTIONS ******
+void	prt_args(char **args);
+void    prt_array(char **arr);
 
 #endif
