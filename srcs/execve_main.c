@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:36:08 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/24 18:11:58 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 18:19:50 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,36 +52,6 @@ int	exec_fnc_from_path()
 		return (0);
 	return (1);
 }
-
-
-
-int	ft_execve()
-{
-	pid_t	pid;
-	int		err;
-
-	if (data.cur_args[0][0] == '.' || data.cur_args[0][0] == '/')
-		err = exec_fnc_from_path();
-	else
-		err = find_fnc_path();
-	if (err)
-		return (1);
-	
-	pid = fork();
-	if (pid == 0)
-	{
-		if (execve(data.path_fnc, data.cur_args, data.env) == -1)
-			printf("error exec\n");
-		exit(1);
-	}
-	else
-	{
-		waitpid(0, NULL, 0);
-		free_2d(data.cur_args);
-	}
-	return (0);
-}
-
 
 int	ft_call_execve(int has_pipe)
 {

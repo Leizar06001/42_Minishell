@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 15:33:42 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/24 18:02:25 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 18:25:08 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,22 @@ int	ft_builtin_fnc(char **cmd)
 int ft_cmd_laucher_main(int has_pipe)
 {
     int err;
-    (void)has_pipe;
     
-    printf("\n--->>\n");
+    //printf("\n--->>\n");
     err = 0;
     if (!ft_builtin_fnc(data.cur_args))
-        printf("msh: Exec from builtin..\n");
+		err = 0;
+        //printf("msh: Exec from builtin..\n");
     else if (!ft_strcmp(data.cur_args[0], "exit"))
 		return (1);
     else
     {
-		printf("Launch EXECVE\n");
+		//printf("Launch EXECVE\n");
         err = ft_execve_launcher(has_pipe);
-        printf("msh: Exec from execve..\n");
+        //printf("msh: Exec from execve..\n");
     }
 	if (!has_pipe)
     	ft_reset_redirs();
-    printf("--->>\n\n");
+    //printf("--->>\n\n");
     return (err);
 }

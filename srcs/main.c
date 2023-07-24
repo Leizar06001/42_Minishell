@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/24 17:59:46 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 18:22:06 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	main(int i, char *argv[], char **env)
 	//rl_catch_signals = 0;
 
 	data.orig_fd_in = dup(STDIN_FILENO);
-	printf("BACKUP STDIN %d\n", data.orig_fd_in);
 
 	while (!data.exit)
 	{

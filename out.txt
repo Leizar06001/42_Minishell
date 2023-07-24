@@ -1,9 +1,1 @@
-
---->>
-Launch EXECVE
-TOMATE
-ORANGE
-ABRICOT
-msh: Exec from execve..
-Reset Redirs IN to 3
-Closing FDin 4
+       5

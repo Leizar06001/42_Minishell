@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:56:14 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/24 17:41:50 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 18:26:52 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,41 +64,36 @@ int	cmd_line_analyser(int id_cmd)
 
 	data.cur_cmd = ft_split_spaces(data.cmd[id_cmd]);
 	data.cur_cmd = replace_dollar_args(data.cur_cmd);
-	prt_args(data.cur_cmd);
-	printf("\n");
+	//prt_args(data.cur_cmd);
+	//printf("\n");
 	
 	i = -1;
 	size_cmd = 0;
 	while (data.cur_cmd[++i])
 	{
-		//printf(" > i = %d\n", i);
 		if (!size_cmd)
 			size_cmd = ft_new_arg_array(i);
 		if (ft_check_arrows(data.cur_cmd[i]))
 		{
-			//printf("Redir %s [%s] at %d\n", data.cur_cmd[i], data.cur_cmd[i + 1], i);
 			ft_do_redir(data.cur_cmd[i], data.cur_cmd[i + 1]);
 			i ++;
 			continue;
 		}
 		if  (!ft_strcmp(data.cur_cmd[i], "|"))
 		{
-			//printf("Pipe at %d >> Call Execve w/pipe \n", i);
 			// call execve with pipe
-			//ft_call_execve();
 			ft_cmd_laucher_main(1);
-			prt_array(data.cur_args);
-			printf("\n");
+			//prt_array(data.cur_args);
+			//printf("\n");
 			size_cmd = 0;
 			continue;
 		}
 		ft_add_arg_to_cur_args(data.cur_cmd[i]);
 	}
-	
 	// call execve without pipe
 	if (ft_cmd_laucher_main(0))
 		printf("msh: command not found: %s\n", data.cur_args[0]);
-	prt_array(data.cur_args);
+	//prt_array(data.cur_args);
 	return (0);
 }
 
