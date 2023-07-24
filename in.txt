@@ -1,9 +1,8 @@
-a.out
-fichier.txt
-Makefile
-minishell
-minishell.h
-Minishell.pdf
-objs
-srcs
-test_main
+tomate
+concombre
+patate
+orange
+pomme
+banane
+abricot
+peche

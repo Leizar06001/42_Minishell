@@ -1,0 +1,8 @@
+voiture
+moto
+maison
+ordinateur
+velo
+carnet
+stylo
+canette

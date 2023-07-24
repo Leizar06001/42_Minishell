@@ -6,46 +6,11 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:36:08 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/20 17:01:29 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/20 19:09:05 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	free_arg_list(char **args)
-{
-	int	i;
-
-	i = 0;
-	while (args[i])
-	{
-		free(args[i]);
-		i++;
-	}
-	free(args);
-}
-
-char	**arg_list(char **cmd_line)
-{
-	int		i;
-	int		j;
-	char	**args;
-
-	i = 0;
-	j = 0;
-	while (cmd_line[i])
-		i++;
-	args = (char **)malloc(sizeof(char *) * (i + 1));
-	i = 0;
-	while (cmd_line[i])
-	{
-		args[j] = ft_strdup(cmd_line[i]);
-		i++;
-		j++;
-	}
-	args[j] = NULL;
-	return (args);
-}
 
 int	find_fnc_path()
 {
@@ -88,23 +53,7 @@ int	exec_fnc_from_path()
 	return (1);
 }
 
-/*int	ft_init_execve(char **cmd_line)
-{
-	char	**args;
-	int		err;
 
-	// check for input / output redirs
-	// For each cmd, find path and execve
-	
-	args = arg_list(cmd_line);
-	if (args[0][0] == '.' || args[0][0] == '/')
-		err = exec_fnc_from_path(args);
-	else
-		err = find_fnc_path(args[0]);
-	if (err)
-		return (1);
-	return (0);
-}*/
 
 int	ft_execve()
 {
@@ -117,6 +66,7 @@ int	ft_execve()
 		err = find_fnc_path();
 	if (err)
 		return (1);
+	
 	pid = fork();
 	if (pid == 0)
 	{
@@ -125,7 +75,50 @@ int	ft_execve()
 		exit(1);
 	}
 	else
+	{
 		waitpid(0, NULL, 0);
-	//free_arg_list(data.cur_args);
+		free_2d(data.cur_args);
+	}
 	return (0);
+}
+
+
+int	ft_call_execve(int has_pipe)
+{
+	pid_t	pid;
+	int		fd[2];
+
+	if (has_pipe)
+		ft_open_pipe(fd);	// fd[1] write end / fd[0] read end
+    pid = ft_create_fork();
+	if (pid == 0)
+	{
+		if (has_pipe)	// redir output to pipe
+			ft_redir_pipe_write_to_stdout(fd);
+		if (execve(data.path_fnc, data.cur_args, NULL) == -1)
+			printf("error exec\n");
+		exit(1);
+	}
+	else
+	{
+		if (has_pipe)
+			ft_redir_pipe_read_to_stdin(fd);
+		waitpid(0, NULL, 0);
+	}
+	return (0);
+}
+
+int	ft_execve_launcher(int has_pipe)
+{
+	int		err;
+
+	err = 0;
+	if (data.cur_args[0][0] == '.' || data.cur_args[0][0] == '/')
+		err = exec_fnc_from_path();
+	else
+		err = find_fnc_path();
+	if (err)
+		return (1);
+	err = ft_call_execve(has_pipe);
+	return (err);
 }

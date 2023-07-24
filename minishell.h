@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/20 16:56:19 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/20 20:18:02 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,22 +110,28 @@ void	handler_int(int sig);
 
 int		quote_error(char *str);
 
-int		ft_init_execve(char **cmd_line);
-int		ft_call_execve(char **cmd, int ind, int create_pipe);
+
+// NEW FUNCTIONS EXEC + PIPE + REDIR
+
 void	ft_redir_pipe_write_to_stdout(int *fd);
 void	ft_redir_pipe_read_to_stdin(int *fd);
 int		ft_create_fork();
 int		ft_open_pipe(int *fd);
 
 
-
 int		find_fnc_path();
+int		exec_fnc_from_path();
 int		ft_execve();
+int		ft_call_execve(int has_pipe);
+int		ft_execve_launcher(int has_pipe);
 
 int		ft_builtin_fnc(char **cmd);
 int 	ft_cmd_laucher_main(int has_pipe);
 int		ft_reset_redirs();
 
+int		ft_do_redir(char *arrow, char *filename);
+int		ft_reset_redirs();
+// ---------------------------------
 
 
 void	select_output(char **cmd_line);

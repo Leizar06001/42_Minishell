@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:07:54 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/26 14:24:22 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/07/20 18:07:02 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,15 @@ void	free_2d(char **arr)
 {
 	int	i;
 
-	i = -1;
-	while (arr[++i])
+	i = 0;
+	while (arr[i])
 	{
-		if (arr[i])
-		{	
-			//printf("freeing [%d]%s\n", i, arr[i]);
-			free(arr[i]);
-		}
+		free(arr[i]);
+		arr[i] = NULL;
+		i++;
 	}
 	free(arr);
+	arr = NULL;
 }
 
 void	free_struct(void)

@@ -6,7 +6,7 @@
 #    By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/07/20 15:34:04 by raphaellous      ###   ########.fr        #
+#    Updated: 2023/07/20 17:41:36 by raphaellous      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRCS_FILES	=	main.c 				\
 				execve_fnc.c		\
 				execve_utils.c		\
 				parse.c				\
+				redir_fnc.c			\
 				redir_output.c		\
 				output_functions.c	\
 				replace_dollars_args.c	\
