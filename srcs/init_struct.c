@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/24 19:01:00 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 19:37:42 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,53 +20,53 @@ void	update_shell_name()
 	char	*tmp2;
 
 	getcwd(path, 255);
-	tmp = ft_strjoin(data.user, "@minishell:"YELLOW);
-	if (strcmp(data.home, path) == 0)
+	tmp = ft_strjoin(g_data.user, "@minishell:"YELLOW);
+	if (strcmp(g_data.home, path) == 0)
 		tmp2 = ft_strjoin(tmp, "~");
 	else
-		tmp2 = ft_strjoin(tmp, data.current_folder);
-	if (data.minishell_name)
-		free(data.minishell_name);
-	data.minishell_name = ft_strjoin(tmp2, NC"$ ");
+		tmp2 = ft_strjoin(tmp, g_data.current_folder);
+	if (g_data.minishell_name)
+		free(g_data.minishell_name);
+	g_data.minishell_name = ft_strjoin(tmp2, NC"$ ");
 	free(tmp);
 	free(tmp2);
 }
 
 void	get_env(char **env)
 {
-	data.env = ft_arraydup_plus_one(env);
-	data.nb_env_var = ft_size_array(data.env);
-	data.user = getenv("USER");
-	data.path = getenv("PATH");
-	data.home = getenv("HOME");
-	data.cwd = getenv("PWD");
-	data.path_lst = ft_split(data.path, ':');
+	g_data.env = ft_arraydup_plus_one(env);
+	g_data.nb_env_var = ft_size_array(g_data.env);
+	g_data.user = getenv("USER");
+	g_data.path = getenv("PATH");
+	g_data.home = getenv("HOME");
+	g_data.cwd = getenv("PWD");
+	g_data.path_lst = ft_split(g_data.path, ':');
 }
 
 void	create_env()
 {
-	data.env = (char **)malloc(sizeof(char *) * 1);
-	data.env[0] = NULL;
-	data.nb_env_var = 0;
-	data.user = "no-env";
-	data.path = "/";
-	data.home = "/";
-	data.cwd= "/";
-	data.path_lst = (char **)malloc(sizeof(char *) * 1);
-	data.path_lst[0] = NULL;
+	g_data.env = (char **)malloc(sizeof(char *) * 1);
+	g_data.env[0] = NULL;
+	g_data.nb_env_var = 0;
+	g_data.user = "no-env";
+	g_data.path = "/";
+	g_data.home = "/";
+	g_data.cwd= "/";
+	g_data.path_lst = (char **)malloc(sizeof(char *) * 1);
+	g_data.path_lst[0] = NULL;
 }
 
 void	init_struct(char **env)
 {
-	data.exit = 0;
-	data.env = NULL;
-	data.minishell_name = NULL;
-	data.output = NULL;
-	data.orig_fd_in = dup(STDIN_FILENO);
+	g_data.exit = 0;
+	g_data.env = NULL;
+	g_data.minishell_name = NULL;
+	g_data.output = NULL;
+	g_data.orig_fd_in = dup(STDIN_FILENO);
 	if (env[0])
 		get_env(env);
 	else
 		create_env();
-	data.user = ft_strjoin(BLUE, data.user);
-	ft_chdir(data.cwd);
+	g_data.user = ft_strjoin(BLUE, g_data.user);
+	ft_chdir(g_data.cwd);
 }

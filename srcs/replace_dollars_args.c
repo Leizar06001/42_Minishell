@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_dollars_args.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:02:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/06/19 16:52:48 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/24 19:37:42 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ char    *get_env_variable(const char *var_name)
 
     i = 0;
     var_name_len = strlen(var_name);
-    while (data.env[i] != NULL)
+    while (g_data.env[i] != NULL)
     {
-        if (strncmp(data.env[i], var_name, var_name_len) == 0
-            && data.env[i][var_name_len] == '=')
-            return (strdup(data.env[i] + var_name_len + 1));
+        if (strncmp(g_data.env[i], var_name, var_name_len) == 0
+            && g_data.env[i][var_name_len] == '=')
+            return (strdup(g_data.env[i] + var_name_len + 1));
         i++;
     }
     return (NULL);
@@ -49,7 +49,7 @@ char    *replace_dollar_var(const char *arg)
     char    *tmp;
 
     i = 0;
-    data.quote_before_dquotedollar = 0;
+    g_data.quote_before_dquotedollar = 0;
     if (arg[0] =='\'')
     {
         arg = arg + 1;
@@ -96,11 +96,11 @@ char    *replace_dollar_var(const char *arg)
         var_name = strdup(arg + i + 1);
         if (var_name[ft_strlen(var_name) - 1] == '\'')
         {
-            data.quote_before_dquotedollar = 1;
+            g_data.quote_before_dquotedollar = 1;
             var_name[ft_strlen(var_name) - 1] = '\0';
         }
         value = get_env_variable(var_name);
-        if (data.quote_before_dquotedollar == 1)
+        if (g_data.quote_before_dquotedollar == 1)
             value = ft_strjoin(value, "\'");
         free(var_name);
         if (value == NULL)

@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:12:26 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/20 12:37:16 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 19:37:42 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_call_execve(char **cmd, int ind, int create_pipe)
 	{
 		if (create_pipe)	// redir output to pipe
 			ft_redir_pipe_write_to_stdout(fd);
-		if (execve(data.path_fnc[ind], cmd, NULL) == -1)
+		if (execve(g_data.path_fnc[ind], cmd, NULL) == -1)
 			printf("error exec\n");
 		exit(1);
 	}

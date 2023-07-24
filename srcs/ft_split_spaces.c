@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_spaces.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:09 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/06 14:53:03 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/07/24 19:37:42 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ char    *malloc_word(char *str)
             i++;
     }
     if (str[i] == '\"')
-        data.next_is_quote = 1;
+        g_data.next_is_quote = 1;
     word[i] = '\0';
     return (word);
 }
@@ -143,16 +143,16 @@ char    *malloc_word_quote(char *str)
         return (NULL);
     while (/*str[i] && str[i] != '\"'*/ i < len)
     {if(*(str - 1) == '"')
-        data.prev_is_dquote = 1;
+        g_data.prev_is_dquote = 1;
     else if (*(str - 1) == '\'')
-        data.prev_is_quote = 1;
+        g_data.prev_is_quote = 1;
     else
-        data.prev_is_quote = 0;
+        g_data.prev_is_quote = 0;
             word[i] = str[i];
             i++;
     }
     if (str[i - 1] == '\"' || str[i - 1] == '\'')
-        data.prev_is_quote = 1;
+        g_data.prev_is_quote = 1;
 
     word[i] = '\0';
     return (word);
@@ -177,16 +177,16 @@ char    *malloc_word_quote3(char *str)
         return (NULL);
     while (/*str[i] && str[i] != '\"'*/ i < len)
     {if(*(str - 1) == '\"')
-        data.prev_is_dquote = 1;
+        g_data.prev_is_dquote = 1;
     else if (*(str - 1) == '\'')
-        data.prev_is_quote = 1;
+        g_data.prev_is_quote = 1;
     else
-        data.prev_is_quote = 0;
+        g_data.prev_is_quote = 0;
             word[i] = str[i];
             i++;
     }
     if (str[i - 1] == '\"' || str[i - 1] == '\'')
-        data.prev_is_quote = 1;
+        g_data.prev_is_quote = 1;
 
     word[i] = '\0';
     return (word);
@@ -215,7 +215,7 @@ char    *malloc_word_quote2(char *str)
             i++;
     }
     if (str[i - 1] == '\'')
-        data.prev_is_quote = 1;
+        g_data.prev_is_quote = 1;
     word[i] = '\0';
     return (word);
 }
@@ -254,7 +254,7 @@ char    *morethan(char **arr, char *str, int i)
             else
                 arr[i++] = ft_strndup(str, 1);
             str++;
-            data.i_splitspaces = i;
+            g_data.i_splitspaces = i;
             return (str);
 }
 
@@ -265,53 +265,53 @@ char    *pipe_split(char **arr, char *str, int i)
                 arr[i++] = ft_strdup("|");
                 str++;
             }
-            data.i_splitspaces = i;
+            g_data.i_splitspaces = i;
             return (str);
 }
 
 char *just_character(char **arr, char *str, int i)
 {
     if(*(str - 1) == '"')
-        data.prev_is_dquote = 1;
+        g_data.prev_is_dquote = 1;
     else if (*(str - 1) == '\'')
-        data.prev_is_quote = 1;
+        g_data.prev_is_quote = 1;
     else
-        data.prev_is_quote = 0;
+        g_data.prev_is_quote = 0;
     arr[i++] = malloc_word(str);
     while (*str && !ft_isspace(*str) && *str != '\"' && *str != '>' && *str != '<' &&*str != '|')
         str++;
-    if (data.prev_is_dquote == 1 || data.prev_is_quote == 1)
+    if (g_data.prev_is_dquote == 1 || g_data.prev_is_quote == 1)
     {
-        if (data.prev_is_dquote == 1)
+        if (g_data.prev_is_dquote == 1)
             arr[i - 2] = remove_dquote(arr[i - 2], '\"');
         else
             arr[i - 2] = remove_dquote(arr[i - 2], '\'');
         arr[i - 2] = ft_strjoin(arr[i - 2], arr[i - 1]);
         i--;
-        data.prev_is_dquote = 0;
-        data.prev_is_quote = 0;
+        g_data.prev_is_dquote = 0;
+        g_data.prev_is_quote = 0;
     }
-    data.i_splitspaces = i;
+    g_data.i_splitspaces = i;
     return (str);
 }
 
 void joinquote(char **arr, int i, char c)
 {
-    if (data.next_is_quote == 1)
+    if (g_data.next_is_quote == 1)
     {
         arr[i - 1] = remove_dquote(arr[i - 1], c);
         arr[i - 2] = ft_strjoin(arr[i - 2], arr[i - 1]);
         i--;
-        data.next_is_quote = 0;
+        g_data.next_is_quote = 0;
     }
-    data.i_splitspaces = i;
+    g_data.i_splitspaces = i;
 }
 
 char    **ft_split_spaces(char *str)
 {
     char    **arr;
     int     i;
-    
+
     i = 0;
     arr = (char **)malloc(sizeof(char *) * (count_words(str) + 10));
     if (!arr)
@@ -338,7 +338,7 @@ char    **ft_split_spaces(char *str)
             str = morethan(arr, str, i);
         else if (*str && *str == '|')
             str = pipe_split(arr, str, i);
-        i = data.i_splitspaces;
+        i = g_data.i_splitspaces;
     }
     arr[i] = NULL;
     return (arr);

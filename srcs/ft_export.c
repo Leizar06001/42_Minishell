@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:09:14 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/19 11:09:49 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/24 19:37:42 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void    copy_env(char **new_env)
     int i;
 
     i = -1;
-    while (++i < data.nb_env_var)
-        new_env[i] = ft_strdup(data.env[i]);
+    while (++i < g_data.nb_env_var)
+        new_env[i] = ft_strdup(g_data.env[i]);
     new_env[i] = NULL;
 }
 
@@ -43,13 +43,13 @@ int    check_var_exists(char *var, char *new_line)
     char    **cur_var;
 
     i = -1;
-    while (data.env[++i])
+    while (g_data.env[++i])
     {
-        cur_var = ft_split(data.env[i], '=');
+        cur_var = ft_split(g_data.env[i], '=');
         if (ft_strcmp(cur_var[0], var) == 0)
         {
-            free(data.env[i]);
-            data.env[i] = ft_strdup(new_line);
+            free(g_data.env[i]);
+            g_data.env[i] = ft_strdup(new_line);
             free_2d(cur_var);
             return (1);
         }
@@ -85,15 +85,15 @@ void    ft_export(char **cmd)
             {
                 if (!check_var_exists(new_var[0], cmd[i]))
                 {
-                    new_env = (char**)malloc(sizeof(char*) * (data.nb_env_var + 2));
+                    new_env = (char**)malloc(sizeof(char*) * (g_data.nb_env_var + 2));
                     if (new_env == NULL)
                         return ;
                     copy_env(new_env);
-                    new_env[data.nb_env_var] = ft_strdup(cmd[i]);
-                    new_env[data.nb_env_var + 1] = NULL;
-                    free_2d(data.env);
-                    data.env = new_env;
-                    data.nb_env_var++;
+                    new_env[g_data.nb_env_var] = ft_strdup(cmd[i]);
+                    new_env[g_data.nb_env_var + 1] = NULL;
+                    free_2d(g_data.env);
+                    g_data.env = new_env;
+                    g_data.nb_env_var++;
                 }
             }
             else
@@ -101,5 +101,5 @@ void    ft_export(char **cmd)
             free_2d(new_var);
         }
     }
-    printf("NB ENV VAR = %d\n", data.nb_env_var);
+    printf("NB ENV VAR = %d\n", g_data.nb_env_var);
 }

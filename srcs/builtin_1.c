@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 11:41:56 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/26 14:15:53 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/07/24 19:37:42 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ char	*ft_getvar(char *varname)
 	char	**cur_var;
 
 	i = -1;
-	while (data.env[++i])
+	while (g_data.env[++i])
 	{
-		cur_var = ft_split(data.env[i], '=');
+		cur_var = ft_split(g_data.env[i], '=');
 		if (ft_strcmp(cur_var[0], varname) == 0)
 		{
 			free_2d(cur_var);
-			return (ft_strchr(data.env[i], '=') + 1);
+			return (ft_strchr(g_data.env[i], '=') + 1);
 		}
 		free_2d(cur_var);
 	}
@@ -59,6 +59,6 @@ void	ft_env(void)
 	int	i;
 
 	i = -1;
-	while (data.env[++i])
-		printf("%s\n", data.env[i]);
+	while (g_data.env[++i])
+		printf("%s\n", g_data.env[i]);
 }

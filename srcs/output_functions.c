@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   output_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:46:41 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/20 13:16:25 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/24 19:37:42 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@ void    add_str_to_output(char *str)
 {
     char *tmp;
 
-    if (data.output == NULL)
-        data.output = ft_strdup(str);
+    if (g_data.output == NULL)
+        g_data.output = ft_strdup(str);
     else
     {
-        tmp = ft_strjoin(data.output, str);
-        free(data.output);
-        data.output = tmp;
+        tmp = ft_strjoin(g_data.output, str);
+        free(g_data.output);
+        g_data.output = tmp;
     }
 }
 
 void    clear_output()
 {
-    if (data.output)
-        free(data.output);
-    data.output = NULL;
+    if (g_data.output)
+        free(g_data.output);
+    g_data.output = NULL;
 }
 
 void    select_output(char **cmd_line)
@@ -47,7 +47,7 @@ void    select_output(char **cmd_line)
         }
         i++;
     }
-    if (data.output)
-        printf("%s", data.output);
+    if (g_data.output)
+        printf("%s", g_data.output);
     clear_output();
 }

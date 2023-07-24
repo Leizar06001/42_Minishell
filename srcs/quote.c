@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:01:01 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/14 16:20:14 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/24 19:37:42 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int quote_error(char *str)
     while (odd_quote(str) == 1)
     {
         tmp = readline("dquote> ");
-        data.line = ft_strjoin(data.line, tmp);
+        g_data.line = ft_strjoin(g_data.line, tmp);
         if (!ft_strcmp(tmp, "\""))
-            data.line = ft_strjoin(data.line, "\n");
-        str = data.line;
+            g_data.line = ft_strjoin(g_data.line, "\n");
+        str = g_data.line;
     }
     return (0);
-} 
+}

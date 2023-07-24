@@ -6,48 +6,50 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/24 19:00:46 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 19:40:13 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_data data;
+t_data	g_data;
 
-void	init_signals_handlers()
+void	init_signals_handlers(void)
 {
 	signal(SIGQUIT, handler_quit);
 	signal(SIGINT, handler_int);
 }
 
-int	ft_read_command_loop()
+int	ft_read_command_loop(void)
 {
 	int	i;
 
 	//rl_catch_signals = 0;
-	while (!data.exit)
+	while (!g_data.exit)
 	{
-		data.line = readline(data.minishell_name);
-		if (data.line == NULL)
+		g_data.line = readline(g_data.minishell_name);
+		if (g_data.line == NULL)
 			clean_exit();
-		//quote_error(data.line);
-		data.cmd = ft_split(data.line, ';');
+		//quote_error(g_data.line);
+		g_data.cmd = ft_split(g_data.line, ';');
 		i = -1;
-		while (data.cmd[++i] && !data.exit)
+		while (g_data.cmd[++i] && !g_data.exit)
 		{
-			add_history(data.cmd[i]);
-			data.exit = cmd_line_analyser(i);
+			add_history(g_data.cmd[i]);
+			g_data.cur_cmd = ft_split_spaces(g_data.cmd[i]);
+			g_data.cur_cmd = replace_dollar_args(g_data.cur_cmd);
+			cmd_line_analyser(i);
 		}
-		//free_2d(data.cmd);
-		free(data.line);
+		//free_2d(g_data.cmd);
+		free(g_data.line);
 	}
 }
 
 int	main(int argc, char *argv[], char **env)
-{	
+{
 	(void)argc;
 	(void)argv;
-	
+
 	init_struct(env);
 	init_signals_handlers();
 	ft_read_command_loop();

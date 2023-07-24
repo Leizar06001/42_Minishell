@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:07:54 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/20 18:07:02 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 19:37:42 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void	free_2d(char **arr)
 
 void	free_struct(void)
 {
-	// free(data.current_folder);
-	free(data.minishell_name);
-	// free(data.path_fnc);
-	free_2d(data.path_lst);
-	free_2d(data.env);
-	free(data.user);
-	// free_2d(data.cmd);
+	// free(g_data.current_folder);
+	free(g_data.minishell_name);
+	// free(g_data.path_fnc);
+	free_2d(g_data.path_lst);
+	free_2d(g_data.env);
+	free(g_data.user);
+	// free_2d(g_data.cmd);
 }
 
 void	clean_exit(void)

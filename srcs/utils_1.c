@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:07:58 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/14 19:17:08 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/24 19:47:33 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,3 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 		i ++;
 	return (i);
 }
-
