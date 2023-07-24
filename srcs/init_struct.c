@@ -6,13 +6,13 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/20 12:16:59 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 19:01:00 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
 #include <string.h>
+
 void	update_shell_name()
 {
 	char	path[255];
@@ -62,6 +62,7 @@ void	init_struct(char **env)
 	data.env = NULL;
 	data.minishell_name = NULL;
 	data.output = NULL;
+	data.orig_fd_in = dup(STDIN_FILENO);
 	if (env[0])
 		get_env(env);
 	else

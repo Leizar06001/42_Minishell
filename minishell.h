@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/20 20:18:02 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 19:02:37 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@
 # include <sys/wait.h>
 # include <string.h>
 
-# define NC		"\e[0m"
-# define YELLOW	"\e[33m"
-# define BLUE	"\e[34m"
+# define NC			"\e[0m"
+# define YELLOW		"\e[33m"
+# define BLUE		"\e[34m"
+# define WITHPIPE	1
+# define NOPIPE		0
 
 typedef struct s_data
 {

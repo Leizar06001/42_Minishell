@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/24 18:55:50 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 19:00:46 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,17 @@
 
 t_data data;
 
-
-
-int	main(int i, char *argv[], char **env)
-{	
-	(void)i;
-	(void)argv;
-	
-	init_struct(env);
+void	init_signals_handlers()
+{
 	signal(SIGQUIT, handler_quit);
 	signal(SIGINT, handler_int);
+}
+
+int	ft_read_command_loop()
+{
+	int	i;
+
 	//rl_catch_signals = 0;
-
-	data.orig_fd_in = dup(STDIN_FILENO);
-
 	while (!data.exit)
 	{
 		data.line = readline(data.minishell_name);
@@ -40,11 +37,20 @@ int	main(int i, char *argv[], char **env)
 		{
 			add_history(data.cmd[i]);
 			data.exit = cmd_line_analyser(i);
-			//data.exit = exec_cmd(i);
 		}
 		//free_2d(data.cmd);
 		free(data.line);
 	}
+}
+
+int	main(int argc, char *argv[], char **env)
+{	
+	(void)argc;
+	(void)argv;
+	
+	init_struct(env);
+	init_signals_handlers();
+	ft_read_command_loop();
 	clean_exit();
 	return (0);
 }
