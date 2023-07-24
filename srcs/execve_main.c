@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:36:08 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/24 18:19:50 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 18:55:16 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_call_execve(int has_pipe)
 			ft_redir_pipe_write_to_stdout(fd);
 		//printf("Start cmd\n");
 		//printf("RESULT:\n");
-		if (execve(data.path_fnc, data.cur_args, NULL) == -1)
+		if (execve(data.path_fnc, data.cur_args, data.env) == -1)
 			printf("error exec\n");
 		exit(1);
 	}
