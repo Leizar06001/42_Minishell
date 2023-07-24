@@ -1,9 +1,0 @@
-
---->>
-tomate
-patate
-orange
-banane
-abricot
-msh: Exec from execve..
-Reset Redirs IN
