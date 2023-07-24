@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/24 19:38:17 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 19:58:38 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_data
 	char			**path_lst;
 	int				next_is_quote;
 	int				prev_is_quote;
-	int             prev_is_dquote;
+	int				prev_is_dquote;
 	int				quote_before_dquotedollar;
 	char			*output;
 	int				i_splitspaces;
@@ -77,7 +77,7 @@ void	update_shell_name(void);
 void	current_folder(void);
 int		ft_chdir(char *str);
 
-int		cmd_line_analyser(int id_cmd);
+int		cmd_line_analyser(void);
 
 char	*ft_strnstr(const char *str, const char *to_find, size_t len);
 int		ft_strcmp(const char *s1, const char *s2);
@@ -112,29 +112,25 @@ void	handler_int(int sig);
 
 int		quote_error(char *str);
 
-
 // NEW FUNCTIONS EXEC + PIPE + REDIR
 
 void	ft_redir_pipe_write_to_stdout(int *fd);
 void	ft_redir_pipe_read_to_stdin(int *fd);
-int		ft_create_fork();
+int		ft_create_fork(void);
 int		ft_open_pipe(int *fd);
 
-
-int		find_fnc_path();
-int		exec_fnc_from_path();
-int		ft_execve();
+int		find_fnc_path(void);
+int		exec_fnc_from_path(void);
 int		ft_call_execve(int has_pipe);
 int		ft_execve_launcher(int has_pipe);
 
 int		ft_builtin_fnc(char **cmd);
-int 	ft_cmd_laucher_main(int has_pipe);
-int		ft_reset_redirs();
+int		ft_cmd_laucher_main(int has_pipe);
+int		ft_reset_redirs(void);
 
 int		ft_do_redir(char *arrow, char *filename);
-int		ft_reset_redirs();
+int		ft_reset_redirs(void);
 // ---------------------------------
-
 
 void	select_output(char **cmd_line);
 void	add_str_to_output(char *str);
@@ -147,6 +143,6 @@ char	**replace_dollar_args(char **cmd_line);
 
 //	****** DEBUG FUNCTIONS ******
 void	prt_args(char **args);
-void    prt_array(char **arr);
+void	prt_array(char **arr);
 
 #endif

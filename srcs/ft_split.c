@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 02:54:39 by rloussig          #+#    #+#             */
-/*   Updated: 2023/06/13 15:30:45 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/07/24 20:05:52 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

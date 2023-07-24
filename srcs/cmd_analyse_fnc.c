@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:56:14 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/24 19:40:31 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 20:03:22 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_add_arg_to_cur_args(char *arg)
 	return (0);
 }
 
-int	cmd_line_analyser(int id_cmd)
+int	cmd_line_analyser(void)
 {
 	int	i;
 	int	size_cmd;

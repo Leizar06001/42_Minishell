@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:56:50 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/24 19:49:54 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 20:02:19 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_append_to_file(char *filename, char *str)
 	write(fd, str, ft_strlen(str));
 	close(fd);
 }
-
+/*
 void	ft_redir_output(char **cmd_line)
 {
 	int		i;
@@ -67,3 +67,4 @@ void	ft_redir_output(char **cmd_line)
 		i++;
 	}
 }
+*/

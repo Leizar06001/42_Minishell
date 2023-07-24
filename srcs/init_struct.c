@@ -6,14 +6,14 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/24 19:37:42 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 20:07:53 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include <string.h>
 
-void	update_shell_name()
+void	update_shell_name(void)
 {
 	char	path[255];
 	char	*tmp;
@@ -43,7 +43,7 @@ void	get_env(char **env)
 	g_data.path_lst = ft_split(g_data.path, ':');
 }
 
-void	create_env()
+void	create_env(void)
 {
 	g_data.env = (char **)malloc(sizeof(char *) * 1);
 	g_data.env[0] = NULL;
@@ -51,7 +51,7 @@ void	create_env()
 	g_data.user = "no-env";
 	g_data.path = "/";
 	g_data.home = "/";
-	g_data.cwd= "/";
+	g_data.cwd = "/";
 	g_data.path_lst = (char **)malloc(sizeof(char *) * 1);
 	g_data.path_lst[0] = NULL;
 }

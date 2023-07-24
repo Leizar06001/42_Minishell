@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/24 19:40:13 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 19:52:03 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@ int	ft_read_command_loop(void)
 			add_history(g_data.cmd[i]);
 			g_data.cur_cmd = ft_split_spaces(g_data.cmd[i]);
 			g_data.cur_cmd = replace_dollar_args(g_data.cur_cmd);
-			cmd_line_analyser(i);
+			cmd_line_analyser();
 		}
 		//free_2d(g_data.cmd);
 		free(g_data.line);
 	}
+	return (0);
 }
 
 int	main(int argc, char *argv[], char **env)
