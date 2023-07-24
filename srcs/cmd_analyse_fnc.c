@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:56:14 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/21 21:06:41 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/24 17:41:50 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_add_arg_to_cur_args(char *arg)
 	while (data.cur_args[i])
 		i++;
 	data.cur_args[i] = ft_strdup(arg);
-	printf("[%d] %s\n", i, data.cur_args[i]);
+	//printf("[%d] %s\n", i, data.cur_args[i]);
 	return (0);
 }
 
@@ -76,14 +76,14 @@ int	cmd_line_analyser(int id_cmd)
 			size_cmd = ft_new_arg_array(i);
 		if (ft_check_arrows(data.cur_cmd[i]))
 		{
-			printf("Redir %s [%s] at %d\n", data.cur_cmd[i], data.cur_cmd[i + 1], i);
+			//printf("Redir %s [%s] at %d\n", data.cur_cmd[i], data.cur_cmd[i + 1], i);
 			ft_do_redir(data.cur_cmd[i], data.cur_cmd[i + 1]);
 			i ++;
 			continue;
 		}
 		if  (!ft_strcmp(data.cur_cmd[i], "|"))
 		{
-			printf("Pipe at %d >> Call Execve w/pipe \n", i);
+			//printf("Pipe at %d >> Call Execve w/pipe \n", i);
 			// call execve with pipe
 			//ft_call_execve();
 			ft_cmd_laucher_main(1);
@@ -94,6 +94,7 @@ int	cmd_line_analyser(int id_cmd)
 		}
 		ft_add_arg_to_cur_args(data.cur_cmd[i]);
 	}
+	
 	// call execve without pipe
 	if (ft_cmd_laucher_main(0))
 		printf("msh: command not found: %s\n", data.cur_args[0]);
