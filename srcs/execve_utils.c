@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:07:59 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/24 20:08:36 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/25 10:00:11 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,24 @@ int	ft_create_fork(void)
 
 void	ft_redir_pipe_read_to_stdin(int *fd)
 {
+	int	err;
+
+	err = 0;
 	close(fd[1]);
-	//g_data.orig_fd_in = dup(STDIN_FILENO);
-	//printf("STDIN to PIPE %d\n", fd[0]);
-	dup2(fd[0], STDIN_FILENO);
+	err = dup2(fd[0], STDIN_FILENO);
+	if (!err)
+		g_data.stdin_to_default = 0;
 	close(fd[0]);
 }
 
 void	ft_redir_pipe_write_to_stdout(int *fd)
 {
-	//g_data.orig_fd_out = dup(STDOUT_FILENO);
+	int	err;
+
+	err = 0;
 	close(fd[0]);
-	//printf("STDOUT to PIPE %d\n", fd[1]);
 	dup2(fd[1], STDOUT_FILENO);
+	if (!err)
+		g_data.stdout_to_default = 0;
 	close(fd[1]);
 }

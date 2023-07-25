@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/24 20:07:53 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/25 09:56:43 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,13 @@ void	init_struct(char **env)
 	g_data.minishell_name = NULL;
 	g_data.output = NULL;
 	g_data.orig_fd_in = dup(STDIN_FILENO);
+	if (g_data.orig_fd_in == -1)
+		printf("msh: err backup stdin fd..\n");
+	g_data.orig_fd_out = dup(STDOUT_FILENO);
+	if (g_data.orig_fd_out == -1)
+		printf("msh: err backup stdout fd..\n");
+	g_data.stdin_to_default = 1;
+	g_data.stdout_to_default = 1;
 	if (env[0])
 		get_env(env);
 	else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_analyse_fnc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:56:14 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/24 20:03:22 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/25 09:24:21 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	ft_new_arg_array(int pos_arg)
 
 int	ft_check_arrows(char *str)
 {
-	if (ft_strcmp(str, "<") == 0
-		|| ft_strcmp(str, ">") == 0)
+	if (ft_strcmp(str, "<") == 0 || ft_strcmp(str, ">") == 0
+		|| ft_strcmp(str, ">>") == 0 || ft_strcmp(str, "<<") == 0)
 		return (1);
 	else
 		return (0);

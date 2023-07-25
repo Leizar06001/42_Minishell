@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free_fnc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 19:07:54 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/24 19:37:42 by raphaellous      ###   ########.fr       */
+/*   Created: 2023/07/25 09:16:46 by rloussig          #+#    #+#             */
+/*   Updated: 2023/07/25 09:21:41 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,4 @@ void	free_2d(char **arr)
 	}
 	free(arr);
 	arr = NULL;
-}
-
-void	free_struct(void)
-{
-	// free(g_data.current_folder);
-	free(g_data.minishell_name);
-	// free(g_data.path_fnc);
-	free_2d(g_data.path_lst);
-	free_2d(g_data.env);
-	free(g_data.user);
-	// free_2d(g_data.cmd);
-}
-
-void	clean_exit(void)
-{
-	free_struct();
-	exit(0);
 }

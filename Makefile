@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+         #
+#    By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/07/24 19:58:42 by raphaellous      ###   ########.fr        #
+#    Updated: 2023/07/25 09:41:35 by rloussig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRCS_FILES	=	main.c 				\
 				utils_1.c			\
 				utils_2.c			\
 				utils_3.c			\
-				free.c				\
+				free_fnc.c			\
+				exit_fnc.c			\
 				builtin_1.c			\
 				ft_export.c			\
 				ft_unset.c			\
@@ -49,6 +50,7 @@ SRCS_FILES	=	main.c 				\
 				execve_fnc.c		\
 				execve_utils.c		\
 				parse.c				\
+				redir_main.c		\
 				redir_fnc.c			\
 				output_functions.c	\
 				replace_dollars_args.c	\

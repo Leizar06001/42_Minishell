@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/24 19:52:03 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/25 09:48:08 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 t_data	g_data;
 
-void	init_signals_handlers(void)
+static void	init_signals_handlers(void)
 {
 	signal(SIGQUIT, handler_quit);
 	signal(SIGINT, handler_int);
 }
 
-int	ft_read_command_loop(void)
+static int	ft_read_command_loop(void)
 {
 	int	i;
 
@@ -60,6 +60,6 @@ int	main(int argc, char *argv[], char **env)
 
 /* ******* TO DO **********
 FREEEEEEEs
-
+<<
 < in.txt grep a | wc -l > out.txt
 */

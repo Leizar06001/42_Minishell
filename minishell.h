@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/24 19:58:38 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/25 09:50:59 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct s_data
 	int				i_splitspaces;
 	int				orig_fd_in;
 	int				orig_fd_out;
+	int				stdin_to_default;
+	int				stdout_to_default;
 	int				fd_redir_in;
 	int				fd_redir_out;
 }				t_data;
@@ -95,7 +97,7 @@ char	**ft_arraydup_plus_one(char **arr);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 void	free_2d(char **arr);
-void	free_struct(void);
+
 void	clean_exit(void);
 
 void	ft_echo(char **input);
@@ -140,6 +142,10 @@ void	ft_redir_output(char **cmd_line);
 char	**parse(char *cmd);
 
 char	**replace_dollar_args(char **cmd_line);
+
+int		output_append(char *filename);
+int		output_trunc(char *filename);
+int		input_file(char *filename);
 
 //	****** DEBUG FUNCTIONS ******
 void	prt_args(char **args);
