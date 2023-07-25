@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/25 12:20:08 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:10:16 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ static int	ft_read_command_loop(void)
 {
 	int	i;
 
-	//rl_catch_signals = 0;
+	rl_catch_signals = 0;
 	while (!g_data.exit)
 	{
 		g_data.line = readline(g_data.minishell_name);
 		if (g_data.line == NULL)
 			clean_exit();
 		//quote_error(g_data.line);
+		add_history(g_data.line);
 		g_data.cmd = ft_split(g_data.line, ';');
 		i = -1;
 		while (g_data.cmd[++i] && !g_data.exit)
 		{
-			add_history(g_data.cmd[i]);
 			g_data.cur_cmd = ft_split_spaces(g_data.cmd[i]);
 			g_data.cur_cmd = replace_dollar_args(g_data.cur_cmd);
 			cmd_line_analyser();
@@ -58,9 +58,25 @@ int	main(int argc, char *argv[], char **env)
 	return (0);
 }
 
+// < in.txt grep a | wc -l > out.txt
+// ls > out.txt | wc -l
+
 /* ******* TO DO **********
 FREEEEEEEs
+Ctrl c
+!pwd dans dossier supprime
+
 <<
-< in.txt grep a | wc -l > out.txt
-ls > out.txt | wc -l
+!Pipe fin de ligne
+!Rien entre 2 pipes
+Execve prioritaire sur builtin
+Supprimer path de data
+
+
+
+Shell level
+Echo avec un seul "
+Export sans arg
+
+
 */

@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 15:33:42 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/25 14:47:25 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:20:18 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ int	ft_builtin_fnc(char **cmd)
 {
 	char	s[255];
 
+	prt_array(cmd);
 	if (!ft_strcmp(cmd[0], "cd") || !ft_strcmp(cmd[0], "chdir"))
 		ft_chdir(cmd[1]);
 	else if (!ft_strcmp(cmd[0], "pwd"))
 		printf("%s\n", getcwd(s, 255));
 	else if (!ft_strcmp(cmd[0], "echo"))
-		ft_echo(cmd);
+		ft_echo(cmd, 0);
 	else if (!ft_strcmp(cmd[0], "env"))
 		ft_env();
 	else if (!ft_strcmp(cmd[0], "export"))

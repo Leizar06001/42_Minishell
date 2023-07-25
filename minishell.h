@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/25 12:30:24 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:20:16 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	free_2d(char **arr);
 
 void	clean_exit(void);
 
-void	ft_echo(char **input);
+void	ft_echo(char **input, int option);
 char	*ft_getvar(char *varname);
 void	ft_env(void);
 
@@ -140,10 +140,7 @@ int		ft_reset_redirs(void);
 int		ft_reset_files_redir(void);
 // ---------------------------------
 
-void	select_output(char **cmd_line);
 void	add_str_to_output(char *str);
-
-void	ft_redir_output(char **cmd_line);
 
 char	**parse(char *cmd);
 

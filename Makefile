@@ -6,7 +6,7 @@
 #    By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/07/25 09:41:35 by rloussig         ###   ########.fr        #
+#    Updated: 2023/07/25 17:09:11 by rloussig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,6 @@ SRCS_FILES	=	main.c 				\
 				parse.c				\
 				redir_main.c		\
 				redir_fnc.c			\
-				output_functions.c	\
 				replace_dollars_args.c	\
 				cmd_launcher.c		\
 				debug_utils.c

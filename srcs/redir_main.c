@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 09:41:10 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/25 15:39:09 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:47:10 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,11 @@ int	ft_reset_redirs(void)
 
 int	ft_reset_files_redir(void)
 {
-	// if (g_data.fd_redir_in)
-	// {
-	// 	dup2(g_data.orig_fd_in, STDIN_FILENO);
-	// 	g_data.stdin_to_default = 1;
-	// 	g_data.fd_redir_in = 0;
-	// 	//printf("RESET IN FILE REDIR\n");
-	// }
-
-
-
-
 	if (g_data.fd_redir_out)
 	{
 		dup2(g_data.orig_fd_out, STDOUT_FILENO);
 		g_data.stdout_to_default = 1;
 		g_data.fd_redir_out = 0;
-		//printf("RESET OUT FILE REDIR\n");
 	}
 	return (0);
 }

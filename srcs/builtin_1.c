@@ -3,36 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 11:41:56 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/24 20:03:34 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/25 17:20:27 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_echo(char **input)
+void	ft_echo(char **input, int option)
 {
 	int	i;
-	int	option;
 
-	option = 0;
-	i = 1;
-	if (ft_strcmp(input[1], "-n") == 0)
+	i = 0;
+	if (input[1][0] == '-')
 	{
-		option = 1;
-		i++;
+		i = 1;
+		while (input[1][i] == 'n')
+			i++;
+		if (input[1][i] == '\0')
+		{
+			option = 1;
+			i = 1;
+		}
+		else
+			i = 0;
 	}
-	while (input[i])
+	while (input[++i])
 	{
-		add_str_to_output(input[i]);
+		printf("%s", input[i]);
 		if (input[i + 1] != NULL)
-			add_str_to_output(" ");
-		i++;
+			printf(" ");
 	}
 	if (option != 1)
-		add_str_to_output("\n");
+		printf("\n");
 }
 
 char	*ft_getvar(char *varname)
