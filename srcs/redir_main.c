@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 09:41:10 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/25 14:06:53 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/25 15:39:09 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	ft_reset_redirs(void)
 	int	err;
 
 	err = 0;
+	g_data.fd_redir_in = 0;
+	g_data.fd_redir_out = 0;
 	if (!g_data.stdin_to_default)
 		err = dup2(g_data.orig_fd_in, STDIN_FILENO);
 	if (!err)
