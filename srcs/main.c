@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/25 18:06:10 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:17:10 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ Ctrl c
 !pwd dans dossier supprime
 
 <<
-Execve prioritaire sur builtin
 Supprimer path de data
 
 

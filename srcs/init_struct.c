@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/25 09:56:43 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:58:24 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,13 @@ void	update_shell_name(void)
 
 	getcwd(path, 255);
 	tmp = ft_strjoin(g_data.user, "@minishell:"YELLOW);
-	if (strcmp(g_data.home, path) == 0)
-		tmp2 = ft_strjoin(tmp, "~");
+	if (g_data.home)
+	{
+		if (strcmp(g_data.home, path) == 0)
+			tmp2 = ft_strjoin(tmp, "~");
+		else
+			tmp2 = ft_strjoin(tmp, g_data.current_folder);
+	}
 	else
 		tmp2 = ft_strjoin(tmp, g_data.current_folder);
 	if (g_data.minishell_name)
@@ -49,8 +54,8 @@ void	create_env(void)
 	g_data.env[0] = NULL;
 	g_data.nb_env_var = 0;
 	g_data.user = "no-env";
-	g_data.path = "/";
-	g_data.home = "/";
+	g_data.path = NULL;
+	g_data.home = NULL;
 	g_data.cwd = "/";
 	g_data.path_lst = (char **)malloc(sizeof(char *) * 1);
 	g_data.path_lst[0] = NULL;

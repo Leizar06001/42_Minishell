@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/25 17:37:11 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:28:16 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	get_env_var(char **arr);
 
 char	**ft_arraydup_plus_one(char **arr);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_getenv(char *var);
 
 void	free_2d(char **arr);
 
