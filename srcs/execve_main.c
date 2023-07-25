@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:36:08 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/25 16:40:50 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:07:36 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	ft_execve_launcher(int has_pipe)
 	else
 		err = find_fnc_path();
 	if (err)
-		return (-1);
+		return (2);
 	err = ft_call_execve(has_pipe);
 	return (err);
 }

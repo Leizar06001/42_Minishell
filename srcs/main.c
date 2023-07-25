@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/25 17:37:21 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:06:10 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,12 @@ Ctrl c
 !pwd dans dossier supprime
 
 <<
-!Pipe fin de ligne
-!Rien entre 2 pipes
 Execve prioritaire sur builtin
 Supprimer path de data
 
 
-
+!Pipe fin de ligne
+!Rien entre 2 pipes
 Shell level
 Echo avec un seul "
 Export sans arg

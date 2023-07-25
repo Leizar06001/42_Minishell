@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:09:14 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/24 20:05:42 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/25 18:13:32 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_export(char **cmd)
 	char	**new_var;
 	char	**new_env;
 
-	prt_cmd(cmd);
+	//prt_cmd(cmd);
 	i = 0;
 	while (cmd[++i])
 	{
@@ -100,5 +100,4 @@ void	ft_export(char **cmd)
 			free_2d(new_var);
 		}
 	}
-	printf("NB ENV VAR = %d\n", g_data.nb_env_var);
 }
