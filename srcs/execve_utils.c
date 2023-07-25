@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:07:59 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/25 11:04:06 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:55:32 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,14 @@ int	ft_redir_pipe_write_to_stdout(int *fd)
 
 	err = 0;
 	close(fd[0]);
-	dup2(fd[1], STDOUT_FILENO);
-	if (!err)
-		g_data.stdout_to_default = 0;
-	else
-		perror("msh: error redirecting pipe to stdout\n");
+	if (g_data.fd_redir_out == 0)
+	{
+		dup2(fd[1], STDOUT_FILENO);
+		if (!err)
+			g_data.stdout_to_default = 0;
+		else
+			perror("msh: error redirecting pipe to stdout\n");
+	}
 	close(fd[1]);
 	return (err);
 }

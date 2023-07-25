@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:36:08 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/25 12:20:21 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:55:41 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	ft_call_execve(int has_pipe)
 		if (has_pipe)
 			g_data.err = ft_redir_pipe_write_to_stdout(fd);
 		if (execve(g_data.path_fnc, g_data.cur_args, g_data.env) == -1)
-			printf("error exec\n");
+			printf("msh: error execve\n");
 		clean_exit();
 	}
 	else

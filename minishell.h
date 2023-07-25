@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/25 10:16:29 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:30:24 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int		ft_reset_redirs(void);
 
 int		ft_do_redir(char *arrow, char *filename);
 int		ft_reset_redirs(void);
+int		ft_reset_files_redir(void);
 // ---------------------------------
 
 void	select_output(char **cmd_line);
