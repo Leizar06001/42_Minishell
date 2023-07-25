@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:36:08 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/24 19:41:13 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/25 12:20:21 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,20 @@ int	ft_call_execve(int has_pipe)
 	if (has_pipe)
 		ft_open_pipe(fd);
 	pid = ft_create_fork();
-	if (pid == 0)
+	if (pid == -1)
+		g_data.err = ERR_FORK;
+	else if (pid == 0)
 	{
 		if (has_pipe)
-			ft_redir_pipe_write_to_stdout(fd);
+			g_data.err = ft_redir_pipe_write_to_stdout(fd);
 		if (execve(g_data.path_fnc, g_data.cur_args, g_data.env) == -1)
 			printf("error exec\n");
-		exit(1);
+		clean_exit();
 	}
 	else
 	{
 		if (has_pipe)
-			ft_redir_pipe_read_to_stdin(fd);
+			g_data.err = ft_redir_pipe_read_to_stdin(fd);
 		waitpid(0, NULL, 0);
 	}
 	return (0);

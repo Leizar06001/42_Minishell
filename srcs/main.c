@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/25 09:48:08 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:20:08 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,5 @@ int	main(int argc, char *argv[], char **env)
 FREEEEEEEs
 <<
 < in.txt grep a | wc -l > out.txt
+ls > out.txt | wc -l
 */

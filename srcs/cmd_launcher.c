@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_launcher.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 15:33:42 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/24 20:03:37 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/25 12:20:02 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ int	ft_cmd_laucher_main(int has_pipe)
 		err = ft_execve_launcher(has_pipe);
 	if (!has_pipe)
 		ft_reset_redirs();
+
 	return (err);
 }

@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:07:54 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/25 09:21:39 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/25 10:19:00 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ void	clean_exit(void)
 {
 	close_fds();
 	free_struct();
-	exit(0);
+	exit(g_data.err);
 }

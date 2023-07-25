@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/25 09:50:59 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/25 10:16:29 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,12 @@
 # define NC			"\e[0m"
 # define YELLOW		"\e[33m"
 # define BLUE		"\e[34m"
+
 # define WITHPIPE	1
 # define NOPIPE		0
+
+# define ERR_PIPE	11
+# define ERR_FORK	10
 
 typedef struct s_data
 {
@@ -62,6 +66,7 @@ typedef struct s_data
 	int				stdout_to_default;
 	int				fd_redir_in;
 	int				fd_redir_out;
+	int				err;
 }				t_data;
 
 extern t_data	g_data;
@@ -116,8 +121,8 @@ int		quote_error(char *str);
 
 // NEW FUNCTIONS EXEC + PIPE + REDIR
 
-void	ft_redir_pipe_write_to_stdout(int *fd);
-void	ft_redir_pipe_read_to_stdin(int *fd);
+int		ft_redir_pipe_write_to_stdout(int *fd);
+int		ft_redir_pipe_read_to_stdin(int *fd);
 int		ft_create_fork(void);
 int		ft_open_pipe(int *fd);
 
