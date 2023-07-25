@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_chdir.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:07:50 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/24 20:04:32 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/25 17:38:28 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

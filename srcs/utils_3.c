@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 10:36:36 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/24 19:49:04 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/25 17:36:56 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,15 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	}
 	return (0);
+}
+
+char	*ft_getenv(char *var)
+{
+	char	*value;
+
+	value = getenv(var);
+	if (!value)
+		return ("");
+	else
+		return (value);
 }
