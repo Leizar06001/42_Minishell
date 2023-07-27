@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/25 18:58:24 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/27 13:18:23 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,5 @@ void	init_struct(char **env)
 		create_env();
 	g_data.user = ft_strjoin(BLUE, g_data.user);
 	ft_chdir(g_data.cwd);
+	g_data.heredoc = NULL;
 }

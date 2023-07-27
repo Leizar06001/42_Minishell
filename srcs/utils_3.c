@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 10:36:36 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/25 18:28:21 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/27 13:52:31 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,50 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	}
 	return (0);
+}
+
+
+
+static int	ft_nb_char(long n)
+{
+	int	i;
+
+	if (n == 0)
+		return (1);
+	i = 0;
+	if (n < 0)
+	{
+		n = -n;
+		i++;
+	}
+	while (n > 0)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_itoa(int n)
+{
+	long	ln;
+	int		len;
+	char	*str;
+
+	ln = (long) n;
+	len = ft_nb_char(ln);
+	str = malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (0);
+	str[len] = '\0';
+	if (ln < 0)
+		ln = -ln;
+	while (--len >= 0)
+	{
+		str[len] = (ln % 10) + '0';
+		ln /= 10;
+	}
+	if (n < 0)
+		str[0] = '-';
+	return (str);
 }

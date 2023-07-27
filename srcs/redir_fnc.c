@@ -3,14 +3,68 @@
 /*                                                        :::      ::::::::   */
 /*   redir_fnc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:15:42 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/25 12:33:26 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/27 18:58:43 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static int	heredoc_w_to_file(char *str)
+{
+	int		fd;
+	int		err;
+	char	*filename;
+	int		i;
+
+	err = 0;
+	filename = ft_strjoin("./.heredoc_", ft_itoa((int)(long)str));
+	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (fd == -1)
+	{
+		perror("msh: error creating temp heredoc\n");
+		return (-1);
+	}
+	g_data.heredoc = filename;
+	i = -1;
+	while (str[++i])
+		write(fd, &str[i], 1);
+	close(fd);
+	err = input_file(filename);
+	free(str);
+	return (err);
+}
+
+int	input_heredoc(char *delimiter, int err)
+{
+	char	*heredoc;
+	char	*tmp;
+	char	*tmp2;
+
+	heredoc = malloc(1);
+	heredoc[0] = '\0';
+	while (1)
+	{
+		tmp = readline("> ");
+		if (!tmp)
+			break ;
+		if (ft_strcmp(tmp, delimiter) == 0)
+		{
+			free(tmp);
+			break ;
+		}
+		tmp2 = ft_strjoin(heredoc, tmp);
+		free(tmp);
+		free(heredoc);
+		tmp = ft_strjoin(tmp2, "\n");
+		free(tmp2);
+		heredoc = tmp;
+	}
+	err = heredoc_w_to_file(heredoc);
+	return (err);
+}
 
 int	input_file(char *filename)
 {

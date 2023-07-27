@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_analyse_fnc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:56:14 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/25 09:24:21 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/27 19:10:20 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ int	cmd_line_analyser(void)
 {
 	int	i;
 	int	size_cmd;
+	int	err;
 
 	i = -1;
+	err = 0;
 	size_cmd = 0;
 	while (g_data.cur_cmd[++i])
 	{
@@ -66,7 +68,12 @@ int	cmd_line_analyser(void)
 			size_cmd = ft_new_arg_array(i);
 		if (ft_check_arrows(g_data.cur_cmd[i]))
 		{
-			ft_do_redir(g_data.cur_cmd[i], g_data.cur_cmd[i + 1]);
+			err = ft_do_redir(g_data.cur_cmd[i], g_data.cur_cmd[i + 1]);
+			if (err != 0)
+			{
+				printf("msh: error during redirection, stop operation..\n");
+				return (-1);
+			}
 			i ++;
 			continue ;
 		}

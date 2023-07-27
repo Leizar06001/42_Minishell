@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_launcher.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 15:33:42 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/25 18:11:33 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/27 19:10:53 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,25 @@ int	ft_cmd_laucher_main(int has_pipe)
 {
 	int	err;
 
-	err = ft_execve_launcher(has_pipe);
-	if (err == 2)
-		err = ft_builtin_fnc(g_data.cur_args);
+	err = 0;
+	if (g_data.cur_args[0])
+	{
+		err = ft_execve_launcher(has_pipe);
+		if (err == 2)
+			err = ft_builtin_fnc(g_data.cur_args);
+	}
 	if (err == 0)
 	{
 		if (has_pipe)
 			ft_reset_files_redir();
 		else
 			ft_reset_redirs();
+	}
+	if (g_data.heredoc)
+	{
+		unlink(g_data.heredoc);
+		free(g_data.heredoc);
+		g_data.heredoc = NULL;
 	}
 	return (err);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/25 18:17:10 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/27 12:14:46 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_read_command_loop(void)
 {
 	int	i;
 
-	rl_catch_signals = 0;
+	//rl_catch_signals = 0;
 	while (!g_data.exit)
 	{
 		g_data.line = readline(g_data.minishell_name);

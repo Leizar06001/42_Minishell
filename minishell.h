@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/25 18:28:16 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/27 14:00:45 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_data
 	int				fd_redir_in;
 	int				fd_redir_out;
 	int				err;
+	char			*heredoc;
 }				t_data;
 
 extern t_data	g_data;
@@ -100,6 +101,7 @@ void	get_env_var(char **arr);
 
 char	**ft_arraydup_plus_one(char **arr);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_itoa(int n);
 
 void	free_2d(char **arr);
 
@@ -149,6 +151,7 @@ char	**replace_dollar_args(char **cmd_line);
 int		output_append(char *filename);
 int		output_trunc(char *filename);
 int		input_file(char *filename);
+int		input_heredoc(char *delimiter, int err);
 
 //	****** DEBUG FUNCTIONS ******
 void	prt_args(char **args);

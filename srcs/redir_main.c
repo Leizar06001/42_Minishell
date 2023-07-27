@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 09:41:10 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/25 16:47:10 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/27 14:00:54 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_do_redir(char *arrow, char *filename)
 	else if (ft_strcmp(arrow, ">") == 0)
 		err = output_trunc(filename);
 	else if (ft_strcmp(arrow, "<<") == 0)
-		err = input_file(filename);
+		err = input_heredoc(filename, 0);
 	else if (ft_strcmp(arrow, ">>") == 0)
 		err = output_append(filename);
 	return (err);
