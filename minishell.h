@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/28 10:41:12 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/28 15:56:19 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,6 @@ int		ft_do_redir(char *arrow, char *filename);
 int		ft_reset_redirs(void);
 int		ft_reset_files_redir(void);
 // ---------------------------------
-
-void	add_str_to_output(char *str);
 
 char	**parse(char *cmd);
 

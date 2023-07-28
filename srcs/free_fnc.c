@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_fnc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 09:16:46 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/25 09:21:41 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:55:20 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ void	free_2d(char **arr)
 {
 	int	i;
 
-	i = 0;
-	while (arr[i])
+	if (arr)
 	{
-		free(arr[i]);
-		arr[i] = NULL;
-		i++;
+		i = 0;
+		while (arr[i])
+		{
+			free(arr[i]);
+			arr[i] = NULL;
+			i++;
+		}
+		free(arr);
 	}
-	free(arr);
 	arr = NULL;
 }

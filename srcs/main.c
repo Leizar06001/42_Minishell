@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/28 15:50:15 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/28 15:53:58 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void	init_signals_handlers(void)
 	signal(SIGQUIT, handler_quit);
 	signal(SIGINT, handler_int);
 }
+
+// INT > Ctrl C
 
 static int	ft_read_command_loop(void)
 {
