@@ -6,65 +6,62 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/27 13:18:23 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/28 09:57:57 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include <string.h>
 
-void	update_shell_name(void)
-{
-	char	path[255];
-	char	*tmp;
-	char	*tmp2;
-
-	getcwd(path, 255);
-	tmp = ft_strjoin(g_data.user, "@minishell:"YELLOW);
-	if (g_data.home)
-	{
-		if (strcmp(g_data.home, path) == 0)
-			tmp2 = ft_strjoin(tmp, "~");
-		else
-			tmp2 = ft_strjoin(tmp, g_data.current_folder);
-	}
-	else
-		tmp2 = ft_strjoin(tmp, g_data.current_folder);
-	if (g_data.minishell_name)
-		free(g_data.minishell_name);
-	g_data.minishell_name = ft_strjoin(tmp2, NC"$ ");
-	free(tmp);
-	free(tmp2);
-}
-
-void	get_env(char **env)
+static void	get_env(char **env)
 {
 	g_data.env = ft_arraydup_plus_one(env);
 	g_data.nb_env_var = ft_size_array(g_data.env);
-	g_data.user = getenv("USER");
-	g_data.path = getenv("PATH");
-	g_data.home = getenv("HOME");
 	g_data.cwd = getenv("PWD");
-	g_data.path_lst = ft_split(g_data.path, ':');
 }
 
-void	create_env(void)
+static void	create_env(void)
 {
 	g_data.env = (char **)malloc(sizeof(char *) * 1);
 	g_data.env[0] = NULL;
 	g_data.nb_env_var = 0;
-	g_data.user = "no-env";
-	g_data.path = NULL;
-	g_data.home = NULL;
 	g_data.cwd = "/";
-	g_data.path_lst = (char **)malloc(sizeof(char *) * 1);
-	g_data.path_lst[0] = NULL;
+}
+
+void	update_datas_from_env()
+{
+	if (g_data.user)
+		free(g_data.user);
+	g_data.user = ft_getvar("USER");
+	g_data.path = ft_getvar("PATH");
+	g_data.home = ft_getvar("HOME");
+	if (!g_data.user)
+		g_data.user = "no-env";
+	g_data.user = ft_strjoin(BLUE, g_data.user);
+	if (g_data.initialized)
+	{
+		if (g_data.path_lst[0])
+			free_2d(g_data.path_lst);
+		else
+			free(g_data.path_lst);
+	}
+	if (g_data.path)
+		g_data.path_lst = ft_split(g_data.path, ':');
+	else
+	{
+		g_data.path_lst = (char **)malloc(sizeof(char *) * 1);
+		g_data.path_lst[0] = NULL;
+	}
+	ft_chdir(g_data.cwd);
 }
 
 void	init_struct(char **env)
 {
-	g_data.exit = 0;
+	g_data.initialized = 0;
 	g_data.env = NULL;
+	g_data.main_env = env;
+	g_data.exit = 0;
+	g_data.user = NULL;
 	g_data.minishell_name = NULL;
 	g_data.output = NULL;
 	g_data.orig_fd_in = dup(STDIN_FILENO);
@@ -79,7 +76,7 @@ void	init_struct(char **env)
 		get_env(env);
 	else
 		create_env();
-	g_data.user = ft_strjoin(BLUE, g_data.user);
-	ft_chdir(g_data.cwd);
 	g_data.heredoc = NULL;
+	update_datas_from_env();
+	g_data.initialized = 1;
 }

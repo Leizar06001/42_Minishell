@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:15:31 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/25 18:12:37 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:04:05 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,5 @@ void	ft_unset(char **cmd)
 		else
 			printf("minishell: unset: '%s': not a valid identifier\n", cmd[i]);
 	}
-	//printf("NB ENV VAR = %d\n", g_data.nb_env_var);
+	update_datas_from_env();
 }

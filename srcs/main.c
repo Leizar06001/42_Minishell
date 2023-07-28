@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/27 12:14:46 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/28 09:34:51 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ FREEEEEEEs
 Ctrl c
 !pwd dans dossier supprime
 
-<<
 Supprimer path de data
 
 

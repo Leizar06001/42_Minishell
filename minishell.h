@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/27 14:00:45 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/28 09:57:44 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 
 typedef struct s_data
 {
+	int				initialized;
+	char			**main_env;
 	char			*user;
 	char			*path;
 	char			*home;
@@ -81,6 +83,7 @@ char	**ft_split_spaces(char *str);
 
 void	init_struct(char **env);
 void	update_shell_name(void);
+void	update_datas_from_env();
 
 void	current_folder(void);
 int		ft_chdir(char *str);
