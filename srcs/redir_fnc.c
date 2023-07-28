@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:15:42 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/27 18:58:43 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/28 19:05:56 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,4 +122,3 @@ int	output_append(char *filename)
 	g_data.stdout_to_default = 0;
 	return (err);
 }
-

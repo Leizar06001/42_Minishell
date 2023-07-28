@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:36:08 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/25 18:07:36 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/07/28 18:54:09 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

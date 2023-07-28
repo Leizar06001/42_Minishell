@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:15:31 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/28 10:04:05 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/28 19:05:13 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,11 @@ void	copy_env_rm_var(char **new_env, char *rm_var)
 			j++;
 		}
 		else
-		{
-			//printf("[%d]%s removed\n", i, cur_var[0]);
 			removed++;
-		}
-		//free_2d(cur_var);
+		free_2d(cur_var);
 		i++;
 	}
 	g_data.nb_env_var -= removed;
-}
-
-void	prt_env(char **env)
-{
-	int	i;
-
-	printf(">>> prt_env\n");
-	i = g_data.nb_env_var - 5;
-	while (env[++i])
-		printf("%s\n", env[i]);
 }
 
 void	ft_unset(char **cmd)

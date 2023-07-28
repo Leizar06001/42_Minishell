@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 10:36:36 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/27 13:52:31 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/28 19:06:13 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
-
-
 
 static int	ft_nb_char(long n)
 {

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+         #
+#    By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/07/25 17:09:11 by rloussig         ###   ########.fr        #
+#    Updated: 2023/07/28 18:53:58 by raphaellous      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,6 @@ SRCS_FILES	=	main.c 				\
 				quote.c				\
 				signals.c			\
 				execve_main.c		\
-				execve_fnc.c		\
 				execve_utils.c		\
 				parse.c				\
 				redir_main.c		\

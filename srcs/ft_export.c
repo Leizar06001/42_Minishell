@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:09:14 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/28 10:04:01 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/28 19:02:11 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,26 @@ int	check_var_exists(char *var, char *new_line)
 	return (0);
 }
 
-void	prt_cmd(char **cmd)
+static void	ft_sub_export(char **cmd, int i)
 {
-	int	i;
+	char	**new_env;
 
-	i = -1;
-	while (cmd[++i])
-		printf("cmd[%d] = %s\n", i, cmd[i]);
+	new_env = malloc(sizeof(char *) * (g_data.nb_env_var + 2));
+	if (new_env == NULL)
+		return ;
+	copy_env(new_env);
+	new_env[g_data.nb_env_var] = ft_strdup(cmd[i]);
+	new_env[g_data.nb_env_var + 1] = NULL;
+	free_2d(g_data.env);
+	g_data.env = new_env;
+	g_data.nb_env_var++;
 }
 
 void	ft_export(char **cmd)
 {
 	int		i;
 	char	**new_var;
-	char	**new_env;
 
-	//prt_cmd(cmd);
 	i = 0;
 	while (cmd[++i])
 	{
@@ -83,20 +87,11 @@ void	ft_export(char **cmd)
 			if (check_var_name(new_var[0]))
 			{
 				if (!check_var_exists(new_var[0], cmd[i]))
-				{
-					new_env = malloc(sizeof(char *) * (g_data.nb_env_var + 2));
-					if (new_env == NULL)
-						return ;
-					copy_env(new_env);
-					new_env[g_data.nb_env_var] = ft_strdup(cmd[i]);
-					new_env[g_data.nb_env_var + 1] = NULL;
-					free_2d(g_data.env);
-					g_data.env = new_env;
-					g_data.nb_env_var++;
-				}
+					ft_sub_export(cmd, i);
 			}
 			else
-				printf("minishell: export: '%s': not a valid identifier\n", new_var[0]);
+				printf("minishell: export: '%s': not a valid identifier\n",
+					new_var[0]);
 			free_2d(new_var);
 		}
 	}

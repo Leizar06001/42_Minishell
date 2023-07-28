@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/28 14:58:19 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/28 18:52:01 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	create_env(void)
 	g_data.nb_env_var = 0;
 }
 
-void	update_datas_from_env()
+void	update_datas_from_env(void)
 {
 	if (g_data.user)
 		free(g_data.user);

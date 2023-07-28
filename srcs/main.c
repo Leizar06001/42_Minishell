@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/28 15:53:58 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/28 18:52:26 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@ static int	ft_read_command_loop(void)
 {
 	int	i;
 
-	//rl_catch_signals = 0;
 	while (!g_data.exit)
 	{
 		g_data.line = readline(g_data.minishell_name);
 		if (g_data.line == NULL)
 			clean_exit();
-		//quote_error(g_data.line);
 		add_history(g_data.line);
 		g_data.cmd = ft_split(g_data.line, ';');
 		i = -1;
@@ -52,7 +50,6 @@ int	main(int argc, char *argv[], char **env)
 {
 	(void)argc;
 	(void)argv;
-
 	init_struct(env);
 	init_signals_handlers();
 	ft_read_command_loop();

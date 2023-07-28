@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/28 15:56:19 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/28 18:52:05 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	**ft_split_spaces(char *str);
 
 void	init_struct(char **env);
 void	update_shell_name(void);
-void	update_datas_from_env();
+void	update_datas_from_env(void);
 
 void	current_folder(void);
 int		ft_chdir(char *str);
