@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/28 09:57:57 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/28 14:58:19 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ static void	get_env(char **env)
 
 static void	create_env(void)
 {
-	g_data.env = (char **)malloc(sizeof(char *) * 1);
-	g_data.env[0] = NULL;
-	g_data.nb_env_var = 0;
 	g_data.cwd = "/";
+	g_data.env = (char **)malloc(sizeof(char *) * 2);
+	g_data.env[0] = ft_strdup("PWD=/");
+	g_data.env[1] = NULL;
+	g_data.nb_env_var = 0;
 }
 
 void	update_datas_from_env()
@@ -52,7 +53,6 @@ void	update_datas_from_env()
 		g_data.path_lst = (char **)malloc(sizeof(char *) * 1);
 		g_data.path_lst[0] = NULL;
 	}
-	ft_chdir(g_data.cwd);
 }
 
 void	init_struct(char **env)
@@ -78,5 +78,6 @@ void	init_struct(char **env)
 		create_env();
 	g_data.heredoc = NULL;
 	update_datas_from_env();
+	ft_chdir(g_data.cwd);
 	g_data.initialized = 1;
 }

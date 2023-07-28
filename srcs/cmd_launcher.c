@@ -6,21 +6,15 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 15:33:42 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/27 19:10:53 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/28 15:45:12 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_builtin_fnc(char **cmd)
+static int	ft_builtin_fnc(char **cmd)
 {
-	char	s[255];
-
-	if (!ft_strcmp(cmd[0], "cd") || !ft_strcmp(cmd[0], "chdir"))
-		ft_chdir(cmd[1]);
-	else if (!ft_strcmp(cmd[0], "pwd"))
-		printf("%s\n", getcwd(s, 255));
-	else if (!ft_strcmp(cmd[0], "echo"))
+	if (!ft_strcmp(cmd[0], "echo"))
 		ft_echo(cmd, 0);
 	else if (!ft_strcmp(cmd[0], "env"))
 		ft_env();
@@ -35,6 +29,17 @@ int	ft_builtin_fnc(char **cmd)
 	return (0);
 }
 
+static int	ft_builtin_mandatory(char **cmd)
+{
+	if (!ft_strcmp(cmd[0], "cd") || !ft_strcmp(cmd[0], "chdir"))
+		ft_chdir(cmd[1]);
+	else if (!ft_strcmp(cmd[0], "pwd"))
+		printf("%s\n", ft_getvar("PWD"));
+	else
+		return (-1);
+	return (0);
+}
+
 int	ft_cmd_laucher_main(int has_pipe)
 {
 	int	err;
@@ -42,7 +47,9 @@ int	ft_cmd_laucher_main(int has_pipe)
 	err = 0;
 	if (g_data.cur_args[0])
 	{
-		err = ft_execve_launcher(has_pipe);
+		err = ft_builtin_mandatory(g_data.cur_args);
+		if (err == -1)
+			err = ft_execve_launcher(has_pipe);
 		if (err == 2)
 			err = ft_builtin_fnc(g_data.cur_args);
 	}

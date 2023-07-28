@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/28 09:57:44 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/28 10:41:12 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ int		exec_fnc_from_path(void);
 int		ft_call_execve(int has_pipe);
 int		ft_execve_launcher(int has_pipe);
 
-int		ft_builtin_fnc(char **cmd);
 int		ft_cmd_laucher_main(int has_pipe);
 int		ft_reset_redirs(void);
 

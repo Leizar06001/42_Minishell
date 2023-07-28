@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/28 09:34:51 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/28 15:50:15 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int	main(int argc, char *argv[], char **env)
 
 /* ******* TO DO **********
 FREEEEEEEs
-Ctrl c
-!pwd dans dossier supprime
+Ctrl c > new line
+Ctrl d > should print 'exit'
 
-Supprimer path de data
+
 
 
 !Pipe fin de ligne
