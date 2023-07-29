@@ -6,11 +6,14 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:51:27 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/29 12:51:01 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/29 16:14:04 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+// int > Ctrl + C
+// quit > Ctrl + backslash
 
 void	handler_int(int sig)
 {

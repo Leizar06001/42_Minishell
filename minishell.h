@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/29 12:51:36 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/29 15:46:58 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <signal.h>
 # include <sys/wait.h>
 # include <string.h>
+# include <termios.h>
 
 # define NC			"\e[0m"
 # define YELLOW		"\e[33m"
@@ -70,6 +71,8 @@ typedef struct s_data
 	int				fd_redir_out;
 	int				err;
 	char			*heredoc;
+	struct termios	orig_termios;
+	struct termios	raw_termios;
 }				t_data;
 
 extern t_data	g_data;
