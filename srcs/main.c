@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/28 18:52:26 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/28 19:27:30 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,13 @@ int	main(int argc, char *argv[], char **env)
 // < in.txt grep a | wc -l > out.txt
 // ls > out.txt | wc -l
 
+
 /* ******* TO DO **********
 FREEEEEEEs
 Ctrl c > new line
 Ctrl d > should print 'exit'
 
-
+Gérer $? qui doit être substitué par le statut de sortie de la dernière pipeline exécutée au premier plan.
 
 
 !Pipe fin de ligne

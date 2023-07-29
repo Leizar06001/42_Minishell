@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:36:08 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/28 18:54:09 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/29 12:51:10 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,11 @@ int	ft_call_execve(int has_pipe)
 	}
 	else
 	{
+		signal(SIGINT, handler_int_background);
 		if (has_pipe)
 			g_data.err = ft_redir_pipe_read_to_stdin(fd);
 		waitpid(0, NULL, 0);
+		signal(SIGINT, handler_int);
 	}
 	return (0);
 }

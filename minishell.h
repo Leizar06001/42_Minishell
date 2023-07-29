@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/28 18:52:05 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/29 12:51:36 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ void	ft_unset(char **cmd);
 
 void	handler_quit(int sig);
 void	handler_int(int sig);
+void	handler_int_background(int sig);
 
 int		quote_error(char *str);
 
