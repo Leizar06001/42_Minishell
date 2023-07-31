@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/31 18:51:40 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 19:23:24 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,3 @@ int	main(int argc, char *argv[], char **env)
 	clean_exit();
 	return (0);
 }
-
-/* ******* TO DO **********
-FREEEEEEEs
-
-*/

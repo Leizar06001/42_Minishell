@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:07:54 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/31 18:11:08 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 19:24:23 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void	free_struct(void)
 
 void	clean_exit(void)
 {
-	printf(" --- Clean Exit ---\n");
 	close_fds();
 	free_struct();
 	exit(g_data.err);
