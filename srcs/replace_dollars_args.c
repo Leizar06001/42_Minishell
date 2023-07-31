@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:02:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/31 17:44:43 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 18:47:44 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,10 @@ char	*replace_dollar_var(const char *arg)
 	}
 	tmp[i] = '\0';
 	if (arg[i] == '$' && arg[i + 1] == '?')
+	{
+		free(tmp);
 		return (ft_itoa(g_data.exit_status));
+	}
 	else if (arg[i] == '$')
 	{
 		var_name = strdup(arg + i + 1);
@@ -91,8 +94,11 @@ char	*replace_dollar_var(const char *arg)
 		if (value == NULL)
 			return (tmp);
 		value = ft_strjoin(tmp, value);
+		if (value)
+			free(tmp);
 		return (value);
 	}
+	free(tmp);
 	return (strdup(arg));
 }
 
@@ -111,5 +117,6 @@ char	**replace_dollar_args(char **cmd_line)
 		i++;
 	}
 	new_c_l[i] = NULL;
+	free_2d(cmd_line);
 	return (new_c_l);
 }

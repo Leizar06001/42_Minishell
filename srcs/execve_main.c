@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:36:08 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/31 17:40:39 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 18:53:17 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	ft_execve_launcher(int has_pipe)
 	if (err)
 		return (2);
 	err = ft_call_execve(has_pipe);
+	free(g_data.path_fnc);
 	cmd_return_value();
 	return (err);
 }

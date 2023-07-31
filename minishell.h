@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/31 18:02:51 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 18:48:54 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_data
 	char			*cwd;
 	char			*minishell_name;
 	char			*line;
-	char			*cmd; //avant ceteait char **
+	char			*cmd;
 	char			**cur_cmd;
 	char			**cur_args;
 	char			*current_folder;
@@ -73,8 +73,6 @@ typedef struct s_data
 	int				fd_redir_out;
 	int				err;
 	char			*heredoc;
-	struct termios	orig_termios;
-	struct termios	raw_termios;
 	int				cmd_ret;
 	int				exit_status;
 }				t_data;
@@ -87,7 +85,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 
 char	**ft_split(char const *s, char c);
 
-char	**ft_split_spaces(char *str);
+char	**ft_split_spaces(char *str, int i);
 char	*pipe_split(char **arr, char *str, int i);
 char	*morethan(char **arr, char *str, int i);
 char	*just_character(char **arr, char *str, int i);

@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/31 17:40:25 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 18:15:49 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init_shlvl(void)
 {
 	char	*shlvl_val;
 	char	*new_val;
+	char	*new_line;
 	int		shlvl_int;
 	char	**a;
 
@@ -27,9 +28,11 @@ void	init_shlvl(void)
 	shlvl_val = ft_getvar("SHLVL");
 	if (shlvl_val)
 		shlvl_int = ft_atoi(shlvl_val) + 1;
-	new_val = ft_strjoin("SHLVL=", ft_itoa(shlvl_int));
+	new_val = ft_itoa(shlvl_int);
+	new_line = ft_strjoin("SHLVL=", new_val);
+	free(new_val);
 	a[0] = ft_strdup("export");
-	a[1] = new_val;
+	a[1] = new_line;
 	a[2] = NULL;
 	ft_export(a);
 	free(a[0]);
@@ -70,6 +73,7 @@ void	update_datas_from_env(void)
 		else
 			free(g_data.path_lst);
 	}
+	free_2d(g_data.path_lst);
 	if (g_data.path)
 		g_data.path_lst = ft_split(g_data.path, ':');
 	else
@@ -88,6 +92,7 @@ void	init_struct(char **env)
 	g_data.user = NULL;
 	g_data.minishell_name = NULL;
 	g_data.output = NULL;
+	g_data.path_lst = NULL;
 	g_data.orig_fd_in = dup(STDIN_FILENO);
 	if (g_data.orig_fd_in == -1)
 		printf("msh: err backup stdin fd..\n");

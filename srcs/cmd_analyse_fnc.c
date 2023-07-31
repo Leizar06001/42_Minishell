@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:56:14 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/31 17:34:35 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 18:52:00 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	ft_new_arg_array(int pos_arg)
 	int	size;
 
 	i = 0;
+	free_2d(g_data.cur_args);
 	while (g_data.cur_cmd[pos_arg + i]
 		&& ft_strcmp(g_data.cur_cmd[pos_arg + i], "|"))
 		i++;

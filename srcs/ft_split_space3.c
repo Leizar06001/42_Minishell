@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 17:51:15 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/31 17:54:34 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 18:31:19 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,28 @@ char	*just_character(char **arr, char *str, int i)
 	}
 	g_data.i_splitspaces = i;
 	return (str);
+}
+
+char	*malloc_word(char *str)
+{
+	char	*word;
+	int		len;
+	int		i;
+
+	len = 0;
+	i = 0;
+	while (str[len] && !ft_isspace(str[len]) && str[len] != '\"'
+		&& str[len] != '>' && str[len] != '<' && str[len] != '|')
+		len++;
+	word = (char *)malloc(sizeof(char) * (len + 1));
+	while (str[i] && !ft_isspace(str[i]) && str[i] != '\"' && str[i] != '>'
+		&& str[i] != '<' && str[i] != '|')
+	{
+		word[i] = str[i];
+		i++;
+	}
+	if (str[i] == '\"')
+		g_data.next_is_quote = 1;
+	word[i] = '\0';
+	return (word);
 }
