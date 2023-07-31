@@ -1,2 +1,4 @@
 /objs
 minishell
+.DS_Store
+.fuse*
