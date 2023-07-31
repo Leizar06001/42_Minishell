@@ -6,7 +6,7 @@
 #    By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/07/29 13:27:58 by raphaellous      ###   ########.fr        #
+#    Updated: 2023/07/31 17:51:33 by raphaellous      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ SRCS_FILES	=	main.c 				\
 				cmd_analyse_fnc.c	\
 				ft_split.c			\
 				ft_split_spaces.c	\
+				ft_split_space2.c	\
+				ft_split_space3.c	\
 				ft_strjoin.c		\
 				init.c				\
 				init_struct.c		\
@@ -44,13 +46,14 @@ SRCS_FILES	=	main.c 				\
 				ft_export.c			\
 				ft_unset.c			\
 				ft_chdir.c			\
-				quote.c				\
+				quote_error.c		\
+				pipe_error.c		\
 				signals.c			\
 				execve_main.c		\
 				execve_utils.c		\
-				parse.c				\
 				redir_main.c		\
 				redir_fnc.c			\
+				redir_heredoc.c		\
 				replace_dollars_args.c	\
 				cmd_launcher.c		\
 				debug_utils.c

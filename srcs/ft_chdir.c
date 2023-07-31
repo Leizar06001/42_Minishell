@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:07:50 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/28 15:43:35 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 17:40:04 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,31 @@ void	ft_update_pwd(void)
 	ft_export_pwd(new, old_pwd);
 }
 
+static int	ft_chdir_home(void)
+{
+	if (g_data.home)
+		return (chdir(g_data.home));
+	else
+	{
+		printf("msh: cd: HOME not set\n");
+		return (127);
+	}
+	return (0);
+}
+
 int	ft_chdir(char *str)
 {
 	int	ret;
 
 	if (str == NULL)
-	{
-		if (g_data.home)
-			ret = chdir(g_data.home);
-		else
-		{
-			printf("msh: cd: HOME not set\n");
-			return (127);
-		}
-	}
+		ret = ft_chdir_home();
 	else
-		ret = chdir(str);
+	{
+		if (ft_strcmp(str, "~") == 0)
+			ret = ft_chdir_home();
+		else
+			ret = chdir(str);
+	}
 	if (ret == -1)
 		printf("cd: no such file or directory: %s\n", str);
 	else

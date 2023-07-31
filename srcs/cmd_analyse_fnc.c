@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:56:14 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/31 15:32:09 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 17:34:35 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	sub_analyser(int *i, int *size_cmd, int *err)
 	if (ft_check_arrows(g_data.cur_cmd[*i]))
 	{
 		*err = ft_do_redir(g_data.cur_cmd[*i], g_data.cur_cmd[*i + 1]);
-		if (*err != 0)
+		if (*err == -1)
 		{
 			printf("msh: error during redirection, stop operation..\n");
 			return (-1);
@@ -74,7 +74,7 @@ int	sub_analyser(int *i, int *size_cmd, int *err)
 			return (-1);
 		}
 		*size_cmd = 0;
-		return (CONTINUE) ;
+		return (CONTINUE);
 	}
 	return (0);
 }

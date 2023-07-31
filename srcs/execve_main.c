@@ -6,13 +6,13 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:36:08 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/31 14:34:34 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 17:40:39 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static void	cmd_return_value()
+static void	cmd_return_value(void)
 {
 	if (WIFEXITED(g_data.cmd_ret))
 		g_data.exit_status = WEXITSTATUS(g_data.cmd_ret);

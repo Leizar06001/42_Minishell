@@ -6,14 +6,14 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/31 13:30:08 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 17:40:25 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include <string.h>
 
-void	init_shlvl()
+void	init_shlvl(void)
 {
 	char	*shlvl_val;
 	char	*new_val;

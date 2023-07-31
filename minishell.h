@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/31 15:15:04 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 18:02:51 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,18 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	*ft_strjoin(char const *s1, char const *s2);
 
 char	**ft_split(char const *s, char c);
+
 char	**ft_split_spaces(char *str);
+char	*pipe_split(char **arr, char *str, int i);
+char	*morethan(char **arr, char *str, int i);
+char	*just_character(char **arr, char *str, int i);
+void	joinquote(char **arr, int i, char c);
+char	*pass_word(char *str, char c);
+int		ft_isspace(char c);
+int		ft_isthan(char c);
+char	*remove_dquote(char *str, char c);
+char	*ft_strndup(char *str, int n);
+char	*malloc_word(char *str);
 
 void	init_struct(char **env);
 void	update_shell_name(void);
@@ -128,11 +139,13 @@ int		check_var_name(char *str);
 
 void	ft_unset(char **cmd);
 
-void	handler_quit(int sig);
 void	handler_int(int sig);
 void	handler_int_background(int sig);
 
+//quote_error.c
 int		quote_error(char *str);
+
+//pipe_error.c
 int		is_last_char_pipe(char *str);
 int		two_pipes_with_space(char *str);
 
@@ -156,8 +169,8 @@ int		ft_reset_redirs(void);
 int		ft_reset_files_redir(void);
 // ---------------------------------
 
-char	**parse(char *cmd);
 char	**replace_dollar_args(char **cmd_line);
+char	*replace_dollar_var(const char *arg);
 
 int		output_append(char *filename);
 int		output_trunc(char *filename);
@@ -167,6 +180,5 @@ int		input_heredoc(char *delimiter, int err);
 //	****** DEBUG FUNCTIONS ******
 void	prt_args(char **args);
 void	prt_array(char **arr);
-
 
 #endif

@@ -1,2 +1,1 @@
-msh: error during redirection, stop operation..
-msh: error during redirection, stop operation..
+test
