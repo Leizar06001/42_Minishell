@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:51:27 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/29 16:14:04 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 14:59:54 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,8 @@ void	handler_int_background(int sig)
 void	handler_quit(int sig)
 {
 	(void)sig;
+	printf("CTRL + /\n");
 }
+
+// CTRL + C > INT
+// CTRL + \ > QUIT

@@ -6,12 +6,36 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/28 18:52:01 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 13:30:08 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include <string.h>
+
+void	init_shlvl()
+{
+	char	*shlvl_val;
+	char	*new_val;
+	int		shlvl_int;
+	char	**a;
+
+	a = malloc(sizeof(char *) * 4);
+	if (!a)
+		return ;
+	shlvl_int = 1;
+	shlvl_val = ft_getvar("SHLVL");
+	if (shlvl_val)
+		shlvl_int = ft_atoi(shlvl_val) + 1;
+	new_val = ft_strjoin("SHLVL=", ft_itoa(shlvl_int));
+	a[0] = ft_strdup("export");
+	a[1] = new_val;
+	a[2] = NULL;
+	ft_export(a);
+	free(a[0]);
+	free(a[1]);
+	free(a);
+}
 
 static void	get_env(char **env)
 {
@@ -26,7 +50,7 @@ static void	create_env(void)
 	g_data.env = (char **)malloc(sizeof(char *) * 2);
 	g_data.env[0] = ft_strdup("PWD=/");
 	g_data.env[1] = NULL;
-	g_data.nb_env_var = 0;
+	g_data.nb_env_var = 1;
 }
 
 void	update_datas_from_env(void)
@@ -79,5 +103,6 @@ void	init_struct(char **env)
 	g_data.heredoc = NULL;
 	update_datas_from_env();
 	ft_chdir(g_data.cwd);
+	init_shlvl();
 	g_data.initialized = 1;
 }

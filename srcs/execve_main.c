@@ -6,11 +6,23 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:36:08 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/29 13:05:42 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 14:34:34 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static void	cmd_return_value()
+{
+	if (WIFEXITED(g_data.cmd_ret))
+		g_data.exit_status = WEXITSTATUS(g_data.cmd_ret);
+	if (WIFSIGNALED(g_data.cmd_ret))
+		g_data.exit_status = WTERMSIG(g_data.cmd_ret);
+	if (WCOREDUMP(g_data.cmd_ret))
+		g_data.exit_status = WCOREDUMP(g_data.cmd_ret);
+	if (g_data.cmd_ret == 256)
+		g_data.exit_status = 1;
+}
 
 int	find_fnc_path(void)
 {
@@ -73,7 +85,7 @@ int	ft_call_execve(int has_pipe)
 		signal(SIGINT, handler_int_background);
 		if (has_pipe)
 			g_data.err = ft_redir_pipe_read_to_stdin(fd);
-		waitpid(0, NULL, 0);
+		waitpid(0, &g_data.cmd_ret, 0);
 		signal(SIGINT, handler_int);
 	}
 	return (0);
@@ -91,5 +103,6 @@ int	ft_execve_launcher(int has_pipe)
 	if (err)
 		return (2);
 	err = ft_call_execve(has_pipe);
+	cmd_return_value();
 	return (err);
 }

@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:09:14 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/28 19:02:11 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 13:18:27 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_var_name(char *str)
 	return (1);
 }
 
-void	copy_env(char **new_env)
+static void	copy_env(char **new_env)
 {
 	int	i;
 
@@ -37,7 +37,7 @@ void	copy_env(char **new_env)
 	new_env[i] = NULL;
 }
 
-int	check_var_exists(char *var, char *new_line)
+static int	check_var_exists(char *var, char *new_line)
 {
 	int		i;
 	char	**cur_var;
@@ -95,5 +95,7 @@ void	ft_export(char **cmd)
 			free_2d(new_var);
 		}
 	}
+	if (!cmd[1])
+		export_no_arg();
 	update_datas_from_env();
 }

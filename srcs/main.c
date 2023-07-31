@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/29 16:23:36 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 15:45:03 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,56 @@ static void	init_signals_handlers(void)
 	signal(SIGINT, handler_int);
 }
 
-static int	ft_read_command_loop(void)
+// static int	ft_read_command_loop(void)
+// {
+// 	int	i;
+
+// 	while (!g_data.exit)
+// 	{
+// 		g_data.line = readline(g_data.minishell_name);
+// 		if (g_data.line == NULL)
+// 			break ;
+// 		add_history(g_data.line);
+// 		g_data.cmd = ft_split(g_data.line, ';');
+// 		i = -1;
+// 		while (g_data.cmd[++i] && !g_data.exit)
+// 		{
+// 			g_data.cur_cmd = ft_split_spaces(g_data.cmd[i]);
+// 			g_data.cur_cmd = replace_dollar_args(g_data.cur_cmd);
+
+// 			cmd_line_analyser();
+// 		}
+// 		free_2d(g_data.cmd);
+// 		free(g_data.line);
+// 	}
+// 	return (0);
+// }
+
+static void	ft_read_command_loop(void)
 {
-	int	i;
+	int	err;
 
 	while (!g_data.exit)
 	{
-		g_data.line = readline(g_data.minishell_name);
-		if (g_data.line == NULL)
+		err = 0;
+		g_data.cmd = readline(g_data.minishell_name);
+		if (g_data.cmd == NULL)
 			break ;
-		add_history(g_data.line);
-		g_data.cmd = ft_split(g_data.line, ';');
-		i = -1;
-		while (g_data.cmd[++i] && !g_data.exit)
+		add_history(g_data.cmd);
+		g_data.cur_cmd = ft_split_spaces(g_data.cmd);
+		g_data.cur_cmd = replace_dollar_args(g_data.cur_cmd);
+		err = quote_error(g_data.cmd);
+		if (!err)
+			err = two_pipes_with_space(g_data.cmd);
+		if (!err)
+			err = is_last_char_pipe(g_data.cmd);
+		if (!err)
 		{
-			g_data.cur_cmd = ft_split_spaces(g_data.cmd[i]);
-			g_data.cur_cmd = replace_dollar_args(g_data.cur_cmd);
-			cmd_line_analyser();
+			if (cmd_line_analyser() == -1)
+				ft_reset_redirs();
 		}
-		free_2d(g_data.cmd);
-		free(g_data.line);
+		free(g_data.cmd);
 	}
-	return (0);
 }
 
 int	main(int argc, char *argv[], char **env)
@@ -69,22 +97,14 @@ int	main(int argc, char *argv[], char **env)
 	return (0);
 }
 
-// < in.txt grep a | wc -l > out.txt
-// ls > out.txt | wc -l
-
-
 /* ******* TO DO **********
 FREEEEEEEs
 Ctrl \ > should not do anything || termios ?
 
-Gérer $? qui doit être substitué par le statut de sortie de la dernière pipeline exécutée au premier plan.
-
 
 !Pipe fin de ligne
 !Rien entre 2 pipes
-Shell level
 Echo avec un seul "
-Export sans arg
 
 
 */

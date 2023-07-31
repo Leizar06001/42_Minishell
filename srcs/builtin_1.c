@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 11:41:56 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/28 18:52:46 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 13:17:48 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,16 @@ void	ft_env(void)
 	i = -1;
 	while (g_data.env[++i])
 		printf("%s\n", g_data.env[i]);
+}
+
+void	export_no_arg(void)
+{
+	int	i;
+
+	i = -1;
+	while (g_data.env[++i])
+	{
+		printf("declare -x ");
+		printf("%s\n", g_data.env[i]);
+	}
 }

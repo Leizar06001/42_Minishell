@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 15:33:42 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/28 18:52:36 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 15:26:39 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,21 @@ int	ft_cmd_laucher_main(int has_pipe)
 	int	err;
 
 	err = 0;
-	if (g_data.cur_args[0])
+	if (g_data.cur_args)
 	{
-		err = ft_builtin_mandatory(g_data.cur_args);
-		if (err == -1)
-			err = ft_execve_launcher(has_pipe);
-		if (err == 2)
-			err = ft_builtin_fnc(g_data.cur_args);
+		if (g_data.cur_args[0])
+		{
+			err = ft_builtin_mandatory(g_data.cur_args);
+			if (err == -1)
+				err = ft_execve_launcher(has_pipe);
+			if (err == 2)
+				err = ft_builtin_fnc(g_data.cur_args);
+		}
 	}
-	if (err == 0)
-	{
-		if (has_pipe)
-			ft_reset_files_redir();
-		else
-			ft_reset_redirs();
-	}
+	if (has_pipe)
+		ft_reset_files_redir();
+	else
+		ft_reset_redirs();
 	if (g_data.heredoc)
 	{
 		unlink(g_data.heredoc);

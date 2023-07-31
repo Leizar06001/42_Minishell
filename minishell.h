@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/29 15:46:58 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 15:15:04 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 # define ERR_PIPE	11
 # define ERR_FORK	10
 
+# define CONTINUE	-99
+
 typedef struct s_data
 {
 	int				initialized;
@@ -47,7 +49,7 @@ typedef struct s_data
 	char			*cwd;
 	char			*minishell_name;
 	char			*line;
-	char			**cmd;
+	char			*cmd; //avant ceteait char **
 	char			**cur_cmd;
 	char			**cur_args;
 	char			*current_folder;
@@ -73,6 +75,8 @@ typedef struct s_data
 	char			*heredoc;
 	struct termios	orig_termios;
 	struct termios	raw_termios;
+	int				cmd_ret;
+	int				exit_status;
 }				t_data;
 
 extern t_data	g_data;
@@ -108,6 +112,7 @@ void	get_env_var(char **arr);
 char	**ft_arraydup_plus_one(char **arr);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_itoa(int n);
+int		ft_atoi(const char *str);
 
 void	free_2d(char **arr);
 
@@ -116,6 +121,7 @@ void	clean_exit(void);
 void	ft_echo(char **input, int option);
 char	*ft_getvar(char *varname);
 void	ft_env(void);
+void	export_no_arg(void);
 
 void	ft_export(char **cmd);
 int		check_var_name(char *str);
@@ -127,6 +133,8 @@ void	handler_int(int sig);
 void	handler_int_background(int sig);
 
 int		quote_error(char *str);
+int		is_last_char_pipe(char *str);
+int		two_pipes_with_space(char *str);
 
 // NEW FUNCTIONS EXEC + PIPE + REDIR
 
@@ -149,7 +157,6 @@ int		ft_reset_files_redir(void);
 // ---------------------------------
 
 char	**parse(char *cmd);
-
 char	**replace_dollar_args(char **cmd_line);
 
 int		output_append(char *filename);
@@ -160,5 +167,6 @@ int		input_heredoc(char *delimiter, int err);
 //	****** DEBUG FUNCTIONS ******
 void	prt_args(char **args);
 void	prt_array(char **arr);
+
 
 #endif
