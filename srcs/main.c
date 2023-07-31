@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/31 15:45:03 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 16:02:42 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,6 @@ static void	init_signals_handlers(void)
 	signal(SIGQUIT, handler_quit);
 	signal(SIGINT, handler_int);
 }
-
-// static int	ft_read_command_loop(void)
-// {
-// 	int	i;
-
-// 	while (!g_data.exit)
-// 	{
-// 		g_data.line = readline(g_data.minishell_name);
-// 		if (g_data.line == NULL)
-// 			break ;
-// 		add_history(g_data.line);
-// 		g_data.cmd = ft_split(g_data.line, ';');
-// 		i = -1;
-// 		while (g_data.cmd[++i] && !g_data.exit)
-// 		{
-// 			g_data.cur_cmd = ft_split_spaces(g_data.cmd[i]);
-// 			g_data.cur_cmd = replace_dollar_args(g_data.cur_cmd);
-
-// 			cmd_line_analyser();
-// 		}
-// 		free_2d(g_data.cmd);
-// 		free(g_data.line);
-// 	}
-// 	return (0);
-// }
 
 static void	ft_read_command_loop(void)
 {
@@ -100,11 +75,5 @@ int	main(int argc, char *argv[], char **env)
 /* ******* TO DO **********
 FREEEEEEEs
 Ctrl \ > should not do anything || termios ?
-
-
-!Pipe fin de ligne
-!Rien entre 2 pipes
-Echo avec un seul "
-
 
 */

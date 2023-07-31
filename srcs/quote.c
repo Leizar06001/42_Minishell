@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:01:01 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/31 15:15:08 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 16:01:50 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,13 @@ int quote_error(char *str)
 			tmp = readline("quote> ");
 		if(checkquoteclosed(str) == 2)
 			tmp = readline("dquote> ");
+		if (tmp == NULL)
+			return (-1);
 		g_data.cmd = ft_strjoin(g_data.cmd, tmp);
 		if (ft_strcmp(tmp, "\"") != 0)
 			g_data.cmd = ft_strjoin(g_data.cmd, "\n");
 		str = g_data.cmd;
+		free(tmp);
 	}
 	return (0);
 }
