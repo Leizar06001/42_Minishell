@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 12:40:22 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/01 12:41:41 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 12:52:11 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	check_var_name(char *str)
 {
 	int	i;
 
+	if (!str)
+		return (0);
 	i = -1;
 	if (!ft_isalpha(str[0]) && str[0] != '_')
 		return (0);

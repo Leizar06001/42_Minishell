@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:09:14 by rloussig          #+#    #+#             */
-/*   Updated: 2023/08/01 12:43:25 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 13:00:16 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	ft_export_err(char *str)
 	g_data.exit_status = 1;
 }
 
-void	ft_export(char **cmd)
+int	ft_export(char **cmd)
 {
 	int		i;
 	char	**new_var;
@@ -62,21 +62,22 @@ void	ft_export(char **cmd)
 	i = 0;
 	while (cmd[++i])
 	{
+		new_var = ft_split(cmd[i], '=');
+		if (!check_var_name(new_var[0]))
+		{
+			ft_export_err(new_var[0]);
+			return (-1);
+		}
 		if (ft_strchr(cmd[i], '=') && ft_strlen(cmd[i]) > 1 && cmd[i][0] != '=')
 		{
-			new_var = ft_split(cmd[i], '=');
-			if (check_var_name(new_var[0]))
-			{
-				if (!check_var_exists(new_var[0], cmd[i]))
-					ft_sub_export(cmd, i);
-			}
-			else
-				ft_export_err(new_var[0]);
+			if (!check_var_exists(new_var[0], cmd[i]))
+				ft_sub_export(cmd, i);
 			free_2d(new_var);
 		}
 	}
 	if (!cmd[1])
 		export_no_arg();
-	if (g_data.initialized)
+	if (g_data.initialized && !g_data.exit_status)
 		update_datas_from_env();
+	return (0);
 }

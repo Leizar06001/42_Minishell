@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:56:14 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/01 12:44:56 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 13:29:58 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,7 @@ int	sub_analyser(int *i, int *size_cmd, int *err)
 	{
 		*err = ft_do_redir(g_data.cur_cmd[*i], g_data.cur_cmd[*i + 1]);
 		if (*err == -1)
-		{
-			printf("msh: error during redirection, stop operation..\n");
 			return (-1);
-		}
 		*i = *i + 1;
 		return (CONTINUE);
 	}
@@ -81,7 +78,7 @@ int	cmd_line_analyser(int err, int size_cmd, int i)
 		err = sub_analyser(&i, &size_cmd, &err);
 		if (err == CONTINUE && !g_data.exit_status)
 			continue ;
-		else if (err != 0)
+		else if (err != 0 || g_data.exit_status)
 			return (ERR_EXEC);
 		ft_add_arg_to_cur_args(g_data.cur_cmd[i]);
 	}
@@ -103,6 +100,7 @@ int	init_cmd_line_analyser(void)
 	g_data.exit_status = 0;
 	g_data.cur_args = NULL;
 	err = cmd_line_analyser(0, 0, -1);
+	update_shell_name();
 	return (err);
 }
 

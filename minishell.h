@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/01 12:41:33 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 13:15:17 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define NC			"\e[0m"
 # define YELLOW		"\e[33m"
 # define BLUE		"\e[34m"
+# define RED		"\e[91m"
 
 # define WITHPIPE	1
 # define NOPIPE		0
@@ -138,7 +139,7 @@ char	*ft_getvar(char *varname);
 void	ft_env(void);
 void	export_no_arg(void);
 
-void	ft_export(char **cmd);
+int		ft_export(char **cmd);
 int		check_var_name(char *str);
 
 void	copy_env(char **new_env);

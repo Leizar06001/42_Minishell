@@ -6,11 +6,29 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:50:42 by rloussig          #+#    #+#             */
-/*   Updated: 2023/08/01 11:05:59 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 13:23:19 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static char	*shell_name_err(void)
+{
+	char	*tmp;
+	char	*tmp2;
+	char	*err_nb;
+
+	err_nb = ft_itoa(g_data.exit_status);
+	tmp = ft_strjoin(RED"X ", err_nb);
+	tmp2 = ft_strjoin(tmp, " ");
+	free(tmp);
+	tmp = ft_strjoin(tmp2, g_data.user);
+	free(tmp2);
+	tmp2 = ft_strjoin(tmp, "@minishell:"YELLOW);
+	free(tmp);
+	free(err_nb);
+	return (tmp2);
+}
 
 void	update_shell_name(void)
 {
@@ -19,7 +37,10 @@ void	update_shell_name(void)
 	char	*tmp2;
 
 	getcwd(path, 255);
-	tmp = ft_strjoin(g_data.user, "@minishell:"YELLOW);
+	if (!g_data.exit_status)
+		tmp = ft_strjoin(g_data.user, "@minishell:"YELLOW);
+	else
+		tmp = shell_name_err();
 	if (g_data.home)
 	{
 		if (strcmp(g_data.home, path) == 0)

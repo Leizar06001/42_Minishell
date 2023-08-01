@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 09:41:10 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/27 14:00:54 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 13:29:25 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	ft_do_redir(char *arrow, char *filename)
 		err = input_heredoc(filename, 0);
 	else if (ft_strcmp(arrow, ">>") == 0)
 		err = output_append(filename);
+	if (err)
+		g_data.exit_status = 1;
 	return (err);
 }
 

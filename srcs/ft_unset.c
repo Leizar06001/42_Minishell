@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:15:31 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/28 19:05:13 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 13:25:10 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ void	ft_unset(char **cmd)
 			g_data.env = new_env;
 		}
 		else
-			printf("minishell: unset: '%s': not a valid identifier\n", cmd[i]);
+		{
+			printf("msh: unset: '%s': not a valid identifier\n", cmd[i]);
+			g_data.exit_status = 1;
+		}
 	}
 	update_datas_from_env();
 }
