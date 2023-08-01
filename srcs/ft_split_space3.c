@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 17:51:15 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/01 12:40:47 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 14:55:40 by mabdali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	joinquote(char **arr, int i, char c)
 	{
 		arr[i - 1] = remove_dquote(arr[i - 1], c);
 		arr[i - 2] = ft_strjoin(arr[i - 2], arr[i - 1]);
+		arr[i - 1] = NULL;
 		i--;
 		g_data.next_is_quote = 0;
 	}
@@ -56,14 +57,19 @@ char	*morethan(char **arr, char *str, int i)
 
 char	*just_character(char **arr, char *str, int i)
 {
-	// if (*(str - 1) == '"')
-	// 	g_data.prev_is_dquote = 1;
-	// else if (*(str - 1) == '\'')
-	// 	g_data.prev_is_quote = 1;                          A REFAIRE
-	// else
-	// 	g_data.prev_is_quote = 0;
+	if(g_data.strsplit != str)
+	{
+		if (*(str - 1) == '"')
+			g_data.prev_is_dquote = 1;
+		else if (*(str - 1) == '\'')
+		g_data.prev_is_quote = 1;
+		else
+		g_data.prev_is_quote = 0;
+	}
+	else
+		g_data.prev_is_quote = 0;
 	arr[i++] = malloc_word(str);
-	while (*str && !ft_isspace(*str) && *str != '\"' && *str != '>'
+	while (*str && !ft_isspace(*str) && *str != '\"' && *str != '\'' && *str != '>'
 		&& *str != '<' && *str != '|')
 		str++;
 	if (g_data.prev_is_dquote == 1 || g_data.prev_is_quote == 1)
@@ -89,17 +95,17 @@ char	*malloc_word(char *str)
 
 	len = 0;
 	i = 0;
-	while (str[len] && !ft_isspace(str[len]) && str[len] != '\"'
+	while (str[len] && !ft_isspace(str[len]) && str[len] != '\"' && str[len] != '\''
 		&& str[len] != '>' && str[len] != '<' && str[len] != '|')
 		len++;
 	word = (char *)malloc(sizeof(char) * (len + 1));
-	while (str[i] && !ft_isspace(str[i]) && str[i] != '\"' && str[i] != '>'
+	while (str[i] && !ft_isspace(str[i]) && str[i] != '\"' && str[i] != '\'' && str[i] != '>'
 		&& str[i] != '<' && str[i] != '|')
 	{
 		word[i] = str[i];
 		i++;
 	}
-	if (str[i] == '\"')
+	if (str[i] == '\"' || str[i] == '\'')
 		g_data.next_is_quote = 1;
 	word[i] = '\0';
 	return (word);

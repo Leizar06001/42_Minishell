@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/01 13:15:17 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 14:59:43 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_data
 	char			*heredoc;
 	int				cmd_ret;
 	int				exit_status;
+	char			*strsplit;
 }				t_data;
 
 extern t_data	g_data;

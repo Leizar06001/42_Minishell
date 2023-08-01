@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:36:08 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/31 18:53:17 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 14:53:38 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	exec_fnc_from_path(void)
 	if (g_data.cur_args[0][0] == '.')
 		g_data.path_fnc = ft_strjoin(getcwd(path, 255), g_data.cur_args[0] + 1);
 	else if (g_data.cur_args[0][0] == '/')
-		g_data.path_fnc = g_data.cur_args[0];
+		g_data.path_fnc = ft_strdup(g_data.cur_args[0]);
 	if (access(g_data.path_fnc, F_OK) == 0)
 		return (0);
 	return (1);

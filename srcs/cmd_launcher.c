@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 15:33:42 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/31 15:26:39 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 14:42:50 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,22 @@ static int	ft_builtin_fnc(char **cmd)
 
 static int	ft_builtin_mandatory(char **cmd)
 {
+	char	*pwd;
+	char	buf[1024];
+
 	if (!ft_strcmp(cmd[0], "cd") || !ft_strcmp(cmd[0], "chdir"))
 		ft_chdir(cmd[1]);
 	else if (!ft_strcmp(cmd[0], "pwd"))
-		printf("%s\n", ft_getvar("PWD"));
+	{
+		pwd = ft_getvar("PWD");
+		if (!pwd)
+		{
+			getcwd(buf, 1024);
+			printf("%s\n", buf);
+		}
+		else
+			printf("%s\n", ft_getvar("PWD"));
+	}
 	else
 		return (-1);
 	return (0);

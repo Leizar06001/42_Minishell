@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:09 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/31 18:31:18 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 14:56:26 by mabdali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ char	**ft_split_spaces(char *str, int i)
 	arr = (char **)malloc(sizeof(char *) * (1000));
 	if (!arr)
 		return (NULL);
+	g_data.strsplit = str;
 	while (*str)
 	{
 		while (*str && ft_isspace(*str))
