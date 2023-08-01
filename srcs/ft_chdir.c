@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:07:50 by rloussig          #+#    #+#             */
-/*   Updated: 2023/08/01 11:12:51 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 12:34:46 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@ int	ft_chdir(char *str)
 			ret = chdir(str);
 	}
 	if (ret == -1)
+	{
 		printf("cd: no such file or directory: %s\n", str);
+		g_data.exit_status = 1;
+	}
 	else
 	{
 		ft_update_pwd();

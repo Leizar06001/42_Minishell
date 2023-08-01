@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:02:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/31 19:24:05 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 12:40:20 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ char	*replace_dollar_var(const char *arg)
 	i = 0;
 	while (arg[i] && arg[i] != '$')
 		i++;
-	i = 0;
 	tmp = malloc(sizeof(char) * (i + 1));
+	i = 0;
 	while (arg[i] && arg[i] != '$')
 	{
 		tmp[i] = arg[i];

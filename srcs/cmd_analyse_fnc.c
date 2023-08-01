@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:56:14 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/31 18:52:00 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 12:44:56 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,6 @@ int	ft_new_arg_array(int pos_arg)
 		i--;
 	}
 	return (size);
-}
-
-int	ft_check_arrows(char *str)
-{
-	if (ft_strcmp(str, "<") == 0 || ft_strcmp(str, ">") == 0
-		|| ft_strcmp(str, ">>") == 0 || ft_strcmp(str, "<<") == 0)
-		return (1);
-	else
-		return (0);
 }
 
 int	ft_add_arg_to_cur_args(char *arg)
@@ -80,33 +71,39 @@ int	sub_analyser(int *i, int *size_cmd, int *err)
 	return (0);
 }
 
-int	cmd_line_analyser(void)
+int	cmd_line_analyser(int err, int size_cmd, int i)
 {
-	int	i;
-	int	size_cmd;
-	int	err;
-
-	i = -1;
-	err = 0;
-	size_cmd = 0;
-	g_data.cur_args = NULL;
-	while (g_data.cur_cmd[++i])
+	while (g_data.cur_cmd[++i] && !g_data.exit_status)
 	{
+		err = 0;
 		if (!size_cmd)
 			size_cmd = ft_new_arg_array(i);
 		err = sub_analyser(&i, &size_cmd, &err);
-		if (err == CONTINUE)
-		{
-			err = 0;
+		if (err == CONTINUE && !g_data.exit_status)
 			continue ;
-		}
-		else if (err)
-			return (-1);
+		else if (err != 0)
+			return (ERR_EXEC);
 		ft_add_arg_to_cur_args(g_data.cur_cmd[i]);
 	}
+	if (g_data.exit_status)
+		return (ERR_EXEC);
 	if (ft_cmd_laucher_main(NOPIPE) == -1)
+	{
 		printf("msh: command not found: %s\n", g_data.cur_args[0]);
+		return (ERR_EXEC);
+	}
 	return (0);
+}
+
+int	init_cmd_line_analyser(void)
+{
+	int	err;
+
+	err = 0;
+	g_data.exit_status = 0;
+	g_data.cur_args = NULL;
+	err = cmd_line_analyser(0, 0, -1);
+	return (err);
 }
 
 // < in.txt grep a | wc -l > out.txt

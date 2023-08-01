@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:01:01 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/31 17:40:19 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 12:08:13 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_last_char_pipe(char *str)
 	if (i >= 0 && str[i] == '|')
 	{
 		printf("msh: error: expected expression after pipe\n");
-		return (1);
+		return (-1);
 	}
 	return (0);
 }
@@ -35,27 +35,23 @@ int	two_pipes_with_space(char *str)
 {
 	int	i;
 	int	pipe_count;
-	int	space_between_pipes;
 
 	i = 0;
 	pipe_count = 0;
-	space_between_pipes = 0;
-	while (str[i] && !(pipe_count == 2 && space_between_pipes))
+	while (str[i] && !(pipe_count == 2))
 	{
 		if (str[i] == '|')
 		{
 			pipe_count++;
-			if (pipe_count == 2 && space_between_pipes == 0)
-				printf("msh: error: two consecutive pipes.\n");
-			else if (pipe_count == 2 && space_between_pipes == 1)
-				printf("msh: error: two consecutive pipes (||).\n");
-			space_between_pipes = 0;
+			if (pipe_count == 2)
+			{
+				printf("msh: error: two consecutive pipes\n");
+				return (-1);
+			}
 		}
-		else if (str[i] == ' ')
-			space_between_pipes = 1;
-		else
+		else if (str[i] > ' ')
 			pipe_count = 0;
 		i++;
 	}
-	return (pipe_count == 2 && space_between_pipes);
+	return (0);
 }

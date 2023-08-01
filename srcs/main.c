@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/31 23:50:36 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 12:30:26 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ static void	ft_read_command_loop(void)
 		if (!err)
 			err = is_last_char_pipe(g_data.cmd);
 		if (!err)
-		{
-			if (cmd_line_analyser() == -1)
-				ft_reset_redirs();
-		}
+			err = init_cmd_line_analyser();
+		if (err == ERR_EXEC)
+			ft_reset_redirs();
 		free_2d(g_data.cur_cmd);
 		free_2d(g_data.cur_args);
+		g_data.cur_args = NULL;
 		free(g_data.cmd);
 	}
 }

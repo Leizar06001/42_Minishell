@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/31 23:10:07 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 12:41:33 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 
 # define ERR_PIPE	11
 # define ERR_FORK	10
+# define ERR_EXEC	-15
 
 # define CONTINUE	-99
 
@@ -106,7 +107,8 @@ void	update_shell_name(void);
 void	current_folder(void);
 int		ft_chdir(char *str);
 
-int		cmd_line_analyser(void);
+int		init_cmd_line_analyser(void);
+int		cmd_line_analyser(int err, int size_cmd, int i);
 
 char	*ft_strnstr(const char *str, const char *to_find, size_t len);
 int		ft_strcmp(const char *s1, const char *s2);
@@ -125,6 +127,8 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_itoa(int n);
 int		ft_atoi(const char *str);
 
+int		ft_check_arrows(char *str);
+
 void	free_2d(char **arr);
 
 void	clean_exit(void);
@@ -135,6 +139,9 @@ void	ft_env(void);
 void	export_no_arg(void);
 
 void	ft_export(char **cmd);
+int		check_var_name(char *str);
+
+void	copy_env(char **new_env);
 int		check_var_name(char *str);
 
 void	ft_unset(char **cmd);

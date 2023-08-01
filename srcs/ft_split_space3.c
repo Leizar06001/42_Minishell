@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FT_SPLIT_SPACE3.C                                  :+:      :+:    :+:   */
+/*   ft_split_space3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 17:51:15 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/31 18:31:19 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 12:40:47 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ char	*morethan(char **arr, char *str, int i)
 
 char	*just_character(char **arr, char *str, int i)
 {
-	if (*(str - 1) == '"')
-		g_data.prev_is_dquote = 1;
-	else if (*(str - 1) == '\'')
-		g_data.prev_is_quote = 1;
-	else
-		g_data.prev_is_quote = 0;
+	// if (*(str - 1) == '"')
+	// 	g_data.prev_is_dquote = 1;
+	// else if (*(str - 1) == '\'')
+	// 	g_data.prev_is_quote = 1;                          A REFAIRE
+	// else
+	// 	g_data.prev_is_quote = 0;
 	arr[i++] = malloc_word(str);
 	while (*str && !ft_isspace(*str) && *str != '\"' && *str != '>'
 		&& *str != '<' && *str != '|')

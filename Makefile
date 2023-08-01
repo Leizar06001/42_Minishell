@@ -6,7 +6,7 @@
 #    By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/07/31 17:51:33 by raphaellous      ###   ########.fr        #
+#    Updated: 2023/08/01 12:40:43 by raphaellous      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,10 +40,12 @@ SRCS_FILES	=	main.c 				\
 				utils_1.c			\
 				utils_2.c			\
 				utils_3.c			\
+				utils_4.c			\
 				free_fnc.c			\
 				exit_fnc.c			\
 				builtin_1.c			\
 				ft_export.c			\
+				ft_export_utils.c	\
 				ft_unset.c			\
 				ft_chdir.c			\
 				quote_error.c		\

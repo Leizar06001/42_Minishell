@@ -6,36 +6,11 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:09:14 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/31 23:21:49 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 12:43:25 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int	check_var_name(char *str)
-{
-	int	i;
-
-	i = -1;
-	if (!ft_isalpha(str[0]) && str[0] != '_')
-		return (0);
-	while (str[++i])
-	{
-		if (!ft_isalnum(str[i]) && str[i] != '_')
-			return (0);
-	}
-	return (1);
-}
-
-static void	copy_env(char **new_env)
-{
-	int	i;
-
-	i = -1;
-	while (++i < g_data.nb_env_var)
-		new_env[i] = ft_strdup(g_data.env[i]);
-	new_env[i] = NULL;
-}
 
 static int	check_var_exists(char *var, char *new_line)
 {
@@ -73,6 +48,12 @@ static void	ft_sub_export(char **cmd, int i)
 	g_data.nb_env_var++;
 }
 
+static void	ft_export_err(char *str)
+{
+	printf("msh: export: '%s': not a valid identifier\n", str);
+	g_data.exit_status = 1;
+}
+
 void	ft_export(char **cmd)
 {
 	int		i;
@@ -90,8 +71,7 @@ void	ft_export(char **cmd)
 					ft_sub_export(cmd, i);
 			}
 			else
-				printf("minishell: export: '%s': not a valid identifier\n",
-					new_var[0]);
+				ft_export_err(new_var[0]);
 			free_2d(new_var);
 		}
 	}
