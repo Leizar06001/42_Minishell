@@ -6,7 +6,7 @@
 #    By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/08/01 12:40:43 by raphaellous      ###   ########.fr        #
+#    Updated: 2023/08/01 17:52:02 by raphaellous      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,7 @@ OBJS_PATH	:=	objs
 SRCS_FILES	=	main.c 				\
 				cmd_analyse_fnc.c	\
 				ft_split.c			\
-				ft_split_spaces.c	\
-				ft_split_space2.c	\
-				ft_split_space3.c	\
+				ft_parse.c			\
 				ft_strjoin.c		\
 				init.c				\
 				init_struct.c		\
@@ -58,6 +56,8 @@ SRCS_FILES	=	main.c 				\
 				redir_heredoc.c		\
 				replace_dollars_args.c	\
 				cmd_launcher.c		\
+				wildcards.c			\
+				get_next_line.c		\
 				debug_utils.c
 
 SRCS		=	$(addprefix $(SRCS_PATH)/, $(SRCS_FILES))

@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 09:41:10 by rloussig          #+#    #+#             */
-/*   Updated: 2023/08/01 13:29:25 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 16:14:09 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ int	ft_reset_redirs(void)
 	g_data.fd_redir_out = 0;
 	if (!g_data.stdin_to_default)
 		err = dup2(g_data.orig_fd_in, STDIN_FILENO);
-	if (!err)
+	if (err != -1)
 		g_data.stdin_to_default = 1;
 	if (!g_data.stdout_to_default)
 		err = dup2(g_data.orig_fd_out, STDOUT_FILENO);
-	if (!err)
+	if (err != -1)
 		g_data.stdin_to_default = 1;
 	if (err == -1)
 		printf("msh: error resetting redirections..\n");

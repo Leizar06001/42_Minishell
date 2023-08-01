@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/01 13:01:18 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 17:53:17 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,26 @@ static void	init_signals_handlers(void)
 	signal(SIGINT, handler_int);
 }
 
+static int	ft_check_synthax_and_parse(char *cmd)
+{
+	int	err;
+
+	err = quote_error(cmd);
+	if (err)
+		return (err);
+	err = two_pipes_with_space(cmd);
+	if (err)
+		return (err);
+	err = is_last_char_pipe(cmd);
+	if (err)
+		return (err);
+	if (ft_strchr(cmd, '*'))
+		ft_wildcards_main(cmd);
+	g_data.cur_cmd = ft_parse(cmd, 0);
+	g_data.cur_cmd = replace_dollar_args(g_data.cur_cmd);
+	return (0);
+}
+
 static void	ft_read_command_loop(void)
 {
 	int	err;
@@ -30,21 +50,18 @@ static void	ft_read_command_loop(void)
 		g_data.cmd = readline(g_data.minishell_name);
 		if (g_data.cmd == NULL)
 			break ;
-		add_history(g_data.cmd);
-		g_data.cur_cmd = ft_split_spaces(g_data.cmd, 0);
-		g_data.cur_cmd = replace_dollar_args(g_data.cur_cmd);
-		err = quote_error(g_data.cmd);
-		if (!err)
-			err = two_pipes_with_space(g_data.cmd);
-		if (!err)
-			err = is_last_char_pipe(g_data.cmd);
-		if (!err)
-			err = init_cmd_line_analyser();
-		if (err == ERR_EXEC)
-			ft_reset_redirs();
-		free_2d(g_data.cur_cmd);
-		free_2d(g_data.cur_args);
-		g_data.cur_args = NULL;
+		if (!str_only_space_tab(g_data.cmd))
+		{
+			add_history(g_data.cmd);
+			err = ft_check_synthax_and_parse(g_data.cmd);
+			if (!err)
+				err = init_cmd_line_analyser();
+			if (err == ERR_EXEC)
+				ft_reset_redirs();
+			free_2d(g_data.cur_cmd);
+			free_2d(g_data.cur_args);
+			g_data.cur_args = NULL;
+		}
 		free(g_data.cmd);
 	}
 }

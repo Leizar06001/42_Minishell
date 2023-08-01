@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/01 14:59:43 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 17:53:57 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@
 
 # define CONTINUE	-99
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
 typedef struct s_data
 {
 	int				initialized;
@@ -63,6 +67,7 @@ typedef struct s_data
 	char			**path_lst;
 	int				next_is_quote;
 	int				prev_is_quote;
+	int				next_is_dquote;
 	int				prev_is_dquote;
 	int				quote_before_dquotedollar;
 	char			*output;
@@ -78,6 +83,7 @@ typedef struct s_data
 	int				cmd_ret;
 	int				exit_status;
 	char			*strsplit;
+	char			**wildcard_res;
 }				t_data;
 
 extern t_data	g_data;
@@ -92,13 +98,15 @@ char	**ft_split_spaces(char *str, int i);
 char	*pipe_split(char **arr, char *str, int i);
 char	*morethan(char **arr, char *str, int i);
 char	*just_character(char **arr, char *str, int i);
-void	joinquote(char **arr, int i, char c);
+void	joinquote(char **arr, int *i, char c);
 char	*pass_word(char *str, char c);
 int		ft_isspace(char c);
 int		ft_isthan(char c);
 char	*remove_dquote(char *str, char c);
 char	*ft_strndup(char *str, int n);
 char	*malloc_word(char *str);
+
+char	**ft_parse(char *str, int i);
 
 void	init_struct(char **env);
 void	update_datas_from_env(void);
@@ -130,6 +138,7 @@ char	*ft_itoa(int n);
 int		ft_atoi(const char *str);
 
 int		ft_check_arrows(char *str);
+int		str_only_space_tab(char *str);
 
 void	free_2d(char **arr);
 
@@ -178,6 +187,8 @@ int		ft_reset_redirs(void);
 int		ft_reset_files_redir(void);
 // ---------------------------------
 
+int		ft_wildcards_main(char *cmd);
+
 char	**replace_dollar_args(char **cmd_line);
 char	*replace_dollar_var(const char *arg);
 
@@ -185,6 +196,13 @@ int		output_append(char *filename);
 int		output_trunc(char *filename);
 int		input_file(char *filename);
 int		input_heredoc(char *delimiter, int err);
+
+// Get next line
+char	*ft_remain(char *buf);
+char	*ft_return_line(char *buf);
+char	*ft_read_buf(int fd, char *ret);
+char	*get_next_line(int fd);
+void	*ft_calloc(size_t nb, size_t size);
 
 //	****** DEBUG FUNCTIONS ******
 void	prt_args(char **args);
