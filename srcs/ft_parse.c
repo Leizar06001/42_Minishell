@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 17:51:31 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/01 17:52:57 by raphaellous      ###   ########.fr       */
+/*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
+/*   Updated: 2023/08/01 18:26:02 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,6 +244,11 @@ char	**ft_parse(char *str, int i)
 {
 	char	**arr;
 
+
+	g_data.next_is_quote = 0;
+	g_data.next_is_dquote = 0;
+	g_data.prev_is_quote = 0;
+	g_data.prev_is_dquote = 0;
 	arr = (char **)malloc(sizeof(char *) * (1000));
 	i = 0;
 	if (!arr)
