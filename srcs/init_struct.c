@@ -6,45 +6,19 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:08:03 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/31 18:15:49 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 11:12:28 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include <string.h>
 
-void	init_shlvl(void)
-{
-	char	*shlvl_val;
-	char	*new_val;
-	char	*new_line;
-	int		shlvl_int;
-	char	**a;
-
-	a = malloc(sizeof(char *) * 4);
-	if (!a)
-		return ;
-	shlvl_int = 1;
-	shlvl_val = ft_getvar("SHLVL");
-	if (shlvl_val)
-		shlvl_int = ft_atoi(shlvl_val) + 1;
-	new_val = ft_itoa(shlvl_int);
-	new_line = ft_strjoin("SHLVL=", new_val);
-	free(new_val);
-	a[0] = ft_strdup("export");
-	a[1] = new_line;
-	a[2] = NULL;
-	ft_export(a);
-	free(a[0]);
-	free(a[1]);
-	free(a);
-}
-
 static void	get_env(char **env)
 {
 	g_data.env = ft_arraydup_plus_one(env);
 	g_data.nb_env_var = ft_size_array(g_data.env);
 	g_data.cwd = getenv("PWD");
+	g_data.current_folder = NULL;
 }
 
 static void	create_env(void)
@@ -54,6 +28,16 @@ static void	create_env(void)
 	g_data.env[0] = ft_strdup("PWD=/");
 	g_data.env[1] = NULL;
 	g_data.nb_env_var = 1;
+	g_data.current_folder = NULL;
+}
+
+static int	init_path_lst(void)
+{
+	g_data.path_lst = (char **)malloc(sizeof(char *) * 1);
+	if (!g_data.path_lst)
+		return (-1);
+	g_data.path_lst[0] = NULL;
+	return (0);
 }
 
 void	update_datas_from_env(void)
@@ -67,20 +51,14 @@ void	update_datas_from_env(void)
 		g_data.user = "no-env";
 	g_data.user = ft_strjoin(BLUE, g_data.user);
 	if (g_data.initialized)
-	{
-		if (g_data.path_lst[0])
-			free_2d(g_data.path_lst);
-		else
-			free(g_data.path_lst);
-	}
-	free_2d(g_data.path_lst);
+		free_2d(g_data.path_lst);
+	else
+		free(g_data.path_lst);
 	if (g_data.path)
 		g_data.path_lst = ft_split(g_data.path, ':');
 	else
-	{
-		g_data.path_lst = (char **)malloc(sizeof(char *) * 1);
-		g_data.path_lst[0] = NULL;
-	}
+		init_path_lst();
+	update_shell_name();
 }
 
 void	init_struct(char **env)
@@ -92,7 +70,7 @@ void	init_struct(char **env)
 	g_data.user = NULL;
 	g_data.minishell_name = NULL;
 	g_data.output = NULL;
-	g_data.path_lst = NULL;
+	init_path_lst();
 	g_data.orig_fd_in = dup(STDIN_FILENO);
 	if (g_data.orig_fd_in == -1)
 		printf("msh: err backup stdin fd..\n");
@@ -106,8 +84,8 @@ void	init_struct(char **env)
 	else
 		create_env();
 	g_data.heredoc = NULL;
-	update_datas_from_env();
 	ft_chdir(g_data.cwd);
 	init_shlvl();
+	update_datas_from_env();
 	g_data.initialized = 1;
 }

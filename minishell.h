@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/31 18:48:54 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 23:10:07 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,10 @@ char	*ft_strndup(char *str, int n);
 char	*malloc_word(char *str);
 
 void	init_struct(char **env);
-void	update_shell_name(void);
 void	update_datas_from_env(void);
+
+void	init_shlvl(void);
+void	update_shell_name(void);
 
 void	current_folder(void);
 int		ft_chdir(char *str);

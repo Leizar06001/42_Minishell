@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:09:14 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/31 17:40:27 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 23:21:49 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ void	ft_export(char **cmd)
 	}
 	if (!cmd[1])
 		export_no_arg();
-	update_datas_from_env();
+	if (g_data.initialized)
+		update_datas_from_env();
 }

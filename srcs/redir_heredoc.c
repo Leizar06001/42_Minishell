@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 17:02:49 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/07/31 17:23:21 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 23:00:55 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@ static int	heredoc_w_to_file(char *str)
 	int		err;
 	char	*filename;
 	int		i;
+	char	*number;
 
 	err = 0;
-	filename = ft_strjoin("./.heredoc_", ft_itoa((int)(long)str));
+	number = ft_itoa((int)(long)str);
+	filename = ft_strjoin("./.heredoc_", number);
+	free(number);
 	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 	{

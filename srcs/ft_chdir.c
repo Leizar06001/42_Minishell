@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:07:50 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/31 17:40:04 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 11:12:51 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	current_folder(void)
 
 	path = ft_getvar("PWD");
 	pos = ft_strrchr(path, '/');
-	g_data.current_folder = pos;
+	if (g_data.current_folder)
+		free(g_data.current_folder);
+	g_data.current_folder = ft_strdup(pos);
 	update_shell_name();
 }
 

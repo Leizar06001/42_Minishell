@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/07/31 19:23:24 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/07/31 23:50:36 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	ft_read_command_loop(void)
 				ft_reset_redirs();
 		}
 		free_2d(g_data.cur_cmd);
+		free_2d(g_data.cur_args);
 		free(g_data.cmd);
 	}
 }
