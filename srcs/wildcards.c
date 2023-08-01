@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:56:05 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/01 17:50:05 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 18:03:19 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	**ft_add_array_to_array(char **src, char **dest, int pos)
 				ret[i + j] = src[j];
 			found = 1;
 		}
-		ret[i + j + 1 + found] = dest[i];
+		ret[i + j + 1 + found * -1] = dest[i + found];
 	}
 	ret[i + j + 1] = NULL;
 	return (ret);
