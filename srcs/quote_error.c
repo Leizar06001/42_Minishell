@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:01:01 by rloussig          #+#    #+#             */
-/*   Updated: 2023/08/01 18:39:56 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 15:03:52 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	*checkquotecl(int *error, char *str)
 	str++;
 	while (*str != '\'' && *str)
 		str++;
-	if (*str == '\0')
+	if (!*str)
 		*error = 1;
 	else
 	{
@@ -32,7 +32,7 @@ static char	*checkdquotecl(int *error, char *str)
 	str++;
 	while (*str != '\"' && *str)
 		str++;
-	if (*str == '\0')
+	if (!*str)
 		*error = 2;
 	else
 	{

@@ -6,25 +6,13 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:02:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/02 12:29:23 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 15:00:38 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	c_l_len(char **cmd_line)
-{
-	int	len;
-
-	len = 0;
-	if (cmd_line == NULL)
-		return (len);
-	while (cmd_line[len] != NULL)
-		len++;
-	return (len);
-}
-
-char	*loop1(const char *arg, int *i, char deli)
+char	*replace_for_2quote(const char *arg, int *i, char deli)
 {
 	char	*tmp;
 
@@ -42,77 +30,79 @@ char	*loop1(const char *arg, int *i, char deli)
 	return (tmp);
 }
 
-char	*replace_dollar_var(char *arg, int id_arg)
+char	*replace_just_dollar(int *i, char *tmp, char *arg)
 {
-	char	*var_name;
 	char	*value;
+	char	*var_name;
+
+	var_name = strdup(arg + *i + 1);
+	if (var_name[ft_strlen(var_name) - 1] == '\'')
+	{
+		g_data.quote_before_dquotedollar = 1;
+		var_name[ft_strlen(var_name) - 1] = '\0';
+	}
+	value = ft_getvar(var_name);
+	if (g_data.quote_before_dquotedollar == 1)
+		value = ft_strjoin(value, "\'");
+	free(var_name);
+	if (value == NULL)
+		return (tmp);
+	value = ft_strjoin(tmp, value);
+	if (value)
+		free(tmp);
+	return (value);
+}
+
+char	*replace_interogation(char *tmp)
+{
+	free(tmp);
+	return (ft_itoa(g_data.exit_status));
+}
+
+char	*replace_dollar_var(char *arg)
+{
 	int		i;
 	char	*tmp;
 
 	i = 0;
 	g_data.quote_before_dquotedollar = 0;
 	if (arg[0] == '\'')
-		return (loop1(arg, &i, '\''));
+		return (replace_for_2quote(arg, &i, '\''));
 	else if (arg[0] == '\"')
-		return (loop1(arg, &i, '\"'));
+		return (replace_for_2quote(arg, &i, '\"'));
 	if (ft_strchr(arg, '*'))
-	{
-		ft_wildcards_main(id_arg);
-	}
+		return (ft_wildcards_main());
 	i = 0;
 	while (arg[i] && arg[i] != '$')
 		i++;
 	tmp = malloc(sizeof(char) * (i + 1));
-	i = 0;
-	while (arg[i] && arg[i] != '$')
-	{
+	i = -1;
+	while (arg[++i] && arg[i] != '$')
 		tmp[i] = arg[i];
-		i++;
-	}
 	tmp[i] = '\0';
 	if (arg[i] == '$' && arg[i + 1] == '?')
-	{
-		free(tmp);
-		return (ft_itoa(g_data.exit_status));
-	}
+		return (replace_interogation(tmp));
 	else if (arg[i] == '$')
-	{
-		var_name = strdup(arg + i + 1);
-		if (var_name[ft_strlen(var_name) - 1] == '\'')
-		{
-			g_data.quote_before_dquotedollar = 1;
-			var_name[ft_strlen(var_name) - 1] = '\0';
-		}
-		value = ft_getvar(var_name);
-		if (g_data.quote_before_dquotedollar == 1)
-			value = ft_strjoin(value, "\'");
-		free(var_name);
-		if (value == NULL)
-			return (tmp);
-		value = ft_strjoin(tmp, value);
-		if (value)
-			free(tmp);
-		return (value);
-	}
+		return (replace_just_dollar(&i, tmp, arg));
 	free(tmp);
 	return (strdup(arg));
 }
 
-char	**replace_dollar_args(char **cmd_line)
+void	replace_dollar_args(char **cmd_line)
 {
-	char	**new_c_l;
-	int		i;
+	char	*tmp;
 
-	i = 0;
-	new_c_l = (char **)malloc(sizeof(char *) * (c_l_len(cmd_line) + 1));
-	if (new_c_l == NULL)
-		return (NULL);
-	while (cmd_line[i] != NULL)
+	(void)cmd_line;
+	g_data.actual_arg = 0;
+	while (g_data.cur_cmd[g_data.actual_arg] != NULL)
 	{
-		new_c_l[i] = replace_dollar_var(cmd_line[i], i);
-		i++;
+		tmp = replace_dollar_var(g_data.cur_cmd[g_data.actual_arg]);
+		if (tmp)
+		{
+			free(g_data.cur_cmd[g_data.actual_arg]);
+			g_data.cur_cmd[g_data.actual_arg] = tmp;
+			g_data.actual_arg++;
+		}
 	}
-	new_c_l[i] = NULL;
-	free_2d(cmd_line);
-	return (new_c_l);
+	g_data.cur_cmd[g_data.actual_arg] = NULL;
 }

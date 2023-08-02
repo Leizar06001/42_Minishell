@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 17:02:49 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/02 12:28:59 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 12:55:20 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	heredoc_w_to_file(char *str)
 
 static int	heredoc_process_line(char **tmp, char **tmp2, char **heredoc)
 {
-	*tmp2 = replace_dollar_var(*tmp, -1);
+	*tmp2 = replace_dollar_var(*tmp);
 	free(*tmp);
 	*tmp = ft_strjoin(*heredoc, *tmp2);
 	free(*tmp2);

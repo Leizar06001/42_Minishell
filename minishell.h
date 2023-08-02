@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/02 12:28:29 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 14:53:27 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_data
 	char			*cmd;
 	char			**cur_cmd;
 	char			**cur_args;
+	int				actual_arg;
 	char			*current_folder;
 	char			*path_fnc;
 	char			**env;
@@ -196,10 +197,10 @@ int		output_trunc(char *filename);
 int		input_file(char *filename);
 int		input_heredoc(char *delimiter, int err);
 // wildcards
-int		ft_wildcards_main(int id_cmd);
+char	*ft_wildcards_main(void);
 // replace dollars args
-char	**replace_dollar_args(char **cmd_line);
-char	*replace_dollar_var(char *arg, int id_arg);
+void	replace_dollar_args(char **cmd_line);
+char	*replace_dollar_var(char *arg);
 // Get next line
 char	*ft_remain(char *buf);
 char	*ft_return_line(char *buf);

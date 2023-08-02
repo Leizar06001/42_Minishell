@@ -6,23 +6,21 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:56:05 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/02 12:27:56 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 15:01:06 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	**ft_add_array_to_array(char **src, char **dest, int pos)
+char	**ft_add_array_to_array(char **src, char **dest, int pos, int found)
 {
 	char	**ret;
 	int		size;
 	int		i;
 	int		j;
-	int		found;
 
 	size = ft_size_array(src) + ft_size_array(dest);
 	ret = malloc(sizeof(char **) * (size + 1));
-	found = 0;
 	if (!ret)
 		return (NULL);
 	i = -1;
@@ -32,24 +30,13 @@ char	**ft_add_array_to_array(char **src, char **dest, int pos)
 		if (i == pos)
 		{
 			while (src[++j])
-				ret[i + j] = src[j];
+				ret[i + j] = ft_strdup(src[j]);
 			found = 1;
 		}
-		ret[i + j + 1 + found * -1] = dest[i + found];
+		ret[i + j + 1 + found * -1] = ft_strdup(dest[i + found]);
 	}
-	ret[i + j + 1] = NULL;
+	ret[size - 1] = NULL;
 	return (ret);
-}
-
-static void	ft_wildcards_add_to_cmd(int nb_cards, int id_arg)
-{
-	char	**ret;
-
-	(void)nb_cards;
-	ret = ft_add_array_to_array(g_data.wildcard_res, g_data.cur_cmd, id_arg);
-	//free_2d(new_c_l);
-	//new_c_l = ret;
-	prt_args(ret);
 }
 
 static int	match(const char *pattern, const char *word)
@@ -104,9 +91,20 @@ static int	ft_wildcards_read_file(int fd, char *pattern)
 	return (nb_cards);
 }
 
-int	ft_wildcards_main(int id_arg)
+static void	ft_wildcards_add_to_cmd(int nb_cards)
 {
-	int		err;
+	char	**ret;
+
+	(void)nb_cards;
+	ret = ft_add_array_to_array(g_data.wildcard_res, g_data.cur_cmd,
+			g_data.actual_arg, 0);
+	free_2d(g_data.cur_cmd);
+	g_data.cur_cmd = ret;
+	g_data.actual_arg += nb_cards;
+}
+
+char	*ft_wildcards_main(void)
+{
 	int		fd;
 	int		ret;
 
@@ -115,15 +113,18 @@ int	ft_wildcards_main(int id_arg)
 	g_data.cur_args = malloc(sizeof(char *) * 2);
 	g_data.cur_args[0] = ft_strdup("ls");
 	g_data.cur_args[1] = NULL;
-	err = ft_do_redir(">", ".temp_wildcards");
-	err = ft_cmd_laucher_main(NOPIPE);
+	ft_do_redir(">", ".temp_wildcards");
+	ft_cmd_laucher_main(NOPIPE);
 	fd = open(".temp_wildcards", O_RDONLY);
-	ret = ft_wildcards_read_file(fd, g_data.cur_cmd[id_arg]);
+	ret = ft_wildcards_read_file(fd, g_data.cur_cmd[g_data.actual_arg]);
 	close(fd);
 	ft_reset_redirs();
 	unlink(".temp_wildcards");
-	ft_wildcards_add_to_cmd(ret, id_arg);
+	if (ret)
+		ft_wildcards_add_to_cmd(ret);
+	else
+		g_data.actual_arg++;
 	free_2d(g_data.cur_args);
-	//free_2d(g_data.wildcard_res);
-	return (err);
+	free_2d(g_data.wildcard_res);
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:07:58 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/24 19:47:33 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 13:13:24 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ char	*ft_strdup(const char *s)
 	int		i;
 
 	i = 0;
+	if (!s)
+		return (NULL);
 	str = (char *)malloc(sizeof(*str) * (ft_strlen(s) + 1));
 	if (!str)
 		return (0);

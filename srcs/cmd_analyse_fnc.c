@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:56:14 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/02 08:54:31 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 15:11:37 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	init_cmd_line_analyser(void)
 	g_data.cur_args = NULL;
 	err = cmd_line_analyser(0, 0, -1);
 	update_shell_name();
+	free_2d(g_data.cur_args);
 	return (err);
 }
 
