@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/01 18:33:26 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 09:04:36 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static int	ft_check_synthax_and_parse(char *cmd)
 		return (err);
 	if (ft_strchr(cmd, '*'))
 		ft_wildcards_main(cmd);
+	//g_data.cur_cmd = replace_dollar_args(g_data.cur_cmd);
 	g_data.cur_cmd = ft_parse(cmd, 0);
-	g_data.cur_cmd = replace_dollar_args(g_data.cur_cmd);
 	return (0);
 }
 
@@ -59,9 +59,11 @@ static void	ft_read_command_loop(void)
 			if (err == ERR_EXEC)
 				ft_reset_redirs();
 			if (!err)
+			{
 				free_2d(g_data.cur_cmd);
-			free_2d(g_data.cur_args);
-			g_data.cur_args = NULL;
+				free_2d(g_data.cur_args);
+				g_data.cur_args = NULL;
+			}
 		}
 		free(g_data.cmd);
 	}
@@ -78,3 +80,5 @@ int	main(int argc, char *argv[], char **env)
 	clean_exit();
 	return (0);
 }
+
+// ""''"''"'"''|'"|

@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:06:22 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/01 00:00:25 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 08:42:07 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,30 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-// char	*ft_strjoin(char const *s1, char const *s2)
-// {
-// 	char	*buffer;
-// 	int		len1;
-// 	int		len2;
+char	*ft_strjoin_and_free(char *s1, char *s2)
+{
+	char	*str;
+	size_t	len1;
+	size_t	len2;
+	size_t	i;
 
-// 	if (!s1 || !s2)
-// 		return (NULL);
-// 	len1 = ft_strlen(s1);
-// 	len2 = ft_strlen(s2);
-// 	buffer = malloc(sizeof(char) * ((len1 + len2) + 1));
-// 	if (!buffer)
-// 		return (NULL);
-// 	ft_memcpy(buffer, s1, len1);
-// 	ft_memcpy(buffer + len1, s2, len2);
-// 	buffer[len1 + len2] = '\0';
-// 	return (buffer);
-// }
+	if (!s1 || !s2)
+		return (NULL);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	str = malloc(sizeof(char) * (len1 + len2 + 1));
+	if (!str)
+		return (0);
+	i = -1;
+	while (++i < len1)
+		str[i] = s1[i];
+	while (i < len2 + len1)
+	{
+		str[i] = s2[i - len1];
+		i++;
+	}
+	str[i] = '\0';
+	free(s1);
+	free(s2);
+	return (str);
+}

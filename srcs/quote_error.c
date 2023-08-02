@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:01:01 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/31 17:11:35 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/01 18:39:56 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	quote_error(char *str)
 		g_data.cmd = ft_strjoin(g_data.cmd, tmp);
 		if (ft_strcmp(tmp, "\"") != 0)
 			g_data.cmd = ft_strjoin(g_data.cmd, "\n");
-		str = g_data.cmd;
+		free(str);
 		free(tmp);
 	}
 	return (0);

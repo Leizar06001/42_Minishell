@@ -6,7 +6,7 @@
 #    By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/08/01 17:52:02 by raphaellous      ###   ########.fr        #
+#    Updated: 2023/08/02 08:30:55 by raphaellous      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,9 @@ SRCS_FILES	=	main.c 				\
 				cmd_analyse_fnc.c	\
 				ft_split.c			\
 				ft_parse.c			\
+				ft_parse2.c			\
+				ft_parse3.c			\
+				ft_parse_utils.c	\
 				ft_strjoin.c		\
 				init.c				\
 				init_struct.c		\

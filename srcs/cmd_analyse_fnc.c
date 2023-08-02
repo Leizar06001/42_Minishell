@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:56:14 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/01 13:29:58 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 08:54:31 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	cmd_line_analyser(int err, int size_cmd, int i)
 	if (ft_cmd_laucher_main(NOPIPE) == -1)
 	{
 		printf("msh: command not found: %s\n", g_data.cur_args[0]);
+		g_data.exit_status = 127;
 		return (ERR_EXEC);
 	}
 	return (0);
