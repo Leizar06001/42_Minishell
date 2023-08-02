@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/02 09:04:36 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 11:32:39 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,19 @@ static void	init_signals_handlers(void)
 	signal(SIGINT, handler_int);
 }
 
-static int	ft_check_synthax_and_parse(char *cmd)
+static int	ft_check_synthax_and_parse(void)
 {
 	int	err;
 
-	err = quote_error(cmd);
+	quote_error(g_data.cmd);
+	err = two_pipes_with_space(g_data.cmd);
 	if (err)
 		return (err);
-	err = two_pipes_with_space(cmd);
+	err = is_last_char_pipe(g_data.cmd);
 	if (err)
 		return (err);
-	err = is_last_char_pipe(cmd);
-	if (err)
-		return (err);
-	if (ft_strchr(cmd, '*'))
-		ft_wildcards_main(cmd);
-	//g_data.cur_cmd = replace_dollar_args(g_data.cur_cmd);
-	g_data.cur_cmd = ft_parse(cmd, 0);
+	g_data.cur_cmd = ft_parse(g_data.cmd, 0);
+	g_data.cur_cmd = replace_dollar_args(g_data.cur_cmd);
 	return (0);
 }
 
@@ -53,7 +49,7 @@ static void	ft_read_command_loop(void)
 		if (!str_only_space_tab(g_data.cmd))
 		{
 			add_history(g_data.cmd);
-			err = ft_check_synthax_and_parse(g_data.cmd);
+			err = ft_check_synthax_and_parse();
 			if (!err)
 				err = init_cmd_line_analyser();
 			if (err == ERR_EXEC)

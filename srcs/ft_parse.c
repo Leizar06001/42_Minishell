@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/02 08:36:25 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 11:04:44 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*remove_dquote(char *str, char c)
 
 void	joinquote(char **arr, int *i, char c)
 {
+	(void)c;
 	arr[*i - 1] = remove_dquote(arr[*i - 1], c);
 	if (g_data.next_is_quote == 1 || g_data.next_is_dquote == 1)
 	{

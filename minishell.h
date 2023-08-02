@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/02 08:42:29 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 12:28:29 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,10 +196,10 @@ int		output_trunc(char *filename);
 int		input_file(char *filename);
 int		input_heredoc(char *delimiter, int err);
 // wildcards
-int		ft_wildcards_main(char *cmd);
+int		ft_wildcards_main(int id_cmd);
 // replace dollars args
 char	**replace_dollar_args(char **cmd_line);
-char	*replace_dollar_var(const char *arg);
+char	*replace_dollar_var(char *arg, int id_arg);
 // Get next line
 char	*ft_remain(char *buf);
 char	*ft_return_line(char *buf);

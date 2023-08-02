@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:56:05 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/02 08:14:18 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 12:27:56 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,14 @@ char	**ft_add_array_to_array(char **src, char **dest, int pos)
 	return (ret);
 }
 
-static void	ft_wildcards_add_to_cmd(int nb_cards)
+static void	ft_wildcards_add_to_cmd(int nb_cards, int id_arg)
 {
-	char	**ar1;
 	char	**ret;
 
 	(void)nb_cards;
-	ar1 = malloc(sizeof(char *) * 10);
-	ar1[0] = ft_strdup("0000");
-	ar1[1] = ft_strdup("1111");
-	ar1[2] = ft_strdup("2222");
-	ar1[3] = ft_strdup("3333");
-	ar1[4] = ft_strdup("4444");
-	ar1[5] = NULL;
-	ret = ft_add_array_to_array(g_data.wildcard_res, ar1, 2);
+	ret = ft_add_array_to_array(g_data.wildcard_res, g_data.cur_cmd, id_arg);
+	//free_2d(new_c_l);
+	//new_c_l = ret;
 	prt_args(ret);
 }
 
@@ -110,13 +104,12 @@ static int	ft_wildcards_read_file(int fd, char *pattern)
 	return (nb_cards);
 }
 
-int	ft_wildcards_main(char *cmd)
+int	ft_wildcards_main(int id_arg)
 {
 	int		err;
 	int		fd;
 	int		ret;
 
-	(void)cmd;
 	g_data.wildcard_res = malloc(sizeof(char *) * 1);
 	g_data.wildcard_res[0] = NULL;
 	g_data.cur_args = malloc(sizeof(char *) * 2);
@@ -125,12 +118,12 @@ int	ft_wildcards_main(char *cmd)
 	err = ft_do_redir(">", ".temp_wildcards");
 	err = ft_cmd_laucher_main(NOPIPE);
 	fd = open(".temp_wildcards", O_RDONLY);
-	ret = ft_wildcards_read_file(fd, cmd);
+	ret = ft_wildcards_read_file(fd, g_data.cur_cmd[id_arg]);
 	close(fd);
 	ft_reset_redirs();
 	unlink(".temp_wildcards");
-	ft_wildcards_add_to_cmd(ret);
+	ft_wildcards_add_to_cmd(ret, id_arg);
 	free_2d(g_data.cur_args);
-	free_2d(g_data.wildcard_res);
+	//free_2d(g_data.wildcard_res);
 	return (err);
 }

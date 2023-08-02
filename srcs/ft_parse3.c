@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 08:30:34 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/02 08:32:15 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 11:27:05 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*quote_parse(char **arr, char *str, int *i)
 	arr[*i] = malloc_word_quote(str, -1, 0);
 	*i += 1;
 	str = pass_word(str, '\'');
-	joinquote(arr, i, '\'');
+	joinquote(arr, i, 'a');
 	if (*str == '\"' || *str == '\'')
 		g_data.next_is_quote = 1;
 	if (*str && !ft_isspace(*str) && !ft_isthan(*str) && *str != '|')

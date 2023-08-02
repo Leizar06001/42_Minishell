@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:02:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/02 09:03:30 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 12:29:23 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@ char	*loop1(const char *arg, int *i, char deli)
 
 	arg = arg + 1;
 	while (arg[*i] && arg[*i] != deli)
-		i++;
+		(*i)++;
 	tmp = malloc(sizeof(char) * (*i + 1));
-	i = 0;
+	*i = 0;
 	while (arg[*i] && arg[*i] != deli)
 	{
 		tmp[*i] = arg[*i];
-		i++;
+		(*i)++;
 	}
 	tmp[*i] = '\0';
 	return (tmp);
 }
 
-char	*replace_dollar_var(const char *arg)
+char	*replace_dollar_var(char *arg, int id_arg)
 {
 	char	*var_name;
 	char	*value;
@@ -55,6 +55,10 @@ char	*replace_dollar_var(const char *arg)
 		return (loop1(arg, &i, '\''));
 	else if (arg[0] == '\"')
 		return (loop1(arg, &i, '\"'));
+	if (ft_strchr(arg, '*'))
+	{
+		ft_wildcards_main(id_arg);
+	}
 	i = 0;
 	while (arg[i] && arg[i] != '$')
 		i++;
@@ -105,7 +109,7 @@ char	**replace_dollar_args(char **cmd_line)
 		return (NULL);
 	while (cmd_line[i] != NULL)
 	{
-		new_c_l[i] = replace_dollar_var(cmd_line[i]);
+		new_c_l[i] = replace_dollar_var(cmd_line[i], i);
 		i++;
 	}
 	new_c_l[i] = NULL;
