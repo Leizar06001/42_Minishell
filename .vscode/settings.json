@@ -3,6 +3,7 @@
         "minishell.h": "c",
         "wait.h": "c",
         "sstream": "c",
-        "FT_SPLIT_SPACE3.C": "cpp"
+        "FT_SPLIT_SPACE3.C": "cpp",
+        "termios.h": "c"
     }
 }

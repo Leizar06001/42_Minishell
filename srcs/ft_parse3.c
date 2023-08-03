@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse3.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 08:30:34 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/02 15:55:56 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/03 13:22:13 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ char	*dquote_parse(char **arr, char *str, int *i)
 	char *tmp;
 
 	tmp = malloc_word_dquote(str, -1, 0);
-	free(arr[*i]);
-	arr[*i] = tmp;
+	//free(arr[*i]);
+	arr[*i] = ft_strdup(tmp);
+	free(tmp);
 	//arr[*i] = malloc_word_dquote(str, -1, 0);
 	*i += 1;
 	str = pass_word(str, '\"');
@@ -35,7 +36,7 @@ char	*quote_parse(char **arr, char *str, int *i)
 	char *tmp;
 
 	tmp = malloc_word_quote(str, -1, 0);
-	free(arr[*i]);
+	//free(arr[*i]);
 	arr[*i] = tmp;
 
 	//arr[*i] = malloc_word_quote(str, -1, 0);
@@ -81,7 +82,11 @@ char	*pipe_parse(char **arr, char *str, int *i)
 
 char	*char_parse(char **arr, char *str, int *i)
 {
+	char	*tmp;
+	char	*tmp2;
+
 	arr[*i] = malloc_word(str);
+	tmp2 = arr[*i];
 	*i += 1;
 	while (*str && !ft_isspace(*str) && !ft_is2quote(*str)
 		&& !ft_isthan(*str) && *str != '|')
@@ -92,7 +97,11 @@ char	*char_parse(char **arr, char *str, int *i)
 			arr[*i - 2] = remove_dquote(arr[*i - 2], '\"');
 		else
 			arr[*i - 2] = remove_dquote(arr[*i - 2], '\'');
+		tmp = arr[*i - 2];
 		arr[*i - 2] = ft_strjoin(arr[*i - 2], arr[*i - 1]);
+		//arr[*i - 1] = NULL;
+		free(tmp);
+		free(tmp2);
 		arr[*i - 1] = NULL;
 		*i -= 1;
 		g_data.prev_is_dquote = 0;

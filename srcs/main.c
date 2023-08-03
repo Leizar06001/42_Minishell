@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/02 15:19:13 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/03 13:10:29 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	ft_read_command_loop(void)
 				err = init_cmd_line_analyser();
 			if (err == ERR_EXEC)
 				ft_reset_redirs();
-			if (!err)
+			if (!err || err)
 			{
 				free_2d(g_data.cur_cmd);
 				g_data.cur_args = NULL;

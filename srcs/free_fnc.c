@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_fnc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 09:16:46 by rloussig          #+#    #+#             */
-/*   Updated: 2023/07/28 15:55:20 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/03 12:54:57 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

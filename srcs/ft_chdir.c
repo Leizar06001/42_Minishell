@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_chdir.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:07:50 by rloussig          #+#    #+#             */
-/*   Updated: 2023/08/01 12:34:46 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/03 11:54:05 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static int	ft_chdir_home(void)
 	else
 	{
 		printf("msh: cd: HOME not set\n");
+		g_data.exit_status = 1;
 		return (127);
 	}
 	return (0);
@@ -81,7 +82,7 @@ int	ft_chdir(char *str)
 		printf("cd: no such file or directory: %s\n", str);
 		g_data.exit_status = 1;
 	}
-	else
+	else if (ret != 127)
 	{
 		ft_update_pwd();
 		current_folder();
