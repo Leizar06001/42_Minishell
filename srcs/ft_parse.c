@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/03 14:58:50 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/08/03 15:25:54 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*remove_dquote(char *str, char c)
 
 	i = 0;
 	longueur = ft_strlen(str);
+	if (longueur < 1)
+		return (ft_strdup(""));
 	new = (char *)malloc(sizeof(char) * (longueur - 1));
 	if (longueur >= 2 && str[0] == c && str[longueur - 1] == c)
 	{
