@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/02 15:46:55 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/03 13:28:59 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ void	joinquote(char **arr, int *i, char c)
 
 	(void)c;
 	tmp = remove_dquote(arr[*i - 1], c);
-	//free(arr[*i - 1]);
+	free(arr[*i - 1]);
 	arr[*i - 1] = tmp;
 	if (g_data.next_is_quote == 1 || g_data.next_is_dquote == 1)
 	{
-		arr[*i - 2] = ft_strjoin_and_free(arr[*i - 2], arr[*i - 1]);
+t
+		arr[*i - 2] = ft_strjoin(arr[*i - 2], arr[*i - 1]);
 		arr[*i - 1] = NULL;
 		*i -= 1;
 		g_data.next_is_quote = 0;
