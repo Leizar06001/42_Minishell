@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:06:22 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/02 08:42:07 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 15:28:03 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i] != '\0')
 		i++;
 	return (i);

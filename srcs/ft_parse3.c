@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 08:30:34 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/02 11:27:05 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 15:55:56 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 char	*dquote_parse(char **arr, char *str, int *i)
 {
-	arr[*i] = malloc_word_dquote(str, -1, 0);
+	char *tmp;
+
+	tmp = malloc_word_dquote(str, -1, 0);
+	free(arr[*i]);
+	arr[*i] = tmp;
+	//arr[*i] = malloc_word_dquote(str, -1, 0);
 	*i += 1;
 	str = pass_word(str, '\"');
 	joinquote(arr, i, '"');
@@ -27,7 +32,13 @@ char	*dquote_parse(char **arr, char *str, int *i)
 
 char	*quote_parse(char **arr, char *str, int *i)
 {
-	arr[*i] = malloc_word_quote(str, -1, 0);
+	char *tmp;
+
+	tmp = malloc_word_quote(str, -1, 0);
+	free(arr[*i]);
+	arr[*i] = tmp;
+
+	//arr[*i] = malloc_word_quote(str, -1, 0);
 	*i += 1;
 	str = pass_word(str, '\'');
 	joinquote(arr, i, 'a');

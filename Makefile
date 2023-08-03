@@ -6,7 +6,7 @@
 #    By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/08/02 08:30:55 by raphaellous      ###   ########.fr        #
+#    Updated: 2023/08/02 15:34:47 by raphaellous      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,7 +98,5 @@ fclean	:	clean
 #	@echo "\033[1;32mDone\033[0m\n"
 
 re: fclean all
-
-rt: fcleantest test
 
 .PHONY: all clean fclean re

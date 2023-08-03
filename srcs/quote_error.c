@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:01:01 by rloussig          #+#    #+#             */
-/*   Updated: 2023/08/02 15:03:52 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 15:47:51 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static char	*checkquotecl(int *error, char *str)
 {
-	str++;
+	if (str)
+		str++;
 	while (*str != '\'' && *str)
 		str++;
 	if (!*str)
@@ -29,7 +30,8 @@ static char	*checkquotecl(int *error, char *str)
 
 static char	*checkdquotecl(int *error, char *str)
 {
-	str++;
+	if (str)
+		str++;
 	while (*str != '\"' && *str)
 		str++;
 	if (!*str)
@@ -74,7 +76,7 @@ int	quote_error(char *str)
 		g_data.cmd = ft_strjoin(g_data.cmd, tmp);
 		if (ft_strcmp(tmp, "\"") != 0)
 			g_data.cmd = ft_strjoin(g_data.cmd, "\n");
-		free(str);
+		//free(str);
 		free(tmp);
 	}
 	return (0);

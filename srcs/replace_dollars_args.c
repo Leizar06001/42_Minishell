@@ -6,7 +6,7 @@
 /*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:02:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/02 15:00:38 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/02 15:40:25 by raphaellous      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ char	*replace_dollar_var(char *arg)
 
 	i = 0;
 	g_data.quote_before_dquotedollar = 0;
+	if (!arg)
+	return(NULL);
 	if (arg[0] == '\'')
 		return (replace_for_2quote(arg, &i, '\''));
 	else if (arg[0] == '\"')
