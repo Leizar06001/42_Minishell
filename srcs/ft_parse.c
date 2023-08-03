@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/03 13:29:56 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/08/03 13:38:25 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,14 @@ void	joinquote(char **arr, int *i, char c)
 	if (g_data.next_is_quote == 1 || g_data.next_is_dquote == 1)
 	{
 		tmp2 = arr[*i - 2];
+		tmp = arr[*i - 1];
 		arr[*i - 2] = ft_strjoin(arr[*i - 2], arr[*i - 1]);
 		free(tmp);
 		free(tmp2);
 		arr[*i - 1] = NULL;
 		*i -= 1;
 		g_data.next_is_quote = 0;
+		g_data.next_is_dquote = 0;
 	}
 }
 
