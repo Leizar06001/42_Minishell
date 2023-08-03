@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:01:01 by rloussig          #+#    #+#             */
-/*   Updated: 2023/08/02 15:47:51 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/03 14:55:40 by mabdali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	checkquoteclosed(char *str)
 int	quote_error(char *str)
 {
 	char	*tmp;
+	//char	*tmp2;
 
 	while (checkquoteclosed(str) != 0)
 	{
@@ -73,11 +74,13 @@ int	quote_error(char *str)
 			tmp = readline("dquote> ");
 		if (tmp == NULL)
 			return (-1);
+		//tmp2 = g_data.cmd;
 		g_data.cmd = ft_strjoin(g_data.cmd, tmp);
 		if (ft_strcmp(tmp, "\"") != 0)
 			g_data.cmd = ft_strjoin(g_data.cmd, "\n");
 		//free(str);
 		free(tmp);
+		//free(tmp2);
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 08:26:54 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/02 08:35:06 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/03 14:35:03 by mabdali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

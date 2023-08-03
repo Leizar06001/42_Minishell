@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_heredoc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 17:02:49 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/02 12:55:20 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/03 15:02:04 by mabdali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	heredoc_w_to_file(char *str)
 
 static int	heredoc_process_line(char **tmp, char **tmp2, char **heredoc)
 {
-	*tmp2 = replace_dollar_var(*tmp);
+	*tmp2 = replace_dollar_var(*tmp, 0);
 	free(*tmp);
 	*tmp = ft_strjoin(*heredoc, *tmp2);
 	free(*tmp2);

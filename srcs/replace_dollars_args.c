@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_dollars_args.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:02:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/03 12:45:35 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:14:32 by mabdali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,25 @@ char	*replace_for_2quote(const char *arg, int *i, char deli)
 	arg = arg + 1;
 	while (arg[*i] && arg[*i] != deli)
 		(*i)++;
+	if(arg[*i] && arg[*i] == deli)
+	{
+		while(arg[(*i) + 1])
+			(*i)++;
+	}
 	tmp = malloc(sizeof(char) * (*i + 1));
 	*i = 0;
 	while (arg[*i] && arg[*i] != deli)
 	{
 		tmp[*i] = arg[*i];
 		(*i)++;
+	}
+	if(arg[*i] && arg[*i] == deli)
+	{
+		while(arg[(*i) + 1])
+		{
+			tmp[*i] = arg[*i + 1];
+			(*i)++;
+		}
 	}
 	tmp[*i] = '\0';
 	return (tmp);
@@ -59,15 +72,13 @@ char	*replace_interogation(char *tmp)
 	return (ft_itoa(g_data.exit_status));
 }
 
-char	*replace_dollar_var(char *arg)
+char	*replace_dollar_var(char *arg, int i)
 {
-	int		i;
 	char	*tmp;
 
-	i = 0;
 	g_data.quote_before_dquotedollar = 0;
 	if (!arg)
-	return(NULL);
+		return (NULL);
 	if (arg[0] == '\'')
 		return (replace_for_2quote(arg, &i, '\''));
 	else if (arg[0] == '\"')
@@ -98,7 +109,7 @@ void	replace_dollar_args(char **cmd_line)
 	g_data.actual_arg = 0;
 	while (g_data.cur_cmd[g_data.actual_arg] != NULL)
 	{
-		tmp = replace_dollar_var(g_data.cur_cmd[g_data.actual_arg]);
+		tmp = replace_dollar_var(g_data.cur_cmd[g_data.actual_arg], 0);
 		if (tmp)
 		{
 			free(g_data.cur_cmd[g_data.actual_arg]);

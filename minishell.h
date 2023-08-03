@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/03 11:42:53 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:01:34 by mabdali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ int		input_heredoc(char *delimiter, int err);
 char	*ft_wildcards_main(void);
 // replace dollars args
 void	replace_dollar_args(char **cmd_line);
-char	*replace_dollar_var(char *arg);
+char	*replace_dollar_var(char *arg, int i);
 // Get next line
 char	*ft_remain(char *buf);
 char	*ft_return_line(char *buf);
