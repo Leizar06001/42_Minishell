@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/08 16:57:35 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:55:19 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ static int	ft_check_synthax_and_parse(void)
 {
 	int	err;
 
-	quote_error(g_data.cmd);
+	err = quote_error(g_data.cmd);
+	if (err)
+		return (err);
 	err = two_pipes_with_space(g_data.cmd);
 	if (err)
 		return (err);

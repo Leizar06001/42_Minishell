@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:02:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/08 17:19:32 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:02:36 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ char	*replace_for_2quote(const char *arg, int *i, char deli)
 	char	*tmp;
 
 	arg = arg + 1;
-	while (arg[*i] && arg[*i] != deli ety dif de tt)
+	while (arg[*i] && arg[*i] != deli)
 		(*i)++;
-	if(arg[*i] && arg[*i] == deli)
+	if (arg[*i] && arg[*i] == deli)
 	{
-		while(arg[(*i) + 1])
+		while (arg[(*i) + 1])
 			(*i)++;
 	}
 	tmp = malloc(sizeof(char) * (*i + 1));
@@ -31,9 +31,9 @@ char	*replace_for_2quote(const char *arg, int *i, char deli)
 		tmp[*i] = arg[*i];
 		(*i)++;
 	}
-	if(arg[*i] && arg[*i] == deli)
+	if (arg[*i] && arg[*i] == deli)
 	{
-		while(arg[(*i) + 1])
+		while (arg[(*i) + 1])
 		{
 			tmp[*i] = arg[*i + 1];
 			(*i)++;
@@ -43,26 +43,50 @@ char	*replace_for_2quote(const char *arg, int *i, char deli)
 	return (tmp);
 }
 
-char	*replace_just_dollar(int *i, char *tmp, char *arg)
+int	find_var_name_end(char *var)
+{
+	int	i;
+
+	i = 0;
+	while ((var[i] >= 'A' && var[i] <= 'Z') || (var[i] >= 'a' && var[i] <= 'z')
+		|| (var[i] >= '0' && var[i] <= '9'))
+	{
+		i++;
+	}
+	return (i);
+}
+
+char	*replace_just_dollar(int *start, char *tmp, char *arg)
 {
 	char	*value;
 	char	*var_name;
+	int		end;
+	char	*tmp_var;
 
-	var_name = strdup(arg + *i + 1);
+	var_name = ft_strdup(arg + *start + 1);
+	end = find_var_name_end(var_name);
 	if (var_name[ft_strlen(var_name) - 1] == '\'')
 	{
 		g_data.quote_before_dquotedollar = 1;
 		var_name[ft_strlen(var_name) - 1] = '\0';
 	}
-	value = ft_getvar(var_name);
+	tmp_var = ft_strdup(var_name);
+	tmp_var[end] = '\0';
+	value = ft_getvar(tmp_var);
+	free(tmp_var);
 	if (g_data.quote_before_dquotedollar == 1)
 		value = ft_strjoin(value, "\'");
-	free(var_name);
-	if (value == NULL)
-		return (tmp);
-	value = ft_strjoin(tmp, value);
 	if (value)
+		tmp_var = ft_strjoin(tmp, value);
+	value = ft_strjoin(tmp_var, var_name + end);
+	free(var_name);
+	if (value)
+	{
 		free(tmp);
+		free(tmp_var);
+	}
+	else
+		return (tmp);
 	return (value);
 }
 

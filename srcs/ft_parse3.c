@@ -6,21 +6,51 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 08:30:34 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/08 17:05:14 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:14:05 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+char*	givequote(char *str)
+{
+	char	*tmp;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	tmp = malloc(ft_strlen(str) + 3);
+	tmp[i++] = '\'';
+	while(str[j])
+	{
+		tmp[i++] = str[j++];
+	}
+	tmp[i++] = '\'';
+	tmp[i] = '\0';
+	return(tmp);
+}
+
 char	*dquote_parse(char **arr, char *str, int *i)
 {
 	char	*tmp;
+	char	*tmp2;
 
 	tmp = malloc_word_dquote(str, -1, 0);
-	tmp[ft_strlen(tmp) - 1] = '\0';
-	tmp = replace_dollar_var(tmp + 1, 0);
-	arr[*i] = ft_strdup(tmp);
+	if (tmp[1] == '\'' && tmp[ft_strlen(tmp) - 2] == '\'')
+	{
+		tmp[ft_strlen(tmp) - 2] = '\0';
+		tmp2 = replace_dollar_var(tmp + 2, 0);
+		tmp2 = givequote(tmp2);
+	}
+	else
+	{
+		tmp[ft_strlen(tmp) - 1] = '\0';
+		tmp2 = replace_dollar_var(tmp + 1, 0);
+	}
 	free(tmp);
+	arr[*i] = ft_strdup(tmp2);
+	free(tmp2);
 	*i += 1;
 	str = pass_word(str, '\"');
 	joinquote(arr, i, '"');
@@ -34,13 +64,15 @@ char	*dquote_parse(char **arr, char *str, int *i)
 char	*quote_parse(char **arr, char *str, int *i)
 {
 	char	*tmp;
+	char	*tmp2;
 
 	tmp = malloc_word_quote(str, -1, 0);
-	tmp = replace_dollar_var(tmp, 0);
-	arr[*i] = tmp;
+	tmp2 = replace_dollar_var(tmp, 0);
+	free(tmp);
+	arr[*i] = tmp2;
 	*i += 1;
 	str = pass_word(str, '\'');
-	if (ft_strchr(tmp, '$'))
+	if (ft_strchr(tmp2, '$'))
 		joinquote(arr, i, 'a');
 	else
 		joinquote(arr, i, '\'');
