@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:02:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/03 17:18:53 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:19:32 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*replace_for_2quote(const char *arg, int *i, char deli)
 	char	*tmp;
 
 	arg = arg + 1;
-	while (arg[*i] && arg[*i] != deli)
+	while (arg[*i] && arg[*i] != deli ety dif de tt)
 		(*i)++;
 	if(arg[*i] && arg[*i] == deli)
 	{
