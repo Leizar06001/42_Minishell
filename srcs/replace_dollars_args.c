@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_dollars_args.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:02:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/03 15:14:32 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/08/03 17:18:53 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,4 @@ void	replace_dollar_args(char **cmd_line)
 			g_data.actual_arg++;
 		}
 	}
-	g_data.cur_cmd[g_data.actual_arg] = NULL;
 }

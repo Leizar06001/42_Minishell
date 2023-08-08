@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/03 15:25:54 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:16:27 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ char	*remove_dquote(char *str, char c)
 
 	i = 0;
 	longueur = ft_strlen(str);
-	if (longueur < 1)
-		return (ft_strdup(""));
 	new = (char *)malloc(sizeof(char) * (longueur - 1));
 	if (longueur >= 2 && str[0] == c && str[longueur - 1] == c)
 	{
@@ -43,19 +41,19 @@ char	*remove_dquote(char *str, char c)
 void	joinquote(char **arr, int *i, char c)
 {
 	char	*tmp;
-	char	*tmp2;
+	//char	*tmp2;
 
 	(void)c;
 	tmp = remove_dquote(arr[*i - 1], c);
-	free(arr[*i - 1]);
+	//free(arr[*i - 1]);
 	arr[*i - 1] = tmp;
 	if (g_data.next_is_quote == 1 || g_data.next_is_dquote == 1)
 	{
-		tmp2 = arr[*i - 2];
-		tmp = arr[*i - 1];
+		//tmp2 = arr[*i - 2];
+		//tmp = arr[*i - 1];
 		arr[*i - 2] = ft_strjoin(arr[*i - 2], arr[*i - 1]);
-		free(tmp);
-		free(tmp2);
+		//free(tmp);
+		//free(tmp2);
 		arr[*i - 1] = NULL;
 		*i -= 1;
 		g_data.next_is_quote = 0;

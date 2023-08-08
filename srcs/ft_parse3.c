@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse3.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 08:30:34 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/03 14:58:27 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/08/03 17:16:45 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*dquote_parse(char **arr, char *str, int *i)
 	char	*tmp;
 
 	tmp = malloc_word_dquote(str, -1, 0);
+	tmp[ft_strlen(tmp) - 1] = '\0';
+	tmp = replace_dollar_var(tmp + 1, 0);
 	arr[*i] = ft_strdup(tmp);
 	free(tmp);
 	*i += 1;
@@ -37,6 +39,7 @@ char	*quote_parse(char **arr, char *str, int *i)
 	arr[*i] = tmp;
 	*i += 1;
 	str = pass_word(str, '\'');
+	joinquote(arr, i, '\'');
 	if (*str == '\"' || *str == '\'')
 		g_data.next_is_quote = 1;
 	if (*str && !ft_isspace(*str) && !ft_isthan(*str) && *str != '|')
