@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 08:30:34 by raphaellous       #+#    #+#             */
-/*   Updated: 2023/08/03 17:16:45 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:05:14 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,14 @@ char	*quote_parse(char **arr, char *str, int *i)
 	char	*tmp;
 
 	tmp = malloc_word_quote(str, -1, 0);
+	tmp = replace_dollar_var(tmp, 0);
 	arr[*i] = tmp;
 	*i += 1;
 	str = pass_word(str, '\'');
-	joinquote(arr, i, '\'');
+	if (ft_strchr(tmp, '$'))
+		joinquote(arr, i, 'a');
+	else
+		joinquote(arr, i, '\'');
 	if (*str == '\"' || *str == '\'')
 		g_data.next_is_quote = 1;
 	if (*str && !ft_isspace(*str) && !ft_isthan(*str) && *str != '|')

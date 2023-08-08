@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/03 13:10:29 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/08/08 16:57:35 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	ft_check_synthax_and_parse(void)
 	if (err)
 		return (err);
 	g_data.cur_cmd = ft_parse(g_data.cmd, 0);
-	replace_dollar_args(g_data.cur_cmd);
+	//replace_dollar_args(g_data.cur_cmd);
 	return (0);
 }
 
