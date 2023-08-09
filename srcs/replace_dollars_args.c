@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:02:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/09 16:18:29 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:09:12 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,10 @@ char	*replace_dollar_var(char *arg, int i)
 	g_data.quote_before_dquotedollar = 0;
 	if (!arg)
 		return (NULL);
-	if (arg[0] == '\'')
-		return (replace_for_2quote(arg, &i, '\''));
-	else if (arg[0] == '\"')
-		return (replace_for_2quote(arg, &i, '\"'));
+	if (arg[0] == '\'' || arg[0] == '\"')
+		return (replace_for_2quote(arg, &i, arg[0]));
+	if (ft_strchr(arg, '\''))
+		return (remove_quote_inside(arg));
 	if (ft_strchr(arg, '*'))
 		return (ft_wildcards_main());
 	i = 0;

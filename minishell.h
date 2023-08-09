@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/09 16:14:27 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:06:38 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,7 @@ char	*replace_dollar_var(char *arg, int i);
 // replace dollars utils
 int		ft_find_arg_name_end(char *arg);
 char	*replace_interogation(char *tmp);
+char	*remove_quote_inside(char *arg);
 // Get next line
 char	*ft_remain(char *buf);
 char	*ft_return_line(char *buf);
