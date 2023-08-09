@@ -1,8 +1,0 @@
-tomate
-concombre
-patate
-orange
-pomme
-banane
-abricot
-peche

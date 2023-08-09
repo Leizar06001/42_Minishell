@@ -6,7 +6,7 @@
 /*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:38:03 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/03 13:10:29 by rloussig         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:45:55 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,24 @@ static void	init_signals_handlers(void)
 static int	ft_check_synthax_and_parse(void)
 {
 	int	err;
+	int	i;
 
-	quote_error(g_data.cmd);
+	err = quote_error(g_data.cmd);
+	if (err)
+		return (err);
 	err = two_pipes_with_space(g_data.cmd);
 	if (err)
 		return (err);
-	err = is_last_char_pipe(g_data.cmd);
-	if (err)
-		return (err);
 	g_data.cur_cmd = ft_parse(g_data.cmd, 0);
+	i = 0;
+	while (g_data.cur_cmd[i])
+		i++;
+	if (g_data.cur_cmd[i - 1][0] == '|')
+	{
+		printf("msh: synthax error: pipe at end of line\n");
+		g_data.exit_status = 1;
+		return (-1);
+	}
 	replace_dollar_args(g_data.cur_cmd);
 	return (0);
 }

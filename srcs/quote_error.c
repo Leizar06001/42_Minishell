@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:01:01 by rloussig          #+#    #+#             */
-/*   Updated: 2023/08/03 14:55:40 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/08/09 14:19:32 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,24 +63,13 @@ int	checkquoteclosed(char *str)
 
 int	quote_error(char *str)
 {
-	char	*tmp;
-	//char	*tmp2;
-
 	while (checkquoteclosed(str) != 0)
 	{
 		if (checkquoteclosed(str) == 1)
-			tmp = readline("quote> ");
+			printf("msh: synthax error: quote\n");
 		if (checkquoteclosed(str) == 2)
-			tmp = readline("dquote> ");
-		if (tmp == NULL)
-			return (-1);
-		//tmp2 = g_data.cmd;
-		g_data.cmd = ft_strjoin(g_data.cmd, tmp);
-		if (ft_strcmp(tmp, "\"") != 0)
-			g_data.cmd = ft_strjoin(g_data.cmd, "\n");
-		//free(str);
-		free(tmp);
-		//free(tmp2);
+			printf("msh: synthax error: dquote\n");
+		return (-1);
 	}
 	return (0);
 }

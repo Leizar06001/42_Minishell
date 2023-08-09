@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:01:01 by rloussig          #+#    #+#             */
-/*   Updated: 2023/08/01 12:08:13 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/09 13:43:25 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	two_pipes_with_space(char *str)
 
 	i = 0;
 	pipe_count = 0;
+	if (str[0] == '\'' || str[0] == '\"')
+		return (0);
 	while (str[i] && !(pipe_count == 2))
 	{
 		if (str[i] == '|')

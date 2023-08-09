@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabdali <mabdali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:03:55 by mabdali           #+#    #+#             */
-/*   Updated: 2023/08/03 15:01:34 by mabdali          ###   ########.fr       */
+/*   Updated: 2023/08/09 16:14:27 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,9 @@ char	*ft_wildcards_main(void);
 // replace dollars args
 void	replace_dollar_args(char **cmd_line);
 char	*replace_dollar_var(char *arg, int i);
+// replace dollars utils
+int		ft_find_arg_name_end(char *arg);
+char	*replace_interogation(char *tmp);
 // Get next line
 char	*ft_remain(char *buf);
 char	*ft_return_line(char *buf);

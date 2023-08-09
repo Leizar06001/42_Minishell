@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 09:41:10 by rloussig          #+#    #+#             */
-/*   Updated: 2023/08/01 16:14:09 by raphaellous      ###   ########.fr       */
+/*   Updated: 2023/08/09 13:55:16 by rloussig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_do_redir(char *arrow, char *filename)
 		err = input_heredoc(filename, 0);
 	else if (ft_strcmp(arrow, ">>") == 0)
 		err = output_append(filename);
-	if (err)
+	if (err == -1)
 		g_data.exit_status = 1;
 	return (err);
 }

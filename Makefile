@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+         #
+#    By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 17:07:37 by mabdali           #+#    #+#              #
-#    Updated: 2023/08/02 15:34:47 by raphaellous      ###   ########.fr        #
+#    Updated: 2023/08/09 16:33:43 by rloussig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRCS_FILES	=	main.c 				\
 				redir_fnc.c			\
 				redir_heredoc.c		\
 				replace_dollars_args.c	\
+				replace_dollars_utils.c	\
 				cmd_launcher.c		\
 				wildcards.c			\
 				get_next_line.c		\
